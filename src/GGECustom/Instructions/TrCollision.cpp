@@ -1,4 +1,4 @@
-#include "GGE/CustomInstructions/TrCollision.hpp"
+#include "GGECustom/Instructions/TrCollision.hpp"
 
 using gge::ins::TrCollision;
 

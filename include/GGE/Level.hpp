@@ -5,20 +5,20 @@
 #include "GGE/GObjects/GObject.hpp"
 #include "GGE/GObjects/AnimatedSprite.hpp"
 #include "GGE/GObjects/Sprite.hpp"
-#include "GGE/CustomGObjects/PhysPlayer.hpp"
+#include "GGECustom/GObjects/PhysPlayer.hpp"
 #include "GGE/GObjects/Camera.hpp"
 #include "GGE/GObjects/Body.hpp"
-#include "GGE/CustomGObjects/TDPlayer.hpp"
-#include "GGE/CustomGObjects/TDNpc.hpp"
-#include "GGE/CustomGObjects/PhysNpc.hpp"
+#include "GGECustom/GObjects/TDPlayer.hpp"
+#include "GGECustom/GObjects/TDNpc.hpp"
+#include "GGECustom/GObjects/PhysNpc.hpp"
 #include "GGE/GObjects/Text.hpp"
 #include "GGE/GObjects/Drawable.hpp"
 
-#include "GGE/Dialogues/DialogueManager.hpp"
+#include "GGECustom/Dialogues/DialogueManager.hpp"
 #include "GGE/Physics/PhysicsManager.hpp"
 #include "GGE/Instructions/TriggersManager.hpp"
 
-#include "GGE/SingletonManagers/ResourceManager.hpp"
+#include "GGE/ResourceManager/ResourceManager.hpp"
 
 // #define DRAWCOLLIDER
 
@@ -38,8 +38,11 @@ public:
     ///////////////////////////
     // Managers
     TriggersManager triggersManager;
-    DialogueManager dialogueManager;
     PhysicsManager physicsManager;
+    //////////
+    // Custom
+    DialogueManager dialogueManager;
+    //////////
 
     // Updatable GObjects
     std::vector<std::weak_ptr<obj::GObject>> updatableGObjects;
@@ -61,8 +64,6 @@ public:
 
     // Update states of all the objects
     void update(const float& dTimeMs);
-    // Update dialogues duh
-    void updateDialogues();
     // Draw drawable objects
     void drawGObjetcs(sf::RenderWindow& window);
 };

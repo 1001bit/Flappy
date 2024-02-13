@@ -1,4 +1,4 @@
-#include "GGE/Dialogues/DialogueManager.hpp"
+#include "GGECustom/Dialogues/DialogueManager.hpp"
 
 using gge::DialogueManager;
 

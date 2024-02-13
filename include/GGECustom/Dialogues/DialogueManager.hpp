@@ -1,11 +1,11 @@
 #pragma once
 
 #include <unordered_map>
-#include "GGE/Dialogues/Dialogue.hpp"
+#include "GGECustom/Dialogues/Dialogue.hpp"
 #include "GGE/GObjects/Text.hpp"
 #include "GGE/GObjects/Sprite.hpp"
 #include "GGE/GObjects/Camera.hpp"
-#include "GGE/SingletonManagers/ResourceManager.hpp"
+#include "GGE/ResourceManager/ResourceManager.hpp"
 #include "GGE/GameConstants.hpp"
 
 namespace gge {

@@ -1,4 +1,4 @@
-#include "GGE/CustomGObjects/PhysPlayer.hpp"
+#include "GGECustom/GObjects/PhysPlayer.hpp"
 
 using gge::obj::PhysPlayer;
 

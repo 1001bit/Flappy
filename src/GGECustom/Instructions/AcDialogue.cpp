@@ -1,4 +1,4 @@
-#include "GGE/CustomInstructions/AcDialogue.hpp"
+#include "GGECustom/Instructions/AcDialogue.hpp"
 
 using gge::ins::AcDialogue;
 

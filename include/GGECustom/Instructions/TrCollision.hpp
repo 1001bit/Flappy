@@ -2,7 +2,6 @@
 
 #include "GGE/Instructions/Trigger.hpp"
 #include "GGE/GObjects/KinematicBody.hpp"
-#include "GGE/Dialogues/DialogueManager.hpp"
 
 namespace gge::ins {
 

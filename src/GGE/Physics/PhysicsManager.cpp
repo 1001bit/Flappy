@@ -2,11 +2,6 @@
 
 using gge::PhysicsManager;
 
-constexpr float GFORCE = 0.08;
-constexpr float AIR_FRICTION = 0.015;
-constexpr float GROUND_FRICTION = 0.3;
-constexpr float ACCEL_COEFF = 0.1;
-
 // Structors
 PhysicsManager::PhysicsManager(){}
 

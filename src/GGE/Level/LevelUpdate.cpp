@@ -17,12 +17,6 @@ void Level::update(const float& dTimeMs){
         ++it;
     }
 };
-
-// Update dialogues
-void Level::updateDialogues(){
-    dialogueManager.updateCurrentDialogue(levelGObjectsWId, camera);
-}
-
 // draw drawables
 void Level::drawGObjetcs(sf::RenderWindow& window){
     // Level

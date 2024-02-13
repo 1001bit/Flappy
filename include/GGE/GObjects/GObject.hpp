@@ -4,8 +4,8 @@
 #include <vector>
 #include <memory>
 #include <iostream>
-#include "GGE/SingletonManagers/CooldownsManager.hpp"
-#include "GGE/SingletonManagers/ControlsManager.hpp"
+#include "GGE/Cooldowns/CooldownsManager.hpp"
+#include "GGE/Controls/ControlsManager.hpp"
 #include "GGE/GameConstants.hpp"
 
 // 4 directions

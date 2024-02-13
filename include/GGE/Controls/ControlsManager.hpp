@@ -30,12 +30,11 @@ private:
     
 public:
     // Methods
-    // Set keyboard controls
+    // Set controls
     void setKeyboardControlsMap(std::unordered_map<std::string, sf::Keyboard::Key> newControlsMap);
-    // Set mouse controls
     void setMouseControlsMap(std::unordered_map<std::string, sf::Mouse::Button> newControlsMap);
     
-    // Change keyboard control
+    // Change control
     void changeKeyboardControl(std::string controlId, sf::Keyboard::Key newKey);
 
     // Is control held now
@@ -44,13 +43,13 @@ public:
     // Is control pressed once
     bool isControlPressed(const std::string& controlId);
 
-    // Control press
+    // On control single press
     void addPressedKeyboard(sf::Keyboard::Key key);
     void addPressedMouse(sf::Mouse::Button button);
-    // Clear pressed list
+    // Clear the list of once pressed controls
     void clearPressed();
 
-    // Control release
+    // On control release
     void keyboardControlRelease(sf::Keyboard::Key key);
     void mouseControlRelease(sf::Mouse::Button button);
 

@@ -1,4 +1,4 @@
-#include "GGE/SingletonManagers/ResourceManager.hpp"
+#include "GGE/ResourceManager/ResourceManager.hpp"
 
 using gge::ResourceManager;
 

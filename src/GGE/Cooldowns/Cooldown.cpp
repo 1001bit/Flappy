@@ -1,4 +1,4 @@
-#include "GGE/SingletonManagers/Cooldown.hpp"
+#include "GGE/Cooldowns/Cooldown.hpp"
 
 using gge::Cooldown;
 

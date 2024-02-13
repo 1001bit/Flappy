@@ -2,14 +2,8 @@
 
 using namespace gge;
 
-void clvl::necessaryInit(std::shared_ptr<Level> level){
+void clvl::dialogueInit(std::shared_ptr<Level> level){
     ResourceManager* resourceManager = ResourceManager::getInstance();
-
-    // Level
-    // camera
-    level->camera = std::make_shared<obj::Camera>();
-    level->camera->setRectSize(GAME_WIDTH, GAME_HEIGHT);
-    level->updatableGObjects.push_back(level->camera);
 
     // Gui
     // Dialogue box

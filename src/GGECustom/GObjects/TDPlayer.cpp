@@ -1,4 +1,4 @@
-#include "GGE/CustomGObjects/TDPlayer.hpp"
+#include "GGECustom/GObjects/TDPlayer.hpp"
 
 using gge::obj::TDPlayer;
 

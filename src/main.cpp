@@ -1,6 +1,6 @@
 #include "GGE/Game.hpp"
 
-#include "CustomLevels/inits.hpp"
+#include "GGECustom/Levels/inits.hpp"
 
 void initControls(){
     gge::ControlsManager* controlsManager = gge::ControlsManager::getInstance();
@@ -33,7 +33,7 @@ int main()
 
     // init levels
     std::shared_ptr<gge::Level> level = game->currentLevel;
-    clvl::necessaryInit(level);
+    clvl::dialogueInit(level);
     clvl::testInit(level);
 
     // start the main loop

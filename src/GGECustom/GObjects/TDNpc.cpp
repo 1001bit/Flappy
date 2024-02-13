@@ -1,4 +1,4 @@
-#include "GGE/CustomGObjects/TDNpc.hpp"
+#include "GGECustom/GObjects/TDNpc.hpp"
 
 using gge::obj::TDNpc;
 

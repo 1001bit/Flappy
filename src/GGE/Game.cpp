@@ -72,8 +72,11 @@ void Game::loop(sf::RenderWindow& window){
         // GObjects that are level's children
         currentLevel->update(dTimeMs);
 
+        //////////
+        // Custom
         // Dialogues
-        currentLevel->updateDialogues();
+        currentLevel->dialogueManager.updateCurrentDialogue(currentLevel->levelGObjectsWId, currentLevel->camera);
+        //////////
 
         // Draw
         window.clear();

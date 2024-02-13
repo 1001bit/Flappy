@@ -14,4 +14,9 @@ void Level::init(){
     // init gui view
     guiView.setSize(GAME_WIDTH, GAME_HEIGHT);
     guiView.setCenter(GAME_WIDTH/2, GAME_HEIGHT/2);
+
+    // init camera
+    camera = std::make_shared<obj::Camera>();
+    camera->setRectSize(GAME_WIDTH, GAME_HEIGHT);
+    updatableGObjects.push_back(camera);
 };

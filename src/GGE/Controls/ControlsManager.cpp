@@ -1,4 +1,4 @@
-#include "GGE/SingletonManagers/ControlsManager.hpp"
+#include "GGE/Controls/ControlsManager.hpp"
 
 using gge::ControlsManager;
 
