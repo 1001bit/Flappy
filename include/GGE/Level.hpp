@@ -14,7 +14,6 @@
 #include "GGE/GObjects/Text.hpp"
 #include "GGE/GObjects/Drawable.hpp"
 
-#include "GGECustom/Dialogues/DialogueManager.hpp"
 #include "GGE/Physics/PhysicsManager.hpp"
 #include "GGE/Instructions/TriggersManager.hpp"
 
@@ -41,7 +40,7 @@ public:
     PhysicsManager physicsManager;
     //////////
     // Custom
-    DialogueManager dialogueManager;
+    
     //////////
 
     // Updatable GObjects

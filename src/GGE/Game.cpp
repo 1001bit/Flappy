@@ -74,8 +74,7 @@ void Game::loop(sf::RenderWindow& window){
 
         //////////
         // Custom
-        // Dialogues
-        currentLevel->dialogueManager.updateCurrentDialogue(currentLevel->levelGObjectsWId, currentLevel->camera);
+        
         //////////
 
         // Draw

@@ -33,8 +33,6 @@ int main()
 
     // init levels
     std::shared_ptr<gge::Level> level = game->currentLevel;
-    clvl::dialogueInit(level);
-    clvl::testInit(level);
 
     // start the main loop
     game->loop(window);
