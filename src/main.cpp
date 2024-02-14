@@ -6,15 +6,7 @@ void initControls(){
     gge::ControlsManager* controlsManager = gge::ControlsManager::getInstance();
     // Keyboard controls
     controlsManager->setKeyboardControlsMap({
-        {"wLeft", sf::Keyboard::A},
-        {"wRight", sf::Keyboard::D},
-        {"wUp", sf::Keyboard::W},
-        {"wDown", sf::Keyboard::S},
         {"jump", sf::Keyboard::Space},
-    });
-    // mouse controls
-    controlsManager->setMouseControlsMap({
-        {"dialogueNext", sf::Mouse::Left}
     });
 }
 
@@ -33,6 +25,7 @@ int main()
 
     // init levels
     std::shared_ptr<gge::Level> level = game->currentLevel;
+    clvl::scene(level);
 
     // start the main loop
     game->loop(window);

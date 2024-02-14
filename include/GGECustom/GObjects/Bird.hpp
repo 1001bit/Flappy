@@ -1,22 +1,21 @@
 #pragma once
 
 #include "GGE/GObjects/KinematicBody.hpp"
+#include "GGE/Controls/ControlsManager.hpp"
 
 namespace gge::obj {
 
-class TDNpc : public KinematicBody
+class Bird : public KinematicBody
 {
 private:
-    // Variables
-    Direction movementDir;
 
 public:
     // Structors
-    TDNpc();
-    ~TDNpc();
+    Bird();
+    ~Bird();
 
     // Methods
-    // npc movement
+    // Control player
     void control();
 };
 

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "GGE/GObjects/GObject.hpp"
+#include <memory>
 #include "GGE/Instructions/Action.hpp"
 
 namespace gge::ins {
