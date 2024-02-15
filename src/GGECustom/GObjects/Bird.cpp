@@ -2,7 +2,7 @@
 
 using gge::obj::Bird;
 
-constexpr float JUMP_FORCE = 40;
+constexpr float JUMP_FORCE = 13;
 
 // Structors
 Bird::Bird(){
@@ -19,6 +19,7 @@ void Bird::control(){
 
     // jump
     if(controlsManager->isControlPressed("jump")){
-        velocity.y = -JUMP_FORCE;
+        velocity.y = 0;
+        accelerate(0, -JUMP_FORCE);
     }
 }
