@@ -11,6 +11,10 @@ private:
     // Variables
     sf::View view;
     std::weak_ptr<GObject> followTargetWeak;
+
+    // Methods
+    // update position of rect and camera
+    void updatePos();
     
 public:
     // Structors

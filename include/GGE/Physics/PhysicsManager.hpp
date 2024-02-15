@@ -4,11 +4,6 @@
 #include "GGE/GObjects/KinematicBody.hpp"
 #include "GGE/MathHelper.hpp"
 
-constexpr float GFORCE = 0.06;
-constexpr float AIR_FRICTION = 0.015;
-constexpr float GROUND_FRICTION = 0.3;
-constexpr float ACCEL_COEFF = 0.1;
-
 namespace gge {
 
 class PhysicsManager

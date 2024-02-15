@@ -2,7 +2,7 @@
 
 #include "GGE/Level.hpp"
 #include "GGE/Controls/ControlsManager.hpp"
-#include "GGE/GameConstants.hpp"
+#include "GGECustom/GameConstants.hpp"
 
 namespace gge {
 

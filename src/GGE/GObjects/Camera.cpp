@@ -24,16 +24,12 @@ void Camera::update(const float& dTimeMs){
 
     float blend = pow(FACTOR, dTimeMs);
     setRelativePos(lerp(cameraRectNewPos, getRelativePos(), blend));
-
     // setRelativePos(cameraRectNewPos);
-
-    view.setCenter(getRelativePos() + getRect().getSize()/2.f);
 }
 
 // set size of view
 void Camera::setRectSize(float w, float h){
     view.setSize({w, h});
-
     GObject::setRectSize(w, h);
 }
 
@@ -41,6 +37,12 @@ void Camera::setRectSize(float w, float h){
 void Camera::setTarget(std::shared_ptr<GObject> newTarget){
     followTargetWeak = newTarget;
 };
+
+// update position of rect and camera
+void Camera::updatePos(){
+    GObject::updatePos();
+    view.setCenter(getRect().getPosition() + getRect().getSize()/2.f);
+}
 
 // Getters
 // get view

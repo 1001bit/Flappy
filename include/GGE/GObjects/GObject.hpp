@@ -5,7 +5,7 @@
 #include <memory>
 #include <iostream>
 #include "GGE/Cooldowns/CooldownsManager.hpp"
-#include "GGE/GameConstants.hpp"
+#include "GGECustom/GameConstants.hpp"
 
 // 4 directions
 enum class Direction {
