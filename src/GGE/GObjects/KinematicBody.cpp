@@ -19,14 +19,14 @@ void KinematicBody::accelerate(float accelX, float accelY){
     acceleration.y += accelY;
 }
 
-void KinematicBody::setCurrentPosition(sf::Vector2f newPosition){
+void KinematicBody::setCurrentPos(sf::Vector2f newPosition){
     currentRect.left = newPosition.x;
     currentRect.top = newPosition.y;
 }
 
 // Move the current rect
 void KinematicBody::moveCurrentRect(sf::Vector2f moveDistance){
-    setCurrentPosition(currentRect.getPosition() + moveDistance);
+    setCurrentPos(currentRect.getPosition() + moveDistance);
 }
 
 // set size of current rect

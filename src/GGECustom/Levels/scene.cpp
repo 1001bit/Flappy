@@ -11,6 +11,7 @@ void clvl::scene(std::shared_ptr<gge::Level> level){
     level->physicsManager.addNewKinematicBody(bird);
     bird->setNewParent(level);
     bird->setRectPixelSize(24, 16);
+    bird->setCurrentPos(sf::Vector2f(gge::GAME_WIDTH/2, gge::GAME_HEIGHT/2) - bird->getRect().getSize()/2.f);
     // sprite
     std::shared_ptr<gge::obj::Sprite> birdSprite = std::make_shared<gge::obj::Sprite>();
     birdSprite->setNewParent(bird);

@@ -26,7 +26,7 @@ public:
     // Accelerate the body
     void accelerate(float accelX, float accelY);
     // Set the position of the current rect
-    void setCurrentPosition(sf::Vector2f newPosition);
+    void setCurrentPos(sf::Vector2f newPosition);
     // Move the current rect
     void moveCurrentRect(sf::Vector2f moveDistance);
     // set size of current rect

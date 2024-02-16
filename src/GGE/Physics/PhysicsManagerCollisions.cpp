@@ -16,7 +16,7 @@ void collideKinematicAndSolid(std::shared_ptr<gge::obj::KinematicBody> kinematic
     if(kinematicBody->velocity.y > 0){
         futureKinematicRect.height += kinematicBody->velocity.y;
         if(futureKinematicRect.intersects(solidRect)){
-            kinematicBody->setCurrentPosition({kinematicRect.left, solidRect.top - kinematicRect.height});
+            kinematicBody->setCurrentPos({kinematicRect.left, solidRect.top - kinematicRect.height});
             kinematicBody->collisionDir.vertical = Direction::Down;
             kinematicBody->velocity.y = 0;
         }
@@ -26,7 +26,7 @@ void collideKinematicAndSolid(std::shared_ptr<gge::obj::KinematicBody> kinematic
         futureKinematicRect.top += kinematicBody->velocity.y;
         futureKinematicRect.height -= kinematicBody->velocity.y;
         if(futureKinematicRect.intersects(solidRect)){
-            kinematicBody->setCurrentPosition({kinematicRect.left, solidRect.top + solidRect.height});
+            kinematicBody->setCurrentPos({kinematicRect.left, solidRect.top + solidRect.height});
             kinematicBody->collisionDir.vertical = Direction::Up;
             kinematicBody->velocity.y = 0;
         }
@@ -37,7 +37,7 @@ void collideKinematicAndSolid(std::shared_ptr<gge::obj::KinematicBody> kinematic
     if(kinematicBody->velocity.x > 0){
         futureKinematicRect.width += kinematicBody->velocity.x;
         if(futureKinematicRect.intersects(solidRect)){
-            kinematicBody->setCurrentPosition({solidRect.left - kinematicRect.width, kinematicRect.top});
+            kinematicBody->setCurrentPos({solidRect.left - kinematicRect.width, kinematicRect.top});
             kinematicBody->collisionDir.horizontal = Direction::Right;
             kinematicBody->velocity.x = 0;
         }
@@ -47,7 +47,7 @@ void collideKinematicAndSolid(std::shared_ptr<gge::obj::KinematicBody> kinematic
         futureKinematicRect.left += kinematicBody->velocity.x;
         futureKinematicRect.width -= kinematicBody->velocity.x;
         if(futureKinematicRect.intersects(solidRect)){
-            kinematicBody->setCurrentPosition({solidRect.left + solidRect.width, kinematicRect.top});
+            kinematicBody->setCurrentPos({solidRect.left + solidRect.width, kinematicRect.top});
             kinematicBody->collisionDir.horizontal = Direction::Left;
             kinematicBody->velocity.x = 0;
         }
