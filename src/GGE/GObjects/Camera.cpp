@@ -29,8 +29,9 @@ void Camera::update(const float& dTimeMs){
 
 // set size of view
 void Camera::setRectSize(float w, float h){
-    view.setSize({w, h});
     GObject::setRectSize(w, h);
+    view.setSize({w, h});
+    view.setCenter(getRect().getPosition() + getRect().getSize()/2.f);
 }
 
 // set target of following
