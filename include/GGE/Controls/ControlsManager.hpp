@@ -11,21 +11,17 @@ private:
     // Singleton
     static ControlsManager* instance;
     ControlsManager() {};
-
-    // Keyboard
+    
     // Controls
     std::unordered_map<std::string, sf::Keyboard::Key> keyboardControlsMap;
-    // Pressed once controls
-    std::unordered_set<sf::Keyboard::Key> pressedOnceKeyboardKeys;
-    // Held controls
-    std::unordered_set<sf::Keyboard::Key> heldKeyboardKeys;
-
-    // Mouse
-    // Controls
     std::unordered_map<std::string, sf::Mouse::Button> mouseControlsMap;
-    // Pressed once controls
-    std::unordered_set<sf::Mouse::Button> pressedOnceMouseButtons;
-    // Held controls
+
+    // Pressed buffer set {control, was pressed this frame}
+    std::unordered_map<sf::Keyboard::Key, bool> pressedKeyboardBuffer;
+    std::unordered_map<sf::Mouse::Button, bool> pressedMouseBuffer;
+
+    // Held set
+    std::unordered_set<sf::Keyboard::Key> heldKeyboardKeys;
     std::unordered_set<sf::Mouse::Button> heldMouseButtons;
     
 public:
@@ -40,14 +36,14 @@ public:
     // Is control held now
     bool isControlHeld(const std::string& controlId);
 
-    // Is control pressed once
-    bool isControlPressed(const std::string& controlId);
+    // Is control pressed once (set isPressed=0 in physics update)
+    bool isControlPressed(const std::string& controlId, bool isPressedNow=1);
 
     // On control single press
     void addPressedKeyboard(sf::Keyboard::Key key);
     void addPressedMouse(sf::Mouse::Button button);
-    // Clear the list of once pressed controls
-    void clearPressed();
+    // Clear the vectors of once pressed controls of controls, that were pressed in the past
+    void clearPastBuffer();
 
     // On control release
     void keyboardControlRelease(sf::Keyboard::Key key);

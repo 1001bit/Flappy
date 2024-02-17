@@ -26,12 +26,11 @@ void Game::loop(sf::RenderWindow& window){
     float accumulator = 0;
 
     sf::Clock clock;
-    float dTimeMs;
     while (window.isOpen())
     {
         // Time
         sf::Time deltaTime = clock.restart();
-        dTimeMs = deltaTime.asMicroseconds()/1000.0;
+        float dTimeMs = deltaTime.asMicroseconds()/1000.0;
         // Limit max dt
         if(dTimeMs > 1000.f/MIN_FPS){
             #ifdef SHOW_FPS_SPIKES
@@ -44,8 +43,6 @@ void Game::loop(sf::RenderWindow& window){
         #endif
 
         // Events and controls
-        controlsManager->clearPressed();
-
         sf::Event event;
         if (window.pollEvent(event))
         {
@@ -63,6 +60,7 @@ void Game::loop(sf::RenderWindow& window){
         while(accumulator >= 1000.f/UPDATE_RATE){
             currentLevel->physicsManager.updatePhysics(1000.f/UPDATE_RATE);
             accumulator -= 1000.f/UPDATE_RATE;
+            controlsManager->clearPastBuffer();
         }
         currentLevel->physicsManager.interpolateKinematics(accumulator/(1000.f/UPDATE_RATE));
 

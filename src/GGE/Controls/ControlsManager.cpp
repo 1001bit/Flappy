@@ -37,20 +37,38 @@ bool ControlsManager::isControlHeld(const std::string& controlId){
     return 0;
 }
 
-// check if held
-bool ControlsManager::isControlPressed(const std::string& controlId){
-    // if there is such keyboard control and it's pressed
+// check if pressed once
+bool ControlsManager::isControlPressed(const std::string& controlId, bool isPressedNow){
+    // if there is such keyboard control
     if(keyboardControlsMap.count(controlId)){
-        if(pressedOnceKeyboardKeys.count(keyboardControlsMap.at(controlId))){
+        sf::Keyboard::Key& key = keyboardControlsMap.at(controlId);
+        // if it's pressed
+        if(pressedKeyboardBuffer.count(key)){
+            // check if it's pressed now or in past
+            if(!pressedKeyboardBuffer.at(key) && isPressedNow){
+                return 0;
+            }
+
+            pressedKeyboardBuffer.at(key) = 0;
             return 1;
         }
     }
-    // if the control wasn't pressed this frame
+
+    // if there is such mouse control
     else if(mouseControlsMap.count(controlId)){
-        if(pressedOnceMouseButtons.count(mouseControlsMap.at(controlId))){
+        sf::Mouse::Button& button = mouseControlsMap.at(controlId);
+        // if it's pressed
+        if(pressedMouseBuffer.count(button)){
+            // check if it's pressed now or in past
+            if(!pressedMouseBuffer.at(button) && isPressedNow){
+                return 0;
+            }
+
+            pressedMouseBuffer.at(button) = 0;
             return 1;
         }
     }
+
     return 0;
 }
 
@@ -64,19 +82,32 @@ void ControlsManager::changeKeyboardControl(std::string controlId, sf::Keyboard:
 
 // Add pressed once
 void ControlsManager::addPressedKeyboard(sf::Keyboard::Key key){
-    pressedOnceKeyboardKeys.insert(key);
+    pressedKeyboardBuffer[key] = 1;
     heldKeyboardKeys.insert(key);
 }
 
 void ControlsManager::addPressedMouse(sf::Mouse::Button button){
-    pressedOnceMouseButtons.insert(button);
+    pressedMouseBuffer[button] = 1;
     heldMouseButtons.insert(button);
 }
 
-// Clear pressed once
-void ControlsManager::clearPressed(){
-    pressedOnceKeyboardKeys.clear();
-    pressedOnceMouseButtons.clear();
+// Clear the vectors of once pressed controls of controls, that were pressed in the past
+void ControlsManager::clearPastBuffer(){
+    for(auto it = pressedKeyboardBuffer.begin(); it != pressedKeyboardBuffer.end();){
+        if(!it->second){
+            it = pressedKeyboardBuffer.erase(it);
+            continue;
+        }
+        ++it;
+    }
+
+    for(auto it = pressedMouseBuffer.begin(); it != pressedMouseBuffer.end();){
+        if(!it->second){
+            it = pressedMouseBuffer.erase(it);
+            continue;
+        }
+        ++it;
+    }
 }
 
 // Control release
