@@ -42,10 +42,9 @@ public:
     // Interpolate all the kinematic bodies
     void interpolateKinematics(float alpha);
 
-    // Add new body to the solids vector
-    void addNewSolidBody(std::shared_ptr<obj::Body> newBody);
-    // Add new body to the kinematics vector
-    void addNewKinematicBody(std::shared_ptr<obj::KinematicBody> newBody);
+    // Add new body to the vector
+    void addNewBody(std::shared_ptr<obj::Body> newBody);
+    void addNewBody(std::shared_ptr<obj::KinematicBody> newBody);
 };
 
 }

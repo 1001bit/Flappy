@@ -31,21 +31,17 @@ void GObject::updatePos(){
 }
 
 void GObject::addChild(std::shared_ptr<GObject> newChild){
+    if(auto childOldParent = newChild->parentWeak.lock()){
+        childOldParent->removeChild(newChild);
+    }
+
+    newChild->parentWeak = shared_from_this();
     children.push_back(newChild);
     newChild->updatePos();
 }
 
 void GObject::removeChild(std::shared_ptr<GObject> child){
     children.erase(std::remove(children.begin(), children.end(), child), children.end());
-}
-
-void GObject::setNewParent(std::shared_ptr<GObject> newParent){
-    if(auto parent = parentWeak.lock()){
-        parent->removeChild(shared_from_this());
-    }
-
-    this->parentWeak = newParent;
-    newParent->addChild(shared_from_this());
 }
 
 void GObject::setRelativePos(const sf::Vector2f& newRelativePos){

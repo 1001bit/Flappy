@@ -3,11 +3,12 @@
 #include "GGECustom/GameConstants.hpp"
 
 #include "GGE/GObjects/GObject.hpp"
-#include "GGE/GObjects/Camera.hpp"
+#include "GGE/GObjects/SmoothFollower.hpp"
 #include "GGE/GObjects/Drawable.hpp"
 
 #include "GGE/Physics/PhysicsManager.hpp"
 #include "GGE/Instructions/TriggersManager.hpp"
+#include "GGE/DrawablesManager/DrawablesManager.hpp"
 
 #include "GGE/ResourceManager/ResourceManager.hpp"
 
@@ -18,8 +19,6 @@ namespace gge {
 class Level : public obj::GObject
 {
 private:
-    // Gui
-    sf::View guiView;
     
 public:
     // Structors
@@ -30,29 +29,25 @@ public:
     // Managers
     TriggersManager triggersManager;
     PhysicsManager physicsManager;
+    DrawablesManager drawablesManager;
 
-    // Updatable GObjects
+    // Updatable
     std::vector<std::weak_ptr<obj::GObject>> updatableGObjects;
-
-    // Drawables
-    std::vector< std::vector<std::weak_ptr<obj::Drawable>> > levelDrawableLayers;
-    std::vector< std::vector<std::weak_ptr<obj::Drawable>> > guiDrawableLayers;
-
     // With own id
     std::unordered_map<uint16_t, std::weak_ptr<obj::GObject>> gObjectsWId;
 
     // Game camera that is following some GObject
-    std::shared_ptr<obj::Camera> camera;
+    std::weak_ptr<obj::SmoothFollower> cameraWeak;
+    std::weak_ptr<obj::View> levelViewWeak;
+    // Gui view
+    std::weak_ptr<obj::View> guiViewWeak;
     ///////////////////////////
 
     // Methods
-    // Init level
+    // Init the level
     void init();
-
     // Update states of all the objects
     void update(const float& dTimeMs);
-    // Draw drawable objects
-    void drawGObjetcs(sf::RenderWindow& window);
 };
 
 }

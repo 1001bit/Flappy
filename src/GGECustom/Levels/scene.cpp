@@ -8,13 +8,13 @@ void clvl::scene(std::shared_ptr<gge::Level> level){
 
     // bird
     std::shared_ptr<gge::obj::Bird> bird = std::make_shared<gge::obj::Bird>();
-    level->physicsManager.addNewKinematicBody(bird);
-    bird->setNewParent(level);
+    level->physicsManager.addNewBody(std::static_pointer_cast<gge::obj::KinematicBody>(bird));
+    level->addChild(bird);
     bird->setRectPixelSize(24, 16);
-    bird->setCurrentPos(sf::Vector2f(gge::GAME_WIDTH/2, gge::GAME_HEIGHT/2) - bird->getRect().getSize()/2.f);
+    bird->setCurrentPos(bird->getRect().getSize() / -2.f);
     // sprite
     std::shared_ptr<gge::obj::Sprite> birdSprite = std::make_shared<gge::obj::Sprite>();
-    birdSprite->setNewParent(bird);
-    level->levelDrawableLayers[0].push_back(birdSprite);
+    bird->addChild(birdSprite);
+    level->drawablesManager.newDrawable(birdSprite, 0, 0);
     birdSprite->setTexture(resourceManager->getTexture("Assets/Textures/bird.png"));
 }

@@ -2,21 +2,39 @@
 
 using gge::Level;
 
-// Init level
-void Level::init(){
-    // create layers of drawables
-    const int layersCount = 10;
-    for(int i = 0; i < layersCount; ++i){
-        levelDrawableLayers.push_back(std::vector<std::weak_ptr<obj::Drawable>>());
-        guiDrawableLayers.push_back(std::vector<std::weak_ptr<obj::Drawable>>());
-    }
+// Structors
+Level::Level(){}
 
+Level::~Level(){
+    // clear singleton managers on level delete
+    ResourceManager* resourceManager = ResourceManager::getInstance();
+    CooldownsManager* cooldownsManager = CooldownsManager::getInstance();
+    resourceManager->clear();
+    cooldownsManager->clear();
+}
+
+// Init the level
+void Level::init(){
     // init gui view
-    guiView.setSize(GAME_WIDTH, GAME_HEIGHT);
-    guiView.setCenter(GAME_WIDTH/2, GAME_HEIGHT/2);
+    std::shared_ptr<obj::View> guiView = std::make_shared<obj::View>();
+    addChild(guiView);
+    guiView->setRectSize(GAME_WIDTH, GAME_HEIGHT);
+    guiView->setRelativePos({0, 0});
+    guiViewWeak = guiView;
 
     // init camera
-    camera = std::make_shared<obj::Camera>();
-    camera->setRectSize(GAME_WIDTH, GAME_HEIGHT);
+    std::shared_ptr<obj::SmoothFollower> camera = std::make_shared<obj::SmoothFollower>();
+    addChild(camera);
     updatableGObjects.push_back(camera);
-};
+    cameraWeak = camera;
+
+    // init level view
+    std::shared_ptr<obj::View> levelView = std::make_shared<obj::View>();
+    camera->addChild(levelView);
+    levelView->setRectSize(GAME_WIDTH, GAME_HEIGHT);
+    levelView->setRelativePos(levelView->getRect().getSize() / -2.f);
+    levelViewWeak = levelView;
+
+    // drawables manager
+    drawablesManager.setLayerCount(10);
+}

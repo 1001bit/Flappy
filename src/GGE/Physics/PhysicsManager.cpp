@@ -99,11 +99,10 @@ void PhysicsManager::interpolateKinematics(float alpha){
 //////////////////////////////////////////////
 
 // Add new body to the vector of solid bodies
-void PhysicsManager::addNewSolidBody(std::shared_ptr<obj::Body> newBody){
+void PhysicsManager::addNewBody(std::shared_ptr<obj::Body> newBody){
     solidBodiesWeakVector.push_back(newBody);
 }
 
-// Add new body to the vector of kinematic bodies
-void PhysicsManager::addNewKinematicBody(std::shared_ptr<obj::KinematicBody> newBody){
+void PhysicsManager::addNewBody(std::shared_ptr<obj::KinematicBody> newBody){
     kinematicBodiesWeakVector.push_back(newBody);
 }

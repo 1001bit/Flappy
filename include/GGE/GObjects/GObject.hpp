@@ -25,7 +25,6 @@ private:
 
 protected:
     // Variables
-    std::weak_ptr<GObject> parentWeak;
     std::vector<std::shared_ptr<GObject>> children;
     std::unordered_map<std::string, std::shared_ptr<Cooldown>> selfCooldownMap;
     bool doesFlipMirror;
@@ -39,6 +38,9 @@ public:
     GObject();
     ~GObject();
 
+    // Variables
+    std::weak_ptr<GObject> parentWeak;
+
     // Methods
     // Update the state of the object
     virtual void update(const float& dTimeMs);
@@ -47,15 +49,13 @@ public:
     void setRelativePos(const sf::Vector2f& newPos);
     // move self by some distance
     void move(const sf::Vector2f& distance);
-
-    // Set a parent
-    void setNewParent(std::shared_ptr<GObject> newParent);
+    
     // Add a new child
     void addChild(std::shared_ptr<GObject> newChild);
     // Remove a child
     void removeChild(std::shared_ptr<GObject> child);
     
-    // set rect pixel size
+    // set rect size
     virtual void setRectSize(float w, float h);
     // set rect pixel-scaled size
     void setRectPixelSize(float w, float h);

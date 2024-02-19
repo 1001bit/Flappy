@@ -49,7 +49,6 @@ bool ControlsManager::isControlPressed(const std::string& controlId, bool isPres
                 return 0;
             }
 
-            pressedKeyboardBuffer.at(key) = 0;
             return 1;
         }
     }
@@ -64,7 +63,6 @@ bool ControlsManager::isControlPressed(const std::string& controlId, bool isPres
                 return 0;
             }
 
-            pressedMouseBuffer.at(button) = 0;
             return 1;
         }
     }
@@ -80,19 +78,29 @@ void ControlsManager::changeKeyboardControl(std::string controlId, sf::Keyboard:
     keyboardControlsMap.at(controlId) = newKey;
 }
 
-// Add pressed once
-void ControlsManager::addPressedKeyboard(sf::Keyboard::Key key){
+// On control press
+void ControlsManager::controlPress(sf::Keyboard::Key key){
     pressedKeyboardBuffer[key] = 1;
     heldKeyboardKeys.insert(key);
 }
 
-void ControlsManager::addPressedMouse(sf::Mouse::Button button){
+void ControlsManager::controlPress(sf::Mouse::Button button){
     pressedMouseBuffer[button] = 1;
     heldMouseButtons.insert(button);
 }
 
+// On control release
+void ControlsManager::controlRelease(sf::Keyboard::Key key){
+    heldKeyboardKeys.erase(key);
+}
+
+void ControlsManager::controlRelease(sf::Mouse::Button button){
+    heldMouseButtons.erase(button);
+}
+
 // Clear the vectors of once pressed controls of controls, that were pressed in the past
 void ControlsManager::clearPastBuffer(){
+    // keyboard
     for(auto it = pressedKeyboardBuffer.begin(); it != pressedKeyboardBuffer.end();){
         if(!it->second){
             it = pressedKeyboardBuffer.erase(it);
@@ -101,6 +109,7 @@ void ControlsManager::clearPastBuffer(){
         ++it;
     }
 
+    // mouse
     for(auto it = pressedMouseBuffer.begin(); it != pressedMouseBuffer.end();){
         if(!it->second){
             it = pressedMouseBuffer.erase(it);
@@ -110,11 +119,15 @@ void ControlsManager::clearPastBuffer(){
     }
 }
 
-// Control release
-void ControlsManager::keyboardControlRelease(sf::Keyboard::Key key){
-    heldKeyboardKeys.erase(key);
-}
-
-void ControlsManager::mouseControlRelease(sf::Mouse::Button button){
-    heldMouseButtons.erase(button);
+// Set all the buffer controls state to past
+void ControlsManager::updateBuffer(){
+    // keyboard
+    for(std::pair<const sf::Keyboard::Key, bool>& pair : pressedKeyboardBuffer){
+        pair.second = 0;
+    }
+    
+    // mouse
+    for(std::pair<const sf::Mouse::Button, bool>& pair : pressedMouseBuffer){
+        pair.second = 0;
+    }
 }

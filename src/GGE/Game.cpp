@@ -42,7 +42,10 @@ void Game::loop(sf::RenderWindow& window){
         std::cout << "dTime (ms): " << dTimeMs << " ; \t\t" << " FPS: " << 1000/dTimeMs << "\n";
         #endif
 
-        // Events and controls
+        // Controls
+        controlsManager->updateBuffer();
+
+        // Events
         sf::Event event;
         if (window.pollEvent(event))
         {
@@ -60,6 +63,8 @@ void Game::loop(sf::RenderWindow& window){
         while(accumulator >= 1000.f/UPDATE_RATE){
             currentLevel->physicsManager.updatePhysics(1000.f/UPDATE_RATE);
             accumulator -= 1000.f/UPDATE_RATE;
+
+            // Controls
             controlsManager->clearPastBuffer();
         }
         currentLevel->physicsManager.interpolateKinematics(accumulator/(1000.f/UPDATE_RATE));
@@ -72,7 +77,14 @@ void Game::loop(sf::RenderWindow& window){
 
         // Draw
         window.clear();
-        currentLevel->drawGObjetcs(window);
+        
+        auto levelView = currentLevel->levelViewWeak.lock();
+        auto guiView = currentLevel->guiViewWeak.lock();
+        if(levelView && guiView){
+            currentLevel->drawablesManager.draw(window, levelView, guiView);
+        } else {
+        }
+
         window.display();
     }
 }
@@ -83,17 +95,17 @@ void Game::handleEvent(const sf::Event& event){
     switch (event.type)
     {
     case sf::Event::KeyPressed:
-        controlsManager->addPressedKeyboard(event.key.code);
+        controlsManager->controlPress(event.key.code);
         break;
     case sf::Event::MouseButtonPressed:
-        controlsManager->addPressedMouse(event.mouseButton.button);
+        controlsManager->controlPress(event.mouseButton.button);
         break;
 
     case sf::Event::KeyReleased:
-        controlsManager->keyboardControlRelease(event.key.code);
+        controlsManager->controlRelease(event.key.code);
         break;
     case sf::Event::MouseButtonReleased:
-        controlsManager->mouseControlRelease(event.mouseButton.button);
+        controlsManager->controlRelease(event.mouseButton.button);
 
     default:
         break;
