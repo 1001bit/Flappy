@@ -19,20 +19,12 @@ void Level::init(){
     std::shared_ptr<obj::View> guiView = std::make_shared<obj::View>();
     addChild(guiView);
     guiView->setRectSize(GAME_WIDTH, GAME_HEIGHT);
-    guiView->setRelativePos({0, 0});
     guiViewWeak = guiView;
-
-    // init camera
-    std::shared_ptr<obj::SmoothFollower> camera = std::make_shared<obj::SmoothFollower>();
-    addChild(camera);
-    updatableGObjects.push_back(camera);
-    cameraWeak = camera;
 
     // init level view
     std::shared_ptr<obj::View> levelView = std::make_shared<obj::View>();
-    camera->addChild(levelView);
+    addChild(levelView);
     levelView->setRectSize(GAME_WIDTH, GAME_HEIGHT);
-    levelView->setRelativePos(levelView->getRect().getSize() / -2.f);
     levelViewWeak = levelView;
 
     // drawables manager

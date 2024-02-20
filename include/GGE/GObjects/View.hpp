@@ -10,6 +10,10 @@ private:
     sf::View view;
     bool centralized; 
 
+    // Methods
+    // set view center to rect center
+    void centralize();
+
 public:
     // Structors
     View();
