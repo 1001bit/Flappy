@@ -2,7 +2,7 @@
 
 using gge::obj::Bird;
 
-constexpr float JUMP_FORCE = 13;
+constexpr float JUMP_FORCE = 9;
 
 // Structors
 Bird::Bird(){
