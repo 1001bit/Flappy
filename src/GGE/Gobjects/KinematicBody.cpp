@@ -1,4 +1,4 @@
-#include "GGE/GObjects/KinematicBody.hpp"
+#include "GGE/Gobjects/KinematicBody.hpp"
 
 using gge::obj::KinematicBody;
 
@@ -34,7 +34,7 @@ void KinematicBody::setRectSize(float w, float h){
     currentRect.width = w;
     currentRect.height = h;
 
-    GObject::setRectSize(w, h);
+    Gobject::setRectSize(w, h);
 }
 
 // Getters

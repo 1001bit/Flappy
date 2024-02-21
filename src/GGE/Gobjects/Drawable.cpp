@@ -1,4 +1,4 @@
-#include "GGE/GObjects/Drawable.hpp"
+#include "GGE/Gobjects/Drawable.hpp"
 
 using gge::obj::Drawable;
 

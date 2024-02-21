@@ -1,7 +1,7 @@
 #include "inits.hpp"
 
-#include "GGECustom/GObjects/Bird.hpp"
-#include "GGE/GObjects/Sprite.hpp"
+#include "GGECustom/Gobjects/Bird.hpp"
+#include "GGE/Gobjects/Sprite.hpp"
 
 void clvl::scene(std::shared_ptr<gge::Level> level){
     gge::ResourceManager* resourceManager = gge::ResourceManager::getInstance();

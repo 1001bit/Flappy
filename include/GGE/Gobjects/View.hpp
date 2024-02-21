@@ -1,10 +1,10 @@
 #pragma once
 
-#include "GObject.hpp"
+#include "Gobject.hpp"
 
 namespace gge::obj{
 
-class View : public GObject
+class View : public Gobject
 {
 private:
     sf::View view;

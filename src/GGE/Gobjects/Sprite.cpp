@@ -1,4 +1,4 @@
-#include "GGE/GObjects/Sprite.hpp"
+#include "GGE/Gobjects/Sprite.hpp"
 
 using gge::obj::Sprite;
 
@@ -27,12 +27,12 @@ void Sprite::setFlip(bool newFlip){
         sprite.setTextureRect(sf::IntRect(0, 0, textureWidth, textureHeight));
     }
 
-    GObject::setFlip(newFlip);
+    Gobject::setFlip(newFlip);
 };
 
 // Update sprite and gobject pos
 void Sprite::updatePos(){
-    GObject::updatePos();
+    Gobject::updatePos();
     sprite.setPosition(getRect().getPosition());
 } 
 

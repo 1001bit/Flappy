@@ -1,10 +1,10 @@
 #pragma once
 
-#include "GObject.hpp"
+#include "Gobject.hpp"
 
 namespace gge::obj {
 
-class Body : public GObject
+class Body : public Gobject
 {
 protected:
     bool collidable;

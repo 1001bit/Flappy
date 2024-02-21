@@ -2,8 +2,8 @@
 
 #include "GGECustom/GameConstants.hpp"
 
-#include "GGE/GObjects/GObject.hpp"
-#include "GGE/GObjects/Drawable.hpp"
+#include "GGE/Gobjects/Gobject.hpp"
+#include "GGE/Gobjects/Drawable.hpp"
 
 #include "GGE/Physics/PhysicsManager.hpp"
 #include "GGE/Instructions/TriggersManager.hpp"
@@ -11,11 +11,9 @@
 
 #include "GGE/ResourceManager/ResourceManager.hpp"
 
-// #define DRAWCOLLIDER
-
 namespace gge {
 
-class Level : public obj::GObject
+class Level : public obj::Gobject
 {
 private:
     
@@ -31,9 +29,9 @@ public:
     DrawablesManager drawablesManager;
 
     // Updatable
-    std::vector<std::weak_ptr<obj::GObject>> updatableGObjects;
+    std::vector<std::weak_ptr<obj::Gobject>> updatableGobjects;
     // With own id
-    std::unordered_map<uint16_t, std::weak_ptr<obj::GObject>> gObjectsWId;
+    std::unordered_map<uint16_t, std::weak_ptr<obj::Gobject>> gobjectIdMap;
 
     // Level view
     std::weak_ptr<obj::View> levelViewWeak;

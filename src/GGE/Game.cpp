@@ -72,7 +72,7 @@ void Game::loop(sf::RenderWindow& window){
         // Triggers
         currentLevel->triggersManager.update();
 
-        // GObjects that are level's children
+        // Gobjects that are level's children
         currentLevel->update(dTimeMs);
 
         // Draw

@@ -1,4 +1,4 @@
-#include "GGE/GObjects/Animation.hpp"
+#include "GGE/Gobjects/Animation.hpp"
 
 // Structors
 

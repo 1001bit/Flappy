@@ -14,8 +14,8 @@ enum class Direction {
 
 namespace gge::obj {
 
-// GObject class
-class GObject : public std::enable_shared_from_this<GObject>
+// Gobject class
+class Gobject : public std::enable_shared_from_this<Gobject>
 {
 private:
     // Variables
@@ -25,7 +25,7 @@ private:
 
 protected:
     // Variables
-    std::vector<std::shared_ptr<GObject>> children;
+    std::vector<std::shared_ptr<Gobject>> children;
     std::unordered_map<std::string, std::shared_ptr<Cooldown>> selfCooldownMap;
     bool doesFlipMirror;
 
@@ -35,11 +35,11 @@ protected:
 
 public:
     // Structors
-    GObject();
-    ~GObject();
+    Gobject();
+    ~Gobject();
 
     // Variables
-    std::weak_ptr<GObject> parentWeak;
+    std::weak_ptr<Gobject> parentWeak;
 
     // Methods
     // Update the state of the object
@@ -51,9 +51,9 @@ public:
     void move(const sf::Vector2f& distance);
     
     // Add a new child
-    void addChild(std::shared_ptr<GObject> newChild);
+    void addChild(std::shared_ptr<Gobject> newChild);
     // Remove a child
-    void removeChild(std::shared_ptr<GObject> child);
+    void removeChild(std::shared_ptr<Gobject> child);
     
     // set rect size
     virtual void setRectSize(float w, float h);

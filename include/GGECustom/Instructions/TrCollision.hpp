@@ -1,7 +1,7 @@
 #pragma once
 
 #include "GGE/Instructions/Trigger.hpp"
-#include "GGE/GObjects/KinematicBody.hpp"
+#include "GGE/Gobjects/KinematicBody.hpp"
 
 namespace gge::ins {
 

@@ -1,19 +1,19 @@
-#include "GGE/GObjects/GObject.hpp"
+#include "GGE/Gobjects/Gobject.hpp"
 
-using gge::obj::GObject;
+using gge::obj::Gobject;
 
 // Structors
-GObject::GObject(){
+Gobject::Gobject(){
     this->flipped = 0;
     this->doesFlipMirror = 0;
 }
 
-GObject::~GObject(){}
+Gobject::~Gobject(){}
 
 // Methods
-void GObject::update(const float& dTimeMs){}
+void Gobject::update(const float& dTimeMs){}
 
-void GObject::updatePos(){
+void Gobject::updatePos(){
     sf::Vector2f zeroPoint;
 
     if(auto parent = parentWeak.lock()){
@@ -25,12 +25,12 @@ void GObject::updatePos(){
     selfRect.top = zeroPoint.y + relativePos.y;
 
     // update children's position
-    for(std::shared_ptr<GObject> child : children) {
+    for(std::shared_ptr<Gobject> child : children) {
         child->updatePos();
     }
 }
 
-void GObject::addChild(std::shared_ptr<GObject> newChild){
+void Gobject::addChild(std::shared_ptr<Gobject> newChild){
     if(auto childOldParent = newChild->parentWeak.lock()){
         childOldParent->removeChild(newChild);
     }
@@ -40,52 +40,52 @@ void GObject::addChild(std::shared_ptr<GObject> newChild){
     newChild->updatePos();
 }
 
-void GObject::removeChild(std::shared_ptr<GObject> child){
+void Gobject::removeChild(std::shared_ptr<Gobject> child){
     children.erase(std::remove(children.begin(), children.end(), child), children.end());
 }
 
-void GObject::setRelativePos(const sf::Vector2f& newRelativePos){
+void Gobject::setRelativePos(const sf::Vector2f& newRelativePos){
     relativePos = newRelativePos;
     updatePos();
 }
 
-void GObject::move(const sf::Vector2f& distance){
+void Gobject::move(const sf::Vector2f& distance){
     setRelativePos(getRelativePos() + distance);
 }
 
-void GObject::setRectSize(float w, float h){
+void Gobject::setRectSize(float w, float h){
     selfRect.width = w;
     selfRect.height = h;
 }
 
-void GObject::setRectPixelSize(float w, float h){
+void Gobject::setRectPixelSize(float w, float h){
     setRectSize(w*SPRITE_SCALE, h*SPRITE_SCALE);
 }
 
-void GObject::setFlip(bool newFlip){
+void Gobject::setFlip(bool newFlip){
     if(flipped != newFlip && doesFlipMirror){
         setRelativePos({-getRelativePos().x, getRelativePos().y});
     }
     flipped = newFlip;
-    for(std::shared_ptr<GObject> child : children) {
+    for(std::shared_ptr<Gobject> child : children) {
         child->setFlip(flipped);
     }
 }
 
-void GObject::makeFlippable(){
+void Gobject::makeFlippable(){
     doesFlipMirror = 1;
 }
 
 // Getters
 
-const sf::Vector2f& GObject::getRelativePos(){
+const sf::Vector2f& Gobject::getRelativePos(){
     return relativePos;
 }
 
-const sf::FloatRect& GObject::getRect(){
+const sf::FloatRect& Gobject::getRect(){
     return selfRect;
 }
 
-const bool& GObject::isFlipped(){
+const bool& Gobject::isFlipped(){
     return flipped;
 }

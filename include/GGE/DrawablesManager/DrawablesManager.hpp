@@ -1,7 +1,7 @@
 #pragma once
 
-#include "GGE/GObjects/View.hpp"
-#include "GGE/GObjects/Drawable.hpp"
+#include "GGE/Gobjects/View.hpp"
+#include "GGE/Gobjects/Drawable.hpp"
 
 namespace gge {
 

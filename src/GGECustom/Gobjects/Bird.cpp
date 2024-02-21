@@ -1,4 +1,4 @@
-#include "GGECustom/GObjects/Bird.hpp"
+#include "GGECustom/Gobjects/Bird.hpp"
 
 using gge::obj::Bird;
 

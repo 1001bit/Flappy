@@ -1,4 +1,4 @@
-#include "GGE/GObjects/Text.hpp"
+#include "GGE/Gobjects/Text.hpp"
 
 using gge::obj::Text;
 
@@ -10,7 +10,7 @@ Text::~Text(){}
 // Methods
 // Update text and gobject position
 void Text::updatePos(){
-    GObject::updatePos();
+    Gobject::updatePos();
 
     text.setPosition(getRect().getPosition());
 }; 

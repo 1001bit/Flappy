@@ -1,4 +1,4 @@
-#include "GGE/GObjects/AnimatedSprite.hpp"
+#include "GGE/Gobjects/AnimatedSprite.hpp"
 
 using gge::obj::AnimatedSprite;
 
@@ -81,7 +81,7 @@ void AnimatedSprite::drawSelf(sf::RenderWindow& window){
 
 // Update sprite and gobject pos
 void AnimatedSprite::updatePos(){
-    GObject::updatePos();
+    Gobject::updatePos();
     sprite.setPosition(getRect().getPosition());
 }; 
 

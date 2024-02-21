@@ -1,4 +1,4 @@
-#include "GGE/GObjects/Body.hpp"
+#include "GGE/Gobjects/Body.hpp"
 
 using gge::obj::Body;
 

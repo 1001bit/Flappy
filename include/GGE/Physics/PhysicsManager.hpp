@@ -1,7 +1,7 @@
 #pragma once
 
 #include <vector>
-#include "GGE/GObjects/KinematicBody.hpp"
+#include "GGE/Gobjects/KinematicBody.hpp"
 #include "GGE/MathHelper.hpp"
 
 namespace gge {

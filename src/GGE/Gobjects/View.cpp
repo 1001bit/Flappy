@@ -1,4 +1,4 @@
-#include "GGE/GObjects/View.hpp"
+#include "GGE/Gobjects/View.hpp"
 
 using gge::obj::View;
 
@@ -14,13 +14,13 @@ void View::centralize(){
 
 // update gobject and view pos
 void View::updatePos(){
-    GObject::updatePos();
+    Gobject::updatePos();
     centralize();
 }
 
 // set rect and view size
 void View::setRectSize(float w, float h){
-    GObject::setRectSize(w, h);
+    Gobject::setRectSize(w, h);
     view.setSize(w, h);
     centralize();
 }

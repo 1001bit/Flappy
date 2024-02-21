@@ -5,10 +5,10 @@ using gge::Level;
 // Methods
 // Update everything in the level
 void Level::update(const float& dTimeMs){
-    for(auto it = updatableGObjects.begin(); it != updatableGObjects.end();){
+    for(auto it = updatableGobjects.begin(); it != updatableGobjects.end();){
         auto object = it->lock();
         if(!object){
-            it = updatableGObjects.erase(it);
+            it = updatableGobjects.erase(it);
             continue;
         }
 
