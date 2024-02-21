@@ -15,7 +15,7 @@ int main()
     srand(time(NULL));
 
     // init window
-    sf::RenderWindow window(sf::VideoMode(gge::GAME_WIDTH, gge::GAME_HEIGHT), "GoodGame test", sf::Style::Close);
+    sf::RenderWindow window(sf::VideoMode(gge::GAME_WIDTH, gge::GAME_HEIGHT), "Flappy", sf::Style::Close);
     window.setFramerateLimit(gge::MAX_FPS);
 
     // init the game

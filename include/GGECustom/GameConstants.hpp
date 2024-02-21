@@ -11,7 +11,7 @@ constexpr float SPRITE_SCALE = 4;
 // Framerate limits
 constexpr unsigned MAX_FPS = 150;
 constexpr unsigned MIN_FPS = 120;
-constexpr unsigned UPDATE_RATE = 60;
+constexpr unsigned UPDATE_RATE = 40;
 
 // size of the game view
 constexpr unsigned GAME_WIDTH = 480;
