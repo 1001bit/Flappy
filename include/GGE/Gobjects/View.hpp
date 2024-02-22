@@ -23,7 +23,7 @@ public:
     // update gobject and view pos
     void updatePos(); 
     // set rect and view size
-    void setRectSize(float w, float h);
+    void setRectSize(const sf::Vector2f& newSize);
 
     // Getters
     // view

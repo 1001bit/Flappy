@@ -30,7 +30,7 @@ public:
     // Move the current rect
     void moveCurrentRect(sf::Vector2f moveDistance);
     // set size of current rect
-    void setRectSize(float w, float h);
+    void setRectSize(const sf::Vector2f& newSize);
 
     // Variables
     sf::Vector2f acceleration;

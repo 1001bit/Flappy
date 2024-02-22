@@ -13,7 +13,7 @@ Sprite::~Sprite(){}
 // set a texture
 void Sprite::setTexture(const sf::Texture& newTexture){
     sprite.setTexture(newTexture);
-    setRectSize(sprite.getGlobalBounds().getSize().x, sprite.getGlobalBounds().getSize().y);
+    setRectSize(sprite.getGlobalBounds().getSize());
 }
 
 // set the flip of the object

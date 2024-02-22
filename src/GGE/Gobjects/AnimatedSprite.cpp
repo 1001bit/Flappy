@@ -38,7 +38,7 @@ void AnimatedSprite::playAnimation(std::string name){
     elapsedTime = 0;
     currentAnimation = &animationMap.at(name);
     sprite.setTexture(*(currentAnimation->texture));
-    setRectSize(sprite.getGlobalBounds().getSize().x, sprite.getGlobalBounds().getSize().y);
+    setRectSize(sprite.getGlobalBounds().getSize());
     
     update(0);
 }

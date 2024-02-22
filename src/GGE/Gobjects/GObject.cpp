@@ -53,13 +53,13 @@ void Gobject::move(const sf::Vector2f& distance){
     setRelativePos(getRelativePos() + distance);
 }
 
-void Gobject::setRectSize(float w, float h){
-    selfRect.width = w;
-    selfRect.height = h;
+void Gobject::setRectSize(const sf::Vector2f& newSize){
+    selfRect.width = newSize.x;
+    selfRect.height = newSize.y;
 }
 
 void Gobject::setRectPixelSize(float w, float h){
-    setRectSize(w*SPRITE_SCALE, h*SPRITE_SCALE);
+    setRectSize(sf::Vector2f(w, h) * (float)SPRITE_SCALE);
 }
 
 void Gobject::setFlip(bool newFlip){
