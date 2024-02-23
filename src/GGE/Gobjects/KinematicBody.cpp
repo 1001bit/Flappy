@@ -4,8 +4,10 @@ using gge::obj::KinematicBody;
 
 // Structors
 KinematicBody::KinematicBody(){
-    weighs = 0;
-    collisionDir = {Direction::None, Direction::None};
+    this->weighs = false;
+    this->friction = false;
+    this->collidable = false;
+    this->collisionDir = {Direction::None, Direction::None};
 }
 KinematicBody::~KinematicBody(){}
 
@@ -32,7 +34,7 @@ void KinematicBody::moveCurrentRect(sf::Vector2f moveDistance){
 // set size of current rect
 void KinematicBody::setRectSize(const sf::Vector2f& newSize){
     currentRect.width = newSize.x;
-    currentRect.height = newSize.x;
+    currentRect.height = newSize.y;
 
     Gobject::setRectSize(newSize);
 }
@@ -41,4 +43,8 @@ void KinematicBody::setRectSize(const sf::Vector2f& newSize){
 // weighs
 const bool& KinematicBody::doesWeigh(){
     return weighs;
+}
+// friction
+const bool& KinematicBody::doesFriction(){
+    return friction;
 }

@@ -18,6 +18,7 @@ private:
 protected:
     // Variables
     bool weighs;
+    bool friction;
 
 public:
     // Methods
@@ -43,6 +44,8 @@ public:
     // Getters
     // weighs
     const bool& doesWeigh();
+    // friction
+    const bool& doesFriction();
 
     // Structors
     KinematicBody();

@@ -33,7 +33,9 @@ void PhysicsManager::updatePhysics(const float& dTimeMs){
             applyCollisions(kinematicBody);
         }
         applyVelocityToPos(kinematicBody);
-        applyFrictionToVel(kinematicBody);
+        if(kinematicBody->doesFriction()){
+            applyFrictionToVel(kinematicBody);
+        }
 
         ++it;
     }
@@ -74,8 +76,17 @@ void PhysicsManager::applyVelocityToPos(std::shared_ptr<obj::KinematicBody> kine
     kinematicBody->moveCurrentRect(kinematicBody->velocity);
 };
 
-//////////////////////////////////////////////
+// Add new body to the vector of solid bodies
+void PhysicsManager::addNewBody(std::shared_ptr<obj::Body> newBody){
+    solidBodiesWeakVector.push_back(newBody);
+}
 
+void PhysicsManager::addNewBody(std::shared_ptr<obj::KinematicBody> newBody){
+    kinematicBodiesWeakVector.push_back(newBody);
+}
+
+
+//////////////////////////////////////////////
 // Interpolate all the kinematic bodies
 void PhysicsManager::interpolateKinematics(float alpha){
     for(auto it = kinematicBodiesWeakVector.begin(); it != kinematicBodiesWeakVector.end();){
@@ -95,14 +106,4 @@ void PhysicsManager::interpolateKinematics(float alpha){
         ++it;
     }
 };
-
 //////////////////////////////////////////////
-
-// Add new body to the vector of solid bodies
-void PhysicsManager::addNewBody(std::shared_ptr<obj::Body> newBody){
-    solidBodiesWeakVector.push_back(newBody);
-}
-
-void PhysicsManager::addNewBody(std::shared_ptr<obj::KinematicBody> newBody){
-    kinematicBodiesWeakVector.push_back(newBody);
-}

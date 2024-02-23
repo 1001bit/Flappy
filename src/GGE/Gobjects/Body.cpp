@@ -4,7 +4,7 @@ using gge::obj::Body;
 
 // Structors
 Body::Body(){
-    collidable = 1;
+    this->collidable = 1;
 }
 
 Body::~Body(){}
