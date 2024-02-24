@@ -54,6 +54,8 @@ public:
     void addChild(std::shared_ptr<Gobject> newChild);
     // Remove a child
     void removeChild(std::shared_ptr<Gobject> child);
+    // Remove self
+    void removeSelf();
     
     // set rect size
     virtual void setRectSize(const sf::Vector2f& newSize);

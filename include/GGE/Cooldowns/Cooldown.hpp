@@ -18,6 +18,7 @@ public:
     // Methods
     // start count
     void start(unsigned randomMs);
+    void start();
     // set count to 0
     void stop();
     // update cooldown

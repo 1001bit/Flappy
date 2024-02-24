@@ -80,7 +80,7 @@ void ControlsManager::changeKeyboardControl(std::string controlId, sf::Keyboard:
 
 // On control press
 void ControlsManager::controlPress(sf::Keyboard::Key key){
-    pressedKeyboardBuffer[key] = 1;
+    pressedKeyboardBuffer[key] = true;
     heldKeyboardKeys.insert(key);
 }
 
@@ -123,11 +123,11 @@ void ControlsManager::clearPastBuffer(){
 void ControlsManager::updateBuffer(){
     // keyboard
     for(std::pair<const sf::Keyboard::Key, bool>& pair : pressedKeyboardBuffer){
-        pair.second = 0;
+        pair.second = false;
     }
     
     // mouse
     for(std::pair<const sf::Mouse::Button, bool>& pair : pressedMouseBuffer){
-        pair.second = 0;
+        pair.second = false;
     }
 }

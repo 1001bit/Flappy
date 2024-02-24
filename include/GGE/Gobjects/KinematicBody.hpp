@@ -14,6 +14,10 @@ namespace gge::obj {
 class KinematicBody : public Body
 {
 private:
+    sf::FloatRect currentRect;
+    sf::FloatRect previousRect;
+    // is setCurrentPos called for the first time
+    bool firstCurrentPosSet;
 
 protected:
     // Variables
@@ -27,25 +31,28 @@ public:
     // Accelerate the body
     void accelerate(float accelX, float accelY);
     // Set the position of the current rect
-    void setCurrentPos(sf::Vector2f newPosition);
+    void setCurrentPos(const sf::Vector2f& newPosition);
     // Move the current rect
-    void moveCurrentRect(sf::Vector2f moveDistance);
+    void moveCurrentRect(const sf::Vector2f& moveDistance);
     // set size of current rect
     void setRectSize(const sf::Vector2f& newSize);
+    // set previousRect = currentRect
+    void updatePreviousRect();
 
     // Variables
     sf::Vector2f acceleration;
     sf::Vector2f velocity;
     CollisionDirection collisionDir;  
 
-    sf::FloatRect currentRect;
-    sf::FloatRect previousRect;
-
     // Getters
     // weighs
     const bool& doesWeigh();
     // friction
     const bool& doesFriction();
+    // currentRect
+    const sf::FloatRect& getCurrentRect();
+    // previousRect
+    const sf::FloatRect& getPreviousRect();
 
     // Structors
     KinematicBody();

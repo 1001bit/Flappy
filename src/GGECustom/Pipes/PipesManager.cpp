@@ -1,6 +1,7 @@
 #include "GGECustom/Pipes/PipesManager.hpp"
 
 constexpr float PIPES_SPEED = 3;
+constexpr float PIPE_SPAWN_RATE = 1500;
 constexpr u_short GAP_SIZE_MIN = 160;
 constexpr u_short GAP_SIZE_RANDOM = 50;
 constexpr u_short GAP_OFFSET_RANDOM = 300;
@@ -9,7 +10,10 @@ using gge::PipesManager;
 
 // Structors
 PipesManager::PipesManager(){
+    CooldownsManager* cooldownsManager = CooldownsManager::getInstance();
+
     moving = true;
+    pipeSpawnCooldown = cooldownsManager->newCooldown(Cooldown(PIPE_SPAWN_RATE));
 }
 PipesManager::~PipesManager(){}
 
@@ -57,15 +61,9 @@ void PipesManager::createNewPipePair(){
     pipe1->accelerate(-PIPES_SPEED, 0);
     pipe2->accelerate(-PIPES_SPEED, 0);
 
-    std::cout 
-    << "offset: " << yOffset 
-    << " ; real offset: " << (pipe1->currentRect.top + pipe1->currentRect.height + pipe2->currentRect.top)/2.f - GAME_HEIGHT/2.f 
-    << "\n";
-
-    std::cout 
-    << "gap: " << gap 
-    << " ; real gap: " << pipe2->currentRect.top - (pipe1->currentRect.top + pipe1->currentRect.height) 
-    << "\n";
+    // add pipes to pipes vector
+    pipes.push_back(pipe1);
+    pipes.push_back(pipe2);
 }
 
 // Update
@@ -74,6 +72,7 @@ void PipesManager::update(const float& dTimeMs){
         return;
     }
 
+    // remove pipes when needed
     for(auto it = pipes.begin(); it != pipes.end();){
         auto pipe = it->lock();
         if(!pipe){
@@ -81,6 +80,19 @@ void PipesManager::update(const float& dTimeMs){
             continue;
         }
 
+        // Remove the pipe if it went outside the screen
+        if(pipe->getCurrentRect().left + pipe->getCurrentRect().width < 0){
+            it = pipes.erase(it);
+            pipe->removeSelf();
+            continue;
+        }
+
         ++it;
+    }
+
+    // add new pipes when cooldown is over
+    if(!pipeSpawnCooldown->getCurrentValueMs()){
+        createNewPipePair();
+        pipeSpawnCooldown->start();
     }
 }

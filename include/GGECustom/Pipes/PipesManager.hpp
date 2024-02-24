@@ -10,6 +10,7 @@ class PipesManager : public obj::Gobject
 {
 private:
     std::vector<std::weak_ptr<obj::KinematicBody>> pipes;
+    std::shared_ptr<Cooldown> pipeSpawnCooldown;
     
 public:
     std::weak_ptr<Level> levelWeak;

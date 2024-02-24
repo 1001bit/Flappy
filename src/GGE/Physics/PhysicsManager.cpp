@@ -19,7 +19,7 @@ void PhysicsManager::updatePhysics(const float& dTimeMs){
         }
 
         // interpolation
-        kinematicBody->previousRect = kinematicBody->currentRect;
+        kinematicBody->updatePreviousRect();
 
         // control body (like player, npc)
         kinematicBody->control();
@@ -85,7 +85,6 @@ void PhysicsManager::addNewBody(std::shared_ptr<obj::KinematicBody> newBody){
     kinematicBodiesWeakVector.push_back(newBody);
 }
 
-
 //////////////////////////////////////////////
 // Interpolate all the kinematic bodies
 void PhysicsManager::interpolateKinematics(float alpha){
@@ -97,13 +96,11 @@ void PhysicsManager::interpolateKinematics(float alpha){
             continue;
         }
 
-        sf::FloatRect& currentRect = kinematicBody->currentRect;
-        sf::FloatRect& previousRect = kinematicBody->previousRect;
-        const sf::FloatRect& rect = kinematicBody->getRect();
+        const sf::FloatRect& currentRect = kinematicBody->getCurrentRect();
+        const sf::FloatRect& previousRect = kinematicBody->getPreviousRect();
 
         kinematicBody->setRelativePos(lerp(previousRect.getPosition(), currentRect.getPosition(), alpha));
         
         ++it;
     }
 };
-//////////////////////////////////////////////
