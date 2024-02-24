@@ -17,7 +17,6 @@ void clvl::scene(std::shared_ptr<gge::Level> level){
     level->addChild(pipesManager);
     level->updatableGobjects.push_back(pipesManager);
     pipesManager->levelWeak = level;
-    pipesManager->createNewPipePair();
 
     // bird
     std::shared_ptr<gge::obj::Bird> bird = std::make_shared<gge::obj::Bird>();
