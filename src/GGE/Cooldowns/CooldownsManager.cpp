@@ -2,14 +2,9 @@
 
 using gge::CooldownsManager;
 
-// Singleton
-CooldownsManager* CooldownsManager::instance = nullptr;
-CooldownsManager* CooldownsManager::getInstance(){
-    if (!instance)
-        instance = new CooldownsManager();
-    return instance;
-}
-
+// Structors
+CooldownsManager::CooldownsManager(){}
+CooldownsManager::~CooldownsManager(){}
 
 // Methods
 // update all the cooldowns

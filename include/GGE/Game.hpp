@@ -19,8 +19,6 @@ public:
     ~Game();
 
     // Methods
-    // Init game
-    void init();
     // Main game loop
     void loop(sf::RenderWindow& window);
 

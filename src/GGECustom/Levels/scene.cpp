@@ -3,8 +3,11 @@
 #include "GGECustom/Gobjects/Bird.hpp"
 #include "GGE/Gobjects/Sprite.hpp"
 
-void clvl::scene(std::shared_ptr<gge::Level> level){
+std::shared_ptr<gge::Level> clvl::newScene(){
     gge::ResourceManager* resourceManager = gge::ResourceManager::getInstance();
+
+    std::shared_ptr<gge::Level> level = std::make_shared<gge::Level>();
+    level->init();
 
     // background
     std::shared_ptr<gge::obj::Sprite> background = std::make_shared<gge::obj::Sprite>();
@@ -17,6 +20,7 @@ void clvl::scene(std::shared_ptr<gge::Level> level){
     level->addChild(pipesManager);
     level->updatableGobjects.push_back(pipesManager);
     pipesManager->levelWeak = level;
+    pipesManager->initCooldowns(level->cooldownsManager);
 
     // bird
     std::shared_ptr<gge::obj::Bird> bird = std::make_shared<gge::obj::Bird>();
@@ -29,4 +33,6 @@ void clvl::scene(std::shared_ptr<gge::Level> level){
     bird->addChild(birdSprite);
     level->drawablesManager.newDrawable(birdSprite, 0, 1);
     birdSprite->setTexture(resourceManager->getTexture("Assets/Textures/bird.png"));
+
+    return level;
 }

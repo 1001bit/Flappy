@@ -5,5 +5,5 @@
 #include "GGECustom/Pipes/PipesManager.hpp"
 
 namespace clvl{
-    void scene(std::shared_ptr<gge::Level> level);
+    std::shared_ptr<gge::Level> newScene();
 }

@@ -8,20 +8,11 @@ Game::Game(){}
 Game::~Game(){}
 
 // Methods
-
-// Game init
-void Game::init(){
-    // Level
-    currentLevel = std::make_shared<Level>();
-    currentLevel->init();
-}
-
 // Main loop
 void Game::loop(sf::RenderWindow& window){
     window.setKeyRepeatEnabled(false);
 
     ControlsManager* controlsManager = ControlsManager::getInstance();
-    CooldownsManager* cooldownsManager = CooldownsManager::getInstance();
 
     float accumulator = 0;
 
@@ -56,7 +47,7 @@ void Game::loop(sf::RenderWindow& window){
 
         // Updates
         // Cooldowns
-        cooldownsManager->updateCooldowns(dTimeMs);
+        currentLevel->cooldownsManager.updateCooldowns(dTimeMs);
 
         // Physics
         accumulator += dTimeMs;
@@ -82,7 +73,6 @@ void Game::loop(sf::RenderWindow& window){
         auto guiView = currentLevel->guiViewWeak.lock();
         if(levelView && guiView){
             currentLevel->drawablesManager.draw(window, levelView, guiView);
-        } else {
         }
 
         window.display();

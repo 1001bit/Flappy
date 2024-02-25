@@ -9,12 +9,28 @@ Gobject::Gobject(){
 }
 
 Gobject::~Gobject(){
-    std::cout << "deleted\n";
+    // std::cout << "deleted\n";
 }
 
 // Methods
+// Update the state of the object
 void Gobject::update(const float& dTimeMs){}
 
+// Init cooldowns
+void Gobject::initCooldowns(CooldownsManager& cooldownsManager){}
+
+// Set position relative to parent's position
+void Gobject::setRelativePos(const sf::Vector2f& newRelativePos){
+    relativePos = newRelativePos;
+    updatePos();
+}
+
+// move self by some distance
+void Gobject::move(const sf::Vector2f& distance){
+    setRelativePos(getRelativePos() + distance);
+}
+
+// update everything related to position
 void Gobject::updatePos(){
     sf::Vector2f zeroPoint;
 
@@ -32,6 +48,7 @@ void Gobject::updatePos(){
     }
 }
 
+// Add a new child
 void Gobject::addChild(std::shared_ptr<Gobject> newChild){
     if(auto childOldParent = newChild->parentWeak.lock()){
         childOldParent->removeChild(newChild);
@@ -42,34 +59,30 @@ void Gobject::addChild(std::shared_ptr<Gobject> newChild){
     newChild->updatePos();
 }
 
+// Remove existing child
 void Gobject::removeChild(std::shared_ptr<Gobject> child){
     children.erase(std::remove(children.begin(), children.end(), child), children.end());
 }
 
+// Destroy self
 void Gobject::removeSelf(){
     if(auto parent = parentWeak.lock()){
         parent->removeChild(shared_from_this());
     }
 }
 
-void Gobject::setRelativePos(const sf::Vector2f& newRelativePos){
-    relativePos = newRelativePos;
-    updatePos();
-}
-
-void Gobject::move(const sf::Vector2f& distance){
-    setRelativePos(getRelativePos() + distance);
-}
-
+// set size of selfRect
 void Gobject::setRectSize(const sf::Vector2f& newSize){
     selfRect.width = newSize.x;
     selfRect.height = newSize.y;
 }
 
+// set size of selfRect in pixels
 void Gobject::setRectPixelSize(float w, float h){
     setRectSize(sf::Vector2f(w, h) * (float)SPRITE_SCALE);
 }
 
+// flip object
 void Gobject::setFlip(bool newFlip){
     if(flipped != newFlip && doesFlipMirror){
         setRelativePos({-getRelativePos().x, getRelativePos().y});
@@ -80,20 +93,21 @@ void Gobject::setFlip(bool newFlip){
     }
 }
 
+// make object be able to flip self
 void Gobject::makeFlippable(){
     doesFlipMirror = 1;
 }
 
 // Getters
-
+// relativePos
 const sf::Vector2f& Gobject::getRelativePos(){
     return relativePos;
 }
-
+// selfRect
 const sf::FloatRect& Gobject::getRect(){
     return selfRect;
 }
-
+// flipped
 const bool& Gobject::isFlipped(){
     return flipped;
 }

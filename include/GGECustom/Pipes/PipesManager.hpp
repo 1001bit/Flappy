@@ -25,6 +25,8 @@ public:
     void createNewPipePair();
     // Update
     void update(const float& dTimeMs);
+    // init cooldowns
+    void initCooldowns(CooldownsManager& cooldownsManager);
 };
 
 }

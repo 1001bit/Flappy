@@ -10,14 +10,17 @@ using gge::PipesManager;
 
 // Structors
 PipesManager::PipesManager(){
-    CooldownsManager* cooldownsManager = CooldownsManager::getInstance();
-
     moving = true;
-    pipeSpawnCooldown = cooldownsManager->newCooldown(Cooldown(PIPE_SPAWN_RATE));
 }
 PipesManager::~PipesManager(){}
 
 // Methods
+// init cooldowns
+void PipesManager::initCooldowns(CooldownsManager& cooldownsManager){
+    pipeSpawnCooldown = cooldownsManager.newCooldown(Cooldown(PIPE_SPAWN_RATE));
+}
+
+// create a pair of pipes (up and bottom)
 void PipesManager::createNewPipePair(){
     auto level = levelWeak.lock();
     if(!level){

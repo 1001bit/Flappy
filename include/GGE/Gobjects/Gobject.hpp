@@ -26,11 +26,10 @@ private:
 protected:
     // Variables
     std::vector<std::shared_ptr<Gobject>> children;
-    std::unordered_map<std::string, std::shared_ptr<Cooldown>> selfCooldownMap;
     bool doesFlipMirror;
 
     // Methods
-    // set self rect relative position and children's position
+    // update everything related to position
     virtual void updatePos(); 
 
 public:
@@ -44,6 +43,9 @@ public:
     // Methods
     // Update the state of the object
     virtual void update(const float& dTimeMs);
+
+    // Init cooldowns
+    virtual void initCooldowns(CooldownsManager& cooldownsManager);
     
     // Set position relative to parent's position
     void setRelativePos(const sf::Vector2f& newPos);
@@ -61,6 +63,7 @@ public:
     virtual void setRectSize(const sf::Vector2f& newSize);
     // set rect pixel-scaled size
     void setRectPixelSize(float w, float h);
+
     // set the flip of the object
     virtual void setFlip(bool newFlip);
     // set doesFlipMirror to true

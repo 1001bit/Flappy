@@ -19,16 +19,14 @@ int main()
     window.setFramerateLimit(gge::MAX_FPS);
 
     // init the game
-    std::shared_ptr<gge::Game> game = std::make_shared<gge::Game>();
-    game->init();
+    gge::Game game = gge::Game();
     initControls();
 
     // init levels
-    std::shared_ptr<gge::Level> level = game->currentLevel;
-    clvl::scene(level);
+    game.currentLevel = clvl::newScene();
 
     // start the main loop
-    game->loop(window);
+    game.loop(window);
 
     return 0;
 }
