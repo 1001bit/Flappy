@@ -16,9 +16,6 @@ Gobject::~Gobject(){
 // Update the state of the object
 void Gobject::update(const float& dTimeMs){}
 
-// Init cooldowns
-void Gobject::initCooldowns(CooldownsManager& cooldownsManager){}
-
 // Set position relative to parent's position
 void Gobject::setRelativePos(const sf::Vector2f& newRelativePos){
     relativePos = newRelativePos;

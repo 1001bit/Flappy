@@ -15,6 +15,11 @@ PipesManager::PipesManager(){
 PipesManager::~PipesManager(){}
 
 // Methods
+// make basePipeSprite
+void PipesManager::initPipeSprite(ResourceManager& resourceManager){
+    basePipeSprite.setTexture(resourceManager.getTexture("Assets/Textures/pipe.png"));
+}
+
 // init cooldowns
 void PipesManager::initCooldowns(CooldownsManager& cooldownsManager){
     pipeSpawnCooldown = cooldownsManager.newCooldown(Cooldown(PIPE_SPAWN_RATE));
@@ -27,25 +32,20 @@ void PipesManager::createNewPipePair(){
         return;
     }
 
-    ResourceManager* resourceManager = ResourceManager::getInstance();
-
-    obj::Sprite sprite;
-    sprite.setTexture(resourceManager->getTexture("Assets/Textures/pipe.png"));
-
     // pipes positioning calculation
     float gap = GAP_SIZE_MIN + rand() % GAP_SIZE_RANDOM;
     float yOffset = -GAP_OFFSET_RANDOM/2.f + rand() % GAP_OFFSET_RANDOM;
-    float y1 = GAME_HEIGHT/2.f - sprite.getRect().height + yOffset - gap/2.f;
-    float y2 = y1 + gap + sprite.getRect().height;
+    float y1 = GAME_HEIGHT/2.f - basePipeSprite.getRect().height + yOffset - gap/2.f;
+    float y2 = y1 + gap + basePipeSprite.getRect().height;
 
     // pipe1
     std::shared_ptr<obj::KinematicBody> pipe1 = std::make_shared<obj::KinematicBody>();
     addChild(pipe1);
     level->physicsManager.addNewBody(pipe1);
-    pipe1->setRectSize(sprite.getRect().getSize());
+    pipe1->setRectSize(basePipeSprite.getRect().getSize());
     pipe1->setCurrentPos({GAME_WIDTH, y1});
     // sprite
-    std::shared_ptr sprite1 = std::make_shared<obj::Sprite>(sprite);
+    std::shared_ptr sprite1 = std::make_shared<obj::Sprite>(basePipeSprite);
     pipe1->addChild(sprite1);
     level->drawablesManager.newDrawable(sprite1, 0, 1);
 
@@ -53,10 +53,10 @@ void PipesManager::createNewPipePair(){
     std::shared_ptr<obj::KinematicBody> pipe2 = std::make_shared<obj::KinematicBody>();
     addChild(pipe2);
     level->physicsManager.addNewBody(pipe2);
-    pipe2->setRectSize(sprite.getRect().getSize());
+    pipe2->setRectSize(basePipeSprite.getRect().getSize());
     pipe2->setCurrentPos({GAME_WIDTH, y2});
     // sprite
-    std::shared_ptr sprite2 = std::make_shared<obj::Sprite>(sprite);
+    std::shared_ptr sprite2 = std::make_shared<obj::Sprite>(basePipeSprite);
     pipe2->addChild(sprite2);
     level->drawablesManager.newDrawable(sprite2, 0, 1);
 

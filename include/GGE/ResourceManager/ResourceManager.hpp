@@ -8,10 +8,6 @@ namespace gge {
 class ResourceManager
 {
 private:
-    // Singleton
-    static ResourceManager* instance;
-    ResourceManager(){};
-
     // Storages
     // textures
     sf::Texture nullTexture;
@@ -21,17 +17,15 @@ private:
     std::unordered_map<std::string, sf::Font> fontCache;
 
 public: 
+    // Structors
+    ResourceManager();
+    ~ResourceManager();
+
     // Get resource
     // Texture
     sf::Texture& getTexture(const std::string& path);
     // Font
     sf::Font& getFont(const std::string& path);
-
-    // Clear cache
-    void clear();
-
-    // Singleton
-    static ResourceManager* getInstance();
 };
 
 }

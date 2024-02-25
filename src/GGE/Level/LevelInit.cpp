@@ -5,11 +5,7 @@ using gge::Level;
 // Structors
 Level::Level(){}
 
-Level::~Level(){
-    // clear singleton managers on level delete
-    ResourceManager* resourceManager = ResourceManager::getInstance();
-    resourceManager->clear();
-}
+Level::~Level(){}
 
 // Init the level
 void Level::init(){

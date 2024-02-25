@@ -28,6 +28,7 @@ public:
     PhysicsManager physicsManager;
     DrawablesManager drawablesManager;
     CooldownsManager cooldownsManager;
+    ResourceManager resourceManager;
 
     // Updatable
     std::vector<std::weak_ptr<obj::Gobject>> updatableGobjects;

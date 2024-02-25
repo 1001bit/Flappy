@@ -2,13 +2,9 @@
 
 using gge::ResourceManager;
 
-// Singleton
-ResourceManager* ResourceManager::instance = nullptr;
-ResourceManager* ResourceManager::getInstance(){
-    if (!instance)
-        instance = new ResourceManager();
-    return instance;
-}
+// Structors
+ResourceManager::ResourceManager(){}
+ResourceManager::~ResourceManager(){}
 
 // Get resource
 // Texture
@@ -42,9 +38,3 @@ sf::Font& ResourceManager::getFont(const std::string& path){
     
     return fontCache.at(path);
 };
-
-// Clear cache
-void ResourceManager::clear(){
-    textureCache.clear();
-    fontCache.clear();
-}
