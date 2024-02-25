@@ -1,14 +1,11 @@
 #pragma once
 
-#include "GGECustom/GameConstants.hpp"
-
 #include "GGE/Gobjects/Gobject.hpp"
-#include "GGE/Gobjects/Drawable.hpp"
 
 #include "GGE/Physics/PhysicsManager.hpp"
 #include "GGE/Instructions/TriggersManager.hpp"
 #include "GGE/DrawablesManager/DrawablesManager.hpp"
-
+#include "GGE/Cooldowns/CooldownsManager.hpp"
 #include "GGE/ResourceManager/ResourceManager.hpp"
 
 namespace gge {

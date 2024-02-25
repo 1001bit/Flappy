@@ -1,4 +1,6 @@
 #include "GGE/Game.hpp"
+#include "GGE/Controls/ControlsManager.hpp"
+#include "GGECustom/GameConstants.hpp"
 
 using gge::Game;
 

@@ -1,8 +1,6 @@
 #pragma once
 
 #include "GGE/Level.hpp"
-#include "GGE/Controls/ControlsManager.hpp"
-#include "GGECustom/GameConstants.hpp"
 
 namespace gge {
 

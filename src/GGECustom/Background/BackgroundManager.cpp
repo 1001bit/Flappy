@@ -1,4 +1,6 @@
 #include "GGECustom/Background/BackgroundManager.hpp"
+#include "GGECustom/GameConstants.hpp"
+#include <cmath>
 
 constexpr float BACKGROUND_SPEED = 0.5;
 

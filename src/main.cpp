@@ -1,6 +1,7 @@
 #include "GGE/Game.hpp"
-
+#include "GGE/Controls/ControlsManager.hpp"
 #include "GGECustom/Levels/inits.hpp"
+#include "GGECustom/GameConstants.hpp"
 
 void initControls(){
     gge::ControlsManager* controlsManager = gge::ControlsManager::getInstance();

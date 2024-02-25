@@ -1,4 +1,5 @@
 #include "GGE/Gobjects/Gobject.hpp"
+#include "GGECustom/GameConstants.hpp"
 
 using gge::obj::Gobject;
 

@@ -1,8 +1,7 @@
 #pragma once
 
-#include "SFML/Graphics.hpp"
+#include <SFML/Graphics.hpp>
 #include <unordered_set>
-#include <iostream>
 
 namespace gge {
 

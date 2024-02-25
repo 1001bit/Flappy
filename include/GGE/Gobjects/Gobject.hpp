@@ -1,11 +1,8 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
-#include <vector>
-#include <memory>
 #include <iostream>
-#include "GGE/Cooldowns/CooldownsManager.hpp"
-#include "GGECustom/GameConstants.hpp"
+#include <memory>
 
 // 4 directions
 enum class Direction {

@@ -1,4 +1,5 @@
 #include "GGE/ResourceManager/ResourceManager.hpp"
+#include <iostream>
 
 using gge::ResourceManager;
 

@@ -1,4 +1,5 @@
 #include "GGE/Gobjects/Sprite.hpp"
+#include "GGECustom/GameConstants.hpp"
 
 using gge::obj::Sprite;
 

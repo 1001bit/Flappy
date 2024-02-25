@@ -1,9 +1,5 @@
 #pragma once
 
-#include <unordered_map>
-#include <string>
-#include <vector>
-#include <math.h>
 #include <SFML/Graphics.hpp>
 #include "Animation.hpp"
 #include "Drawable.hpp"

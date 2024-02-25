@@ -1,4 +1,5 @@
 #include "GGE/Cooldowns/Cooldown.hpp"
+#include <cstdlib>
 
 using gge::Cooldown;
 

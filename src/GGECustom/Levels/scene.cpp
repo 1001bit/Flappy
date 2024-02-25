@@ -5,6 +5,7 @@
 #include "GGECustom/Background/BackgroundManager.hpp"
 #include "GGE/ResourceManager/ResourceManager.hpp"
 #include "GGECustom/Pipes/PipesManager.hpp"
+#include "GGECustom/GameConstants.hpp"
 
 
 std::shared_ptr<gge::Level> clvl::newScene(){

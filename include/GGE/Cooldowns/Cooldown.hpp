@@ -1,8 +1,4 @@
 #pragma once
-
-#include <iostream>
-#include <cstdlib>
-
 namespace gge {
 
 class Cooldown
