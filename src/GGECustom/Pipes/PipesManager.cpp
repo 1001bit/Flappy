@@ -4,7 +4,7 @@ constexpr float PIPES_SPEED = 3;
 constexpr float PIPE_SPAWN_RATE = 1500;
 constexpr u_short GAP_SIZE_MIN = 160;
 constexpr u_short GAP_SIZE_RANDOM = 50;
-constexpr u_short GAP_OFFSET_RANDOM = 300;
+constexpr u_short GAP_OFFSET_RANDOM = 175;
 
 using gge::PipesManager;
 
@@ -33,10 +33,11 @@ void PipesManager::createNewPipePair(){
     }
 
     // pipes positioning calculation
-    float gap = GAP_SIZE_MIN + rand() % GAP_SIZE_RANDOM;
-    float yOffset = -GAP_OFFSET_RANDOM/2.f + rand() % GAP_OFFSET_RANDOM;
-    float y1 = GAME_HEIGHT/2.f - basePipeSprite.getRect().height + yOffset - gap/2.f;
-    float y2 = y1 + gap + basePipeSprite.getRect().height;
+    float gap = GAP_SIZE_MIN + rand() % GAP_SIZE_RANDOM; // minGapSize TO minGapSize + random
+    float yOffset = -GAP_OFFSET_RANDOM + rand() % GAP_OFFSET_RANDOM*2; // -gapOffset TO gapOffset
+    float pipesCenter = GAME_HEIGHT/2.f + yOffset;
+    float y1 = pipesCenter - gap/2.f - basePipeSprite.getRect().height; 
+    float y2 = pipesCenter + gap/2.f;
 
     // pipe1
     std::shared_ptr<obj::KinematicBody> pipe1 = std::make_shared<obj::KinematicBody>();
