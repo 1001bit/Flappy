@@ -1,6 +1,11 @@
 #pragma once
 
 #include "GGE/Gobjects/KinematicBody.hpp"
+#include "GGE/DebugInfo.hpp"
+
+#ifdef DRAW_COLLIDERS
+#include "GGE/Gobjects/View.hpp"
+#endif
 
 namespace gge {
 
@@ -39,6 +44,11 @@ public:
 
     // Interpolate all the kinematic bodies
     void interpolateKinematics(float alpha);
+
+    // draw colliders
+    #ifdef DRAW_COLLIDERS
+    void drawColliders(sf::RenderWindow& window, std::shared_ptr<obj::View> levelView);
+    #endif
 
     // Add new body to the vector
     void addNewBody(std::shared_ptr<obj::Body> newBody);

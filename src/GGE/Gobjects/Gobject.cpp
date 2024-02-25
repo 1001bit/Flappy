@@ -1,5 +1,6 @@
 #include "GGE/Gobjects/Gobject.hpp"
 #include "GGECustom/GameConstants.hpp"
+#include "GGE/DebugInfo.hpp"
 
 using gge::obj::Gobject;
 
@@ -10,7 +11,9 @@ Gobject::Gobject(){
 }
 
 Gobject::~Gobject(){
-    // std::cout << "deleted\n";
+    #ifdef SHOW_OBJ_DELETE
+    std::cout << "deleted\n";
+    #endif
 }
 
 // Methods

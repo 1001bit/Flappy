@@ -77,3 +77,42 @@ void PhysicsManager::applyCollisions(std::shared_ptr<obj::KinematicBody> kinemat
         ++it;
     }
 }
+
+// Draw colliders
+#ifdef DRAW_COLLIDERS
+void PhysicsManager::drawColliders(sf::RenderWindow& window, std::shared_ptr<obj::View> levelView){
+    window.setView(levelView->getView());
+    
+    // Solid
+    for(auto it = solidBodiesWeakVector.begin(); it != solidBodiesWeakVector.end();){
+        auto body = it->lock();
+        if(!body){
+            it = solidBodiesWeakVector.erase(it);
+            continue;
+        }
+
+        sf::RectangleShape colliderRect(body->getRect().getSize());
+        colliderRect.setPosition(body->getRect().getPosition());
+        colliderRect.setFillColor(sf::Color(0, 255, 0, 130));
+        window.draw(colliderRect);
+
+        ++it;
+    }
+
+    // Kinematic
+    for(auto it = kinematicBodiesWeakVector.begin(); it != kinematicBodiesWeakVector.end();){
+        auto body = it->lock();
+        if(!body){
+            it = kinematicBodiesWeakVector.erase(it);
+            continue;
+        }
+
+        sf::RectangleShape colliderRect(body->getCurrentRect().getSize());
+        colliderRect.setPosition(body->getCurrentRect().getPosition());
+        colliderRect.setFillColor(sf::Color(255, 0, 0, 130));
+        window.draw(colliderRect);
+
+        ++it;
+    }
+}
+#endif

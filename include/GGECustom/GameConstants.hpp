@@ -1,8 +1,5 @@
 #pragma once
 
-// #define SHOW_FPS
-#define SHOW_FPS_SPIKES
-
 namespace gge {
 
 // Scale of every sprite

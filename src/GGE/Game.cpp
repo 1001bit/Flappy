@@ -1,5 +1,6 @@
 #include "GGE/Game.hpp"
 #include "GGE/Controls/ControlsManager.hpp"
+#include "GGE/DebugInfo.hpp"
 #include "GGECustom/GameConstants.hpp"
 
 using gge::Game;
@@ -76,6 +77,10 @@ void Game::loop(sf::RenderWindow& window){
         if(levelView && guiView){
             currentLevel->drawablesManager.draw(window, levelView, guiView);
         }
+
+        #ifdef DRAW_COLLIDERS
+        currentLevel->physicsManager.drawColliders(window, levelView);
+        #endif
 
         window.display();
     }
