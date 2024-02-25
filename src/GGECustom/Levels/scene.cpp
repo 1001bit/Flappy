@@ -2,16 +2,21 @@
 
 #include "GGECustom/Gobjects/Bird.hpp"
 #include "GGE/Gobjects/Sprite.hpp"
+#include "GGECustom/Background/BackgroundManager.hpp"
+#include "GGE/ResourceManager/ResourceManager.hpp"
+#include "GGECustom/Pipes/PipesManager.hpp"
+
 
 std::shared_ptr<gge::Level> clvl::newScene(){
     std::shared_ptr<gge::Level> level = std::make_shared<gge::Level>();
     level->init();
 
     // background
-    std::shared_ptr<gge::obj::Sprite> background = std::make_shared<gge::obj::Sprite>();
-    level->addChild(background);
-    level->drawablesManager.newDrawable(background, 0, 0);
-    background->setTexture(level->resourceManager.getTexture("Assets/Textures/background.png"));
+    std::shared_ptr<gge::BackgroundManager> backgroundManager = std::make_shared<gge::BackgroundManager>();
+    level->addChild(backgroundManager);
+    level->updatableGobjects.push_back(backgroundManager);
+    backgroundManager->levelWeak = level;
+    backgroundManager->initBackgroundSprite();
 
     // pipes
     std::shared_ptr<gge::PipesManager> pipesManager = std::make_shared<gge::PipesManager>();
@@ -19,7 +24,7 @@ std::shared_ptr<gge::Level> clvl::newScene(){
     level->updatableGobjects.push_back(pipesManager);
     pipesManager->levelWeak = level;
     pipesManager->initCooldowns(level->cooldownsManager);
-    pipesManager->initPipeSprite(level->resourceManager);
+    pipesManager->initPipeSprite();
 
     // bird
     std::shared_ptr<gge::obj::Bird> bird = std::make_shared<gge::obj::Bird>();
@@ -30,7 +35,7 @@ std::shared_ptr<gge::Level> clvl::newScene(){
     // sprite
     std::shared_ptr<gge::obj::Sprite> birdSprite = std::make_shared<gge::obj::Sprite>();
     bird->addChild(birdSprite);
-    level->drawablesManager.newDrawable(birdSprite, 0, 1);
+    level->drawablesManager.newDrawable(birdSprite, false, 1);
     birdSprite->setTexture(level->resourceManager.getTexture("Assets/Textures/bird.png"));
 
     return level;
