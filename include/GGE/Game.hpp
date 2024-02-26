@@ -1,6 +1,6 @@
 #pragma once
 
-#include "GGE/Level.hpp"
+#include "GGE/Level/LevelsManager.hpp"
 
 namespace gge {
 
@@ -21,8 +21,8 @@ public:
     void loop(sf::RenderWindow& window);
 
     // Variables
-    // pointer to the level
-    std::shared_ptr<Level> currentLevel;
+    // levels manager
+    LevelsManager levelsManager;
 };
 
 }

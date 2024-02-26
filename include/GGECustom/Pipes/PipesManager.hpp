@@ -2,7 +2,7 @@
 
 #include "GGE/Gobjects/KinematicBody.hpp"
 #include "GGE/Gobjects/Sprite.hpp"
-#include "GGE/Level.hpp"
+#include "GGE/Level/Level.hpp"
 
 namespace gge {
 

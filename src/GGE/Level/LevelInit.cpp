@@ -1,4 +1,4 @@
-#include "GGE/Level.hpp"
+#include "GGE/Level/Level.hpp"
 #include "GGECustom/GameConstants.hpp"
 
 using gge::Level;

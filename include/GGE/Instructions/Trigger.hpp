@@ -1,6 +1,7 @@
 #pragma once
 
 #include <memory>
+#include <vector>
 #include "GGE/Instructions/Action.hpp"
 
 namespace gge::ins {
@@ -10,9 +11,12 @@ class Trigger
 private:
 
 protected:
-    // Variables
     bool active;
-    std::shared_ptr<Action> action;
+    std::vector<std::shared_ptr<Action>> actions;
+
+    // Methods
+    // activate all the actions
+    void activateActions();
 
 public:
     // Structors
@@ -22,8 +26,8 @@ public:
     // Methods
     // checks if event has happened and does action if yes
     virtual void checkEvent();
-    // set new action
-    void setAction(std::shared_ptr<Action> newAction);
+    // add an action to vector
+    void addAction(std::shared_ptr<Action> action);
 };
 
 }

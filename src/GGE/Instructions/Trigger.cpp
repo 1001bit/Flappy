@@ -12,11 +12,18 @@ Trigger::~Trigger(){}
 // checks if event has happened and does action if yes
 void Trigger::checkEvent(){
     if(active){
-        action->doAction();
+        activateActions();
     }
 }
 
-// set new action
-void Trigger::setAction(std::shared_ptr<Action> newAction){
-    action = newAction;
+// add an action
+void Trigger::addAction(std::shared_ptr<Action> action){
+    actions.push_back(action);
+}
+
+// activate all the actions
+void Trigger::activateActions(){
+    for (std::shared_ptr<Action> action : actions){
+        action->doAction();
+    }
 }

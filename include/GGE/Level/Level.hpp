@@ -30,7 +30,7 @@ public:
     // Updatable
     std::vector<std::weak_ptr<obj::Gobject>> updatableGobjects;
     // With own id
-    std::unordered_map<uint16_t, std::weak_ptr<obj::Gobject>> gobjectIdMap;
+    std::unordered_map<ushort, std::weak_ptr<obj::Gobject>> gobjectIdMap;
 
     // Level view
     std::weak_ptr<obj::View> levelViewWeak;

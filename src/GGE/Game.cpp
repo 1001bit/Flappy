@@ -22,6 +22,11 @@ void Game::loop(sf::RenderWindow& window){
     sf::Clock clock;
     while (window.isOpen())
     {
+        auto currentLevel = levelsManager.getCurrentLevelWeak().lock();
+        if(!currentLevel){
+            continue;
+        }
+
         // Time
         sf::Time deltaTime = clock.restart();
         float dTimeMs = deltaTime.asMicroseconds()/1000.0;

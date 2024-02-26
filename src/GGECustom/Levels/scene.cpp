@@ -7,7 +7,6 @@
 #include "GGECustom/Pipes/PipesManager.hpp"
 #include "GGECustom/GameConstants.hpp"
 
-
 std::shared_ptr<gge::Level> clvl::newScene(){
     std::shared_ptr<gge::Level> level = std::make_shared<gge::Level>();
     level->init();
