@@ -5,13 +5,19 @@
 using gge::PhysicsManager;
 
 // Structors
-PhysicsManager::PhysicsManager(){}
+PhysicsManager::PhysicsManager(){
+    active = true;
+}
 
 PhysicsManager::~PhysicsManager(){}
 
 // Methods
 // Do all the physics stuff to all the bodies
 void PhysicsManager::updatePhysics(const float& dTimeMs){
+    if(!active){
+        return;
+    }
+
     for(auto it = kinematicBodiesWeakVector.begin(); it != kinematicBodiesWeakVector.end();){
         auto kinematicBody = it->lock();
         // if current body is nil or no rect

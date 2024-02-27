@@ -8,7 +8,6 @@ class View : public Gobject
 {
 private:
     sf::View view;
-    bool centralized; 
 
     // Methods
     // set view center to rect center

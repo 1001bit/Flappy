@@ -9,8 +9,7 @@ namespace gge {
 class CooldownsManager
 {
 private:
-    // Variables
-    // all the cooldowns clones
+    // all the cooldowns that are owned by something else
     std::vector<std::weak_ptr<Cooldown>> cooldownsWeakVector;
     
 public:

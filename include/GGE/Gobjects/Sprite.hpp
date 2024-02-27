@@ -12,12 +12,11 @@ private:
     void updatePos(); 
 
 public:
+    sf::Sprite sprite;
+
     // Structors
     Sprite();
     ~Sprite();
-
-    // Variables
-    sf::Sprite sprite;
 
     // Methods
     // Set a texture

@@ -12,7 +12,6 @@ namespace gge {
 class PhysicsManager
 {
 private:
-    // Variables
     // Bodies vector
     std::vector<std::weak_ptr<obj::Body>> solidBodiesWeakVector;
     // Kinematic bodies vector
@@ -34,6 +33,8 @@ private:
     void applyVelocityToPos(std::shared_ptr<obj::KinematicBody> kinematicBody);
     
 public:
+    bool active;
+
     // Structors
     PhysicsManager();
     ~PhysicsManager();

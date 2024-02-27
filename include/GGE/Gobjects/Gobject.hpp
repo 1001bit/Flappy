@@ -15,13 +15,11 @@ namespace gge::obj {
 class Gobject : public std::enable_shared_from_this<Gobject>
 {
 private:
-    // Variables
     sf::Vector2f relativePos;
     sf::FloatRect selfRect;
     bool flipped;
 
 protected:
-    // Variables
     std::vector<std::shared_ptr<Gobject>> children;
     bool doesFlipMirror;
 
@@ -30,12 +28,11 @@ protected:
     virtual void updatePos(); 
 
 public:
+    std::weak_ptr<Gobject> parentWeak;
+
     // Structors
     Gobject();
     ~Gobject();
-
-    // Variables
-    std::weak_ptr<Gobject> parentWeak;
 
     // Methods
     // Update the state of the object

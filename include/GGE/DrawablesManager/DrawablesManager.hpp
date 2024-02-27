@@ -8,7 +8,7 @@ namespace gge {
 class DrawablesManager
 {
 private:
-    // Levels of drawable gobjects
+    // Layers of drawable gobjects
     std::vector< std::vector<std::weak_ptr<obj::Drawable>> > levelDrawableLayers;
     std::vector< std::vector<std::weak_ptr<obj::Drawable>> > guiDrawableLayers;
 

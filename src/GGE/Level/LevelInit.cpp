@@ -4,7 +4,9 @@
 using gge::Level;
 
 // Structors
-Level::Level(){}
+Level::Level(){
+    this->active = false;
+}
 
 Level::~Level(){}
 
@@ -24,4 +26,7 @@ void Level::init(){
 
     // drawables manager
     drawablesManager.setLayerCount(10);
+
+    // is active on start
+    this->active = true;
 }

@@ -6,6 +6,7 @@ class Cooldown
 private:
     float currentValueMs;
     float startValueMs;
+    
 public:
     // Structors
     Cooldown(float newStartValueMs);

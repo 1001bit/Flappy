@@ -12,12 +12,11 @@ private:
     void updatePos(); 
 
 public:
+    sf::Text text;
+
     // Structors
     Text();
     ~Text();
-
-    // Variables
-    sf::Text text;
 
     // Methods
     // draw self text

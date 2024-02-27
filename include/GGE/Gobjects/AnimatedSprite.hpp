@@ -11,7 +11,6 @@ namespace gge::obj {
 class AnimatedSprite : public Drawable {
 
 private:
-    // Variables
     anim_map animationMap;
     Animation* currentAnimation;
     float elapsedTime;
@@ -21,12 +20,11 @@ private:
     void updatePos(); 
 
 public:
+    sf::Sprite sprite;
+
     // Structors
     AnimatedSprite();
     ~AnimatedSprite();
-
-    // Variables
-    sf::Sprite sprite;
 
     // Methods
     // Start animation with name
@@ -39,7 +37,7 @@ public:
     void insertAnimation(std::string name, const Animation& animation);
 
     // Getters
-    // Get rect of current animation's frame
+    // Get rect of current frame of the current animation
     const sf::IntRect& getCurrentFrame();
 };
 

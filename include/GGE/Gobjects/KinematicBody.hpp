@@ -18,11 +18,14 @@ private:
     sf::FloatRect previousRect;
 
 protected:
-    // Variables
     bool weighs;
     bool friction;
 
 public:
+    sf::Vector2f acceleration;
+    sf::Vector2f velocity;
+    CollisionDirection collisionDir;  
+
     // Methods
     // Control the body
     virtual void control();
@@ -36,11 +39,6 @@ public:
     void setRectSize(const sf::Vector2f& newSize);
     // set previousRect = currentRect
     void updatePreviousRect();
-
-    // Variables
-    sf::Vector2f acceleration;
-    sf::Vector2f velocity;
-    CollisionDirection collisionDir;  
 
     // Getters
     // weighs

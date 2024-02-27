@@ -15,6 +15,8 @@ class Level : public obj::Gobject
 private:
     
 public:
+    bool active;
+
     // Structors
     Level();
     ~Level();

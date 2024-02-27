@@ -4,7 +4,6 @@
 
 struct Animation
 {
-    // Variables
     sf::Texture* texture;
     std::vector<sf::IntRect> frames;
     float playTime;
