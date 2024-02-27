@@ -50,7 +50,7 @@ void PipesManager::createNewPipePair(){
     addChild(pipe1);
     level->physicsManager.addNewBody(pipe1);
     pipe1->setRectSize(pipeSpriteBase.getRect().getSize());
-    pipe1->setCurrentPos({GAME_WIDTH, y1});
+    pipe1->setCurrentPos({GAME_WIDTH, y1}, true);
     // sprite
     std::shared_ptr sprite1 = std::make_shared<obj::Sprite>(pipeSpriteBase);
     pipe1->addChild(sprite1);
@@ -61,7 +61,7 @@ void PipesManager::createNewPipePair(){
     addChild(pipe2);
     level->physicsManager.addNewBody(pipe2);
     pipe2->setRectSize(pipeSpriteBase.getRect().getSize());
-    pipe2->setCurrentPos({GAME_WIDTH, y2});
+    pipe2->setCurrentPos({GAME_WIDTH, y2}, true);
     // sprite
     std::shared_ptr sprite2 = std::make_shared<obj::Sprite>(pipeSpriteBase);
     pipe2->addChild(sprite2);

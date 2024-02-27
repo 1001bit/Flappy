@@ -9,8 +9,6 @@ KinematicBody::KinematicBody(){
     this->collidable = false;
 
     this->collisionDir = {Direction::None, Direction::None};
-
-    this->firstCurrentPosSet = true;
 }
 KinematicBody::~KinematicBody(){}
 
@@ -25,16 +23,15 @@ void KinematicBody::accelerate(float accelX, float accelY){
 }
 
 // Set current rect position
-void KinematicBody::setCurrentPos(const sf::Vector2f& newPosition){
+void KinematicBody::setCurrentPos(const sf::Vector2f& newPosition, bool teleport){
     currentRect.left = newPosition.x;
     currentRect.top = newPosition.y;
 
-    // if called for the first time (on creation, for example), set same previousRect position to prevent glitchy behaviour
-    if(firstCurrentPosSet){
+    // if teleport, set the same previousRect and selfRect position to prevent glitchy behaviour
+    if(teleport){
         setRelativePos(newPosition);
         previousRect.left = newPosition.x;
         previousRect.top = newPosition.y;
-        firstCurrentPosSet = false;
     }
 }
 

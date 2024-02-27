@@ -21,7 +21,7 @@ void ControlsManager::setMouseControlsMap(std::unordered_map<std::string, sf::Mo
 };
 
 // Check if held
-bool ControlsManager::isControlHeld(const std::string& controlId){
+bool ControlsManager::isHeld(const std::string& controlId){
     // if there is such keyboard control and it's pressed
     if(keyboardControlsMap.count(controlId)){
         if(heldKeyboardKeys.count(keyboardControlsMap.at(controlId))){
@@ -38,7 +38,7 @@ bool ControlsManager::isControlHeld(const std::string& controlId){
 }
 
 // check if pressed once
-bool ControlsManager::isControlPressed(const std::string& controlId, bool isPressedNow){
+bool ControlsManager::isPressed(const std::string& controlId, bool isPressedNow){
     // if there is such keyboard control
     if(keyboardControlsMap.count(controlId)){
         sf::Keyboard::Key& key = keyboardControlsMap.at(controlId);

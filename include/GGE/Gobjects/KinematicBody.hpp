@@ -16,8 +16,6 @@ class KinematicBody : public Body
 private:
     sf::FloatRect currentRect;
     sf::FloatRect previousRect;
-    // is setCurrentPos called for the first time
-    bool firstCurrentPosSet;
 
 protected:
     // Variables
@@ -30,8 +28,8 @@ public:
     virtual void control();
     // Accelerate the body
     void accelerate(float accelX, float accelY);
-    // Set the position of the current rect
-    void setCurrentPos(const sf::Vector2f& newPosition);
+    // Set the position of the current rect. If teleport, it moves everything else with currentRect
+    void setCurrentPos(const sf::Vector2f& newPosition, bool teleport = false);
     // Move the current rect
     void moveCurrentRect(const sf::Vector2f& moveDistance);
     // set size of current rect

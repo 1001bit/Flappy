@@ -34,10 +34,10 @@ public:
     void changeKeyboardControl(std::string controlId, sf::Keyboard::Key newKey);
 
     // Is control held now
-    bool isControlHeld(const std::string& controlId);
+    bool isHeld(const std::string& controlId);
 
-    // Is control pressed once (set isPressed=0 in physics update)
-    bool isControlPressed(const std::string& controlId, bool isPressedNow=1);
+    // Is control pressed once (set isPressed = false in physics update)
+    bool isPressed(const std::string& controlId, bool isPressedNow = true);
 
     // On control single press
     void controlPress(sf::Keyboard::Key key);

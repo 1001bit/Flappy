@@ -44,7 +44,7 @@ void BackgroundManager::createNewBackground(){
     // place it right after previous background
     if(backgrounds.size()){
         if(auto lastBackground = backgrounds.back().lock()){
-            background->setCurrentPos({lastBackground->getCurrentRect().left + lastBackground->getCurrentRect().width, 0});
+            background->setCurrentPos({lastBackground->getCurrentRect().left + lastBackground->getCurrentRect().width, 0}, true);
         }
     }
     backgrounds.push_back(background);
