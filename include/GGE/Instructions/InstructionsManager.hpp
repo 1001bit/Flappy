@@ -5,21 +5,21 @@
 
 namespace gge {
 
-class TriggersManager
+class InstructionsManager
 {
 private:
-    std::vector<std::shared_ptr<ins::Trigger>> triggersVector;
 
 public:
+    std::vector<std::shared_ptr<ins::Trigger>> triggersVector;
+    std::vector<std::shared_ptr<ins::Action>> actionsVector;
+
     // Structors
-    TriggersManager();
-    ~TriggersManager();
+    InstructionsManager();
+    ~InstructionsManager();
 
     // Methods
     // Check all the triggers if their event has happened
     void update();
-    // Add new trigger
-    void addNewTrigger(std::shared_ptr<ins::Trigger> newTrigger);
 };
 
 }

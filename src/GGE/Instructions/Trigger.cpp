@@ -18,12 +18,20 @@ void Trigger::checkEvent(){
 
 // add an action
 void Trigger::addAction(std::shared_ptr<Action> action){
-    actions.push_back(action);
+    actionsWeak.push_back(action);
 }
 
 // activate all the actions
 void Trigger::activateActions(){
-    for (std::shared_ptr<Action> action : actions){
+    for (auto it = actionsWeak.begin(); it != actionsWeak.end();){
+        auto action = it->lock();
+        if(!action){
+            it = actionsWeak.erase(it);
+            continue;
+        }
+
         action->doAction();
+
+        ++it;
     }
 }

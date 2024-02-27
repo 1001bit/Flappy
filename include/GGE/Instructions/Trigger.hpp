@@ -12,7 +12,7 @@ private:
 
 protected:
     bool active;
-    std::vector<std::shared_ptr<Action>> actions;
+    std::vector<std::weak_ptr<Action>> actionsWeak;
 
     // Methods
     // activate all the actions

@@ -3,7 +3,7 @@
 #include "GGE/Gobjects/Gobject.hpp"
 
 #include "GGE/Physics/PhysicsManager.hpp"
-#include "GGE/Instructions/TriggersManager.hpp"
+#include "GGE/Instructions/InstructionsManager.hpp"
 #include "GGE/DrawablesManager/DrawablesManager.hpp"
 #include "GGE/Cooldowns/CooldownsManager.hpp"
 #include "GGE/ResourceManager/ResourceManager.hpp"
@@ -23,7 +23,7 @@ public:
 
     ///////////////////////////
     // Managers
-    TriggersManager triggersManager;
+    InstructionsManager instructionsManager;
     PhysicsManager physicsManager;
     DrawablesManager drawablesManager;
     CooldownsManager cooldownsManager;
