@@ -1,6 +1,7 @@
 #pragma once
 
 #include "GGE/Instructions/Trigger.hpp"
+#include "GGECustom/Pipes/PipesManager.hpp"
 #include "GGE/Gobjects/KinematicBody.hpp"
 
 namespace gge::ins {
@@ -9,20 +10,18 @@ namespace gge::ins {
 class TrCollision : public Trigger
 {
 private:
-    // Variables
-    std::weak_ptr<gge::obj::KinematicBody> body1Weak;
-    std::weak_ptr<gge::obj::KinematicBody> body2Weak;
 
 public:
+    std::weak_ptr<PipesManager> pipesManagerWeak;
+    std::weak_ptr<obj::KinematicBody> bodyWeak;
+
     // Structors
     TrCollision();
     ~TrCollision();
 
     // Methods
-    // checks if some bodies collided
+    // checks for body-pipe / body-window border collision
     void checkEvent();
-    // Set 2 bodies
-    void setCollisionBodies(std::shared_ptr<gge::obj::KinematicBody> newBody1, std::shared_ptr<gge::obj::KinematicBody> newBody2);
 };
 
 }

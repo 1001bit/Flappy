@@ -12,6 +12,8 @@ private:
     void handleEvent(const sf::Event& event);
 
 public:
+    LevelsManager levelsManager;
+
     // Structors
     Game();
     ~Game();
@@ -19,10 +21,6 @@ public:
     // Methods
     // Main game loop
     void loop(sf::RenderWindow& window);
-
-    // Variables
-    // levels manager
-    LevelsManager levelsManager;
 };
 
 }

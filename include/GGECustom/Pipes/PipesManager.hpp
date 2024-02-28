@@ -12,13 +12,13 @@ private:
     obj::Sprite pipeSpriteBase;
     std::vector<std::weak_ptr<obj::KinematicBody>> pipes;
     std::shared_ptr<Cooldown> pipeSpawnCooldown;
+    std::weak_ptr<Level> levelWeak;
     
 public:
-    std::weak_ptr<Level> levelWeak;
-    bool moving;
+    bool active;
 
     // Structors
-    PipesManager();
+    PipesManager(std::weak_ptr<Level> level);
     ~PipesManager();
 
     // Methods
@@ -30,6 +30,10 @@ public:
     void initCooldowns(CooldownsManager& cooldownsManager);
     // make basePipeSprite
     void initPipeSprite();
+
+    // Getters
+    // pipes
+    const std::vector<std::weak_ptr<obj::KinematicBody>>& getPipes();
 };
 
 }

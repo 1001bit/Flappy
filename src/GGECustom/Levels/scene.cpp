@@ -12,17 +12,15 @@ std::shared_ptr<gge::Level> clvl::newScene(){
     level->init();
 
     // background
-    std::shared_ptr<gge::BackgroundManager> backgroundManager = std::make_shared<gge::BackgroundManager>();
+    std::shared_ptr<gge::BackgroundManager> backgroundManager = std::make_shared<gge::BackgroundManager>(level);
     level->addChild(backgroundManager);
     level->updatableGobjects.push_back(backgroundManager);
-    backgroundManager->levelWeak = level;
     backgroundManager->initBackgroundSprite();
 
     // pipes
-    std::shared_ptr<gge::PipesManager> pipesManager = std::make_shared<gge::PipesManager>();
+    std::shared_ptr<gge::PipesManager> pipesManager = std::make_shared<gge::PipesManager>(level);
     level->addChild(pipesManager);
     level->updatableGobjects.push_back(pipesManager);
-    pipesManager->levelWeak = level;
     pipesManager->initCooldowns(level->cooldownsManager);
     pipesManager->initPipeSprite();
 

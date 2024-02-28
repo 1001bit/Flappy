@@ -12,12 +12,11 @@ class BackgroundManager : public obj::Gobject
 private:
     obj::Sprite backgroundSpriteBase;
     std::vector<std::weak_ptr<obj::KinematicBody>> backgrounds;
+    std::weak_ptr<Level> levelWeak;
     
 public:
-    std::weak_ptr<Level> levelWeak;
-
     // Structors
-    BackgroundManager();
+    BackgroundManager(std::weak_ptr<Level> level);
     ~BackgroundManager();
 
     // Methods

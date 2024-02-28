@@ -22,8 +22,6 @@ public:
     void updateCooldowns(const float& dTimeMs);
     // get newly created clone of cooldown at id
     std::shared_ptr<Cooldown> newCooldown(Cooldown cooldown);
-    // clean cooldowns vector
-    void clear();
 };
 
 }
