@@ -1,70 +1,70 @@
 #include "GGE/Gobjects/Gobject.hpp"
-#include "GGECustom/GameConstants.hpp"
+#include "GameConstants.hpp"
 #include <cmath>
 
 using gge::obj::Gobject;
 
 // Structors
-Gobject::Gobject(){
+Gobject::Gobject() {
     this->flipped = false;
     this->doesFlipMirror = false;
 
     #ifdef SHOW_OBJ_COUNT
-    objCount += 1;
-    std::cout << "Gobject count: " << objCount << "\n";
+        objCount += 1;
+        std::cout << "Gobject count: " << objCount << "\n";
     #endif
 }
 
-Gobject::Gobject(const Gobject& copy){
+Gobject::Gobject(const Gobject&) : enable_shared_from_this() {
     #ifdef SHOW_OBJ_COUNT
-    objCount += 1;
-    std::cout << "Gobject count: " << objCount << "\n";
+        objCount += 1;
+        std::cout << "Gobject count: " << objCount << "\n";
     #endif
 }
 
-Gobject::~Gobject(){
+Gobject::~Gobject() {
     #ifdef SHOW_OBJ_COUNT
-    objCount -= 1;
-    std::cout << "Gobject count: " << objCount << "\n";
+        objCount -= 1;
+        std::cout << "Gobject count: " << objCount << "\n";
     #endif
 }
 
 // Methods
 // Update the state of the object
-void Gobject::update(const float& dTimeMs){}
+void Gobject::update(const float&){}
 
 // Set position relative to parent's position
-void Gobject::setRelativePos(const sf::Vector2f& newRelativePos){
+void Gobject::setRelativePos(const sf::Vector2f &newRelativePos) {
     relativePos = newRelativePos;
     updatePos();
 }
 
 // move self by some distance
-void Gobject::move(const sf::Vector2f& distance){
+void Gobject::move(const sf::Vector2f &distance) {
     setRelativePos(getRelativePos() + distance);
 }
 
 // update everything related to position
-void Gobject::updatePos(){
+void Gobject::updatePos() {
     sf::Vector2f zeroPoint;
 
-    if(auto parent = parentWeak.lock()){
+    if (auto parent = parentWeak.lock()) {
         zeroPoint.x = parent->getRect().left;
         zeroPoint.y = parent->getRect().top;
     }
-    
+
     selfRect.left = zeroPoint.x + relativePos.x;
     selfRect.top = zeroPoint.y + relativePos.y;
 
     // update children's position
-    for(std::shared_ptr<Gobject> child : children) {
+    for (std::shared_ptr<Gobject> child : children) {
         child->updatePos();
     }
 }
 
 // Add a new child
-void Gobject::addChild(std::shared_ptr<Gobject> newChild){
-    if(auto childOldParent = newChild->parentWeak.lock()){
+void Gobject::addChild(std::shared_ptr<Gobject> newChild) {
+    if (auto childOldParent = newChild->parentWeak.lock()) {
         childOldParent->removeChild(newChild);
     }
 
@@ -74,25 +74,25 @@ void Gobject::addChild(std::shared_ptr<Gobject> newChild){
 }
 
 // Remove existing child
-void Gobject::removeChild(std::shared_ptr<Gobject> child){
+void Gobject::removeChild(std::shared_ptr<Gobject> child) {
     children.erase(std::remove(children.begin(), children.end(), child), children.end());
 }
 
 // Destroy self
-void Gobject::removeSelf(){
-    if(auto parent = parentWeak.lock()){
+void Gobject::removeSelf() {
+    if (auto parent = parentWeak.lock()) {
         parent->removeChild(shared_from_this());
     }
 }
 
 // set size of selfRect
-void Gobject::setRectSize(const sf::Vector2f& newSize){
+void Gobject::setRectSize(const sf::Vector2f &newSize) {
     selfRect.width = newSize.x;
     selfRect.height = newSize.y;
 }
 
 // set size of selfRect in pixels
-void Gobject::setRectPixelSize(float w, float h){
+void Gobject::setRectPixelSize(float w, float h) {
     setRectSize(sf::Vector2f(w, h) * (float)SPRITE_SCALE);
 }
 
@@ -108,7 +108,7 @@ void Gobject::setFlip(bool newFlip){
 }
 
 // make object be able to flip self
-void Gobject::makeFlippable(){
+void Gobject::makeFlippable() {
     doesFlipMirror = 1;
 }
 

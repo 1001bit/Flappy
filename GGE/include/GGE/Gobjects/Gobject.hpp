@@ -42,7 +42,7 @@ public:
 
     // Methods
     // Update the state of the object
-    virtual void update(const float& dTimeMs);
+    virtual void update(const float &dTimeMs);
     
     // Set position relative to parent's position
     void setRelativePos(const sf::Vector2f& newPos);

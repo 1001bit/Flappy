@@ -1,7 +1,7 @@
 #pragma once
 
 #include "GGE/Instructions/Trigger.hpp"
-#include "GGECustom/Pipes/PipesManager.hpp"
+#include "Pipes/PipesManager.hpp"
 #include "GGE/Gobjects/KinematicBody.hpp"
 
 namespace gge::ins {

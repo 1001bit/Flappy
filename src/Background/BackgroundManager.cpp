@@ -1,5 +1,5 @@
-#include "GGECustom/Background/BackgroundManager.hpp"
-#include "GGECustom/GameConstants.hpp"
+#include "Background/BackgroundManager.hpp"
+#include "GameConstants.hpp"
 #include <cmath>
 
 constexpr float BACKGROUND_SPEED = 0.5;
@@ -56,7 +56,7 @@ void BackgroundManager::createNewBackground(){
 }
 
 // Update
-void BackgroundManager::update(const float& dTimeMs){
+void BackgroundManager::update(const float&){
     auto level = levelWeak.lock();
     if(!level){
         return;

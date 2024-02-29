@@ -9,4 +9,4 @@ Drawable::~Drawable(){}
 
 // Methods
 // draw self drawable object
-void Drawable::drawSelf(sf::RenderWindow& window){};
+void Drawable::drawSelf(sf::RenderWindow&){};

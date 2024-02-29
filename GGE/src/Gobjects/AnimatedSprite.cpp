@@ -1,5 +1,5 @@
 #include "GGE/Gobjects/AnimatedSprite.hpp"
-#include "GGECustom/GameConstants.hpp"
+ #include "GameConstants.hpp"
 
 using gge::obj::AnimatedSprite;
 

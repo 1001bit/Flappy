@@ -1,11 +1,11 @@
 #include "inits.hpp"
 
-#include "GGECustom/Gobjects/Bird.hpp"
+#include "Gobjects/Bird.hpp"
 #include "GGE/Gobjects/Sprite.hpp"
-#include "GGECustom/Background/BackgroundManager.hpp"
+#include "Background/BackgroundManager.hpp"
 #include "GGE/ResourceManager/ResourceManager.hpp"
-#include "GGECustom/Pipes/PipesManager.hpp"
-#include "GGECustom/GameConstants.hpp"
+#include "Pipes/PipesManager.hpp"
+#include "GameConstants.hpp"
 
 std::shared_ptr<gge::Level> clvl::newScene(){
     std::shared_ptr<gge::Level> level = std::make_shared<gge::Level>();

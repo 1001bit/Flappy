@@ -1,5 +1,5 @@
-#include "GGECustom/Pipes/PipesManager.hpp"
-#include "GGECustom/GameConstants.hpp"
+#include "Pipes/PipesManager.hpp"
+#include "GameConstants.hpp"
 
 constexpr float PIPES_SPEED = 3;
 constexpr float PIPE_SPAWN_RATE = 1500;
@@ -77,7 +77,7 @@ void PipesManager::createNewPipePair(){
 }
 
 // Update
-void PipesManager::update(const float& dTimeMs){
+void PipesManager::update(const float&){
     if(!active){
         return;
     }

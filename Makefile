@@ -2,8 +2,11 @@ FLAGS := -Wall -Wextra -std=c++20 -ggdb
 
 LIBRARIES	:= -lsfml-graphics -lsfml-window -lsfml-system
 EXECUTABLE	:= main
+LIBPATH		:= GGE/lib/SFML
+INCLUDE		:= -Iinclude -IGGE/include
+SOURCE		:= src/*.cpp src/**/*.cpp GGE/src/*.cpp GGE/src/**/*.cpp
 
 all: 
-	g++ $(CXX_FLAGS) -Iinclude -Llib/linux src/**/**/*.cpp src/**/*.cpp src/*.cpp -o bin/linux/$(EXECUTABLE) $(LIBRARIES)
+	g++ $(FLAGS) $(INCLUDE) -L$(LIBPATH)/linux $(SOURCE) -o bin/linux/$(EXECUTABLE) $(LIBRARIES)
 win:
-	g++ $(CXX_FLAGS) -Iinclude -Llib/win src/**/**/*.cpp src/**/*.cpp src/*.cpp -o bin/linux/$(EXECUTABLE) $(LIBRARIES)
+	g++ $(FLAGS) $(INCLUDE) -L$(LIBPATH)/win $(SOURCE) -o bin/win/$(EXECUTABLE) $(LIBRARIES)
