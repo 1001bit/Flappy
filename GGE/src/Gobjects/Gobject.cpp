@@ -1,5 +1,5 @@
 #include "GGE/Gobjects/Gobject.hpp"
-#include "GameConstants.hpp"
+#include "BaseHeaders/GameConstants.hpp"
 #include <cmath>
 
 using gge::obj::Gobject;

@@ -3,7 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <memory>
-#include "GGE/DebugInfo.hpp"
+#include "BaseHeaders/DebugInfo.hpp"
 
 // 4 directions
 enum class Direction {

@@ -5,7 +5,7 @@
 #include "Background/BackgroundManager.hpp"
 #include "GGE/ResourceManager/ResourceManager.hpp"
 #include "Pipes/PipesManager.hpp"
-#include "GameConstants.hpp"
+#include "BaseHeaders/GameConstants.hpp"
 
 std::shared_ptr<gge::Level> clvl::newScene(){
     std::shared_ptr<gge::Level> level = std::make_shared<gge::Level>();

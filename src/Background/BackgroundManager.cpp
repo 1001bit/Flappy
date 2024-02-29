@@ -1,5 +1,5 @@
 #include "Background/BackgroundManager.hpp"
-#include "GameConstants.hpp"
+#include "BaseHeaders/GameConstants.hpp"
 #include <cmath>
 
 constexpr float BACKGROUND_SPEED = 0.5;

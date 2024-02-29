@@ -1,5 +1,5 @@
 #include "Pipes/PipesManager.hpp"
-#include "GameConstants.hpp"
+#include "BaseHeaders/GameConstants.hpp"
 
 constexpr float PIPES_SPEED = 3;
 constexpr float PIPE_SPAWN_RATE = 1500;
