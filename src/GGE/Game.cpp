@@ -1,6 +1,5 @@
 #include "GGE/Game.hpp"
 #include "GGE/Controls/ControlsManager.hpp"
-#include "GGE/DebugInfo.hpp"
 #include "GGECustom/GameConstants.hpp"
 
 using gge::Game;
@@ -33,8 +32,9 @@ void Game::loop(sf::RenderWindow& window){
         // Limit max dt
         if(dTimeMs > 1000.f/MIN_FPS){
             #ifdef SHOW_FPS_SPIKES
-            std::cout << dTimeMs << "\n";
+            std::cout << "dTimeMs spike: " << dTimeMs << "\n";
             #endif
+
             dTimeMs = 1000.f/MIN_FPS;
         }
         #ifdef SHOW_FPS

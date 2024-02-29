@@ -1,7 +1,6 @@
 #pragma once
 
 #include "GGE/Gobjects/KinematicBody.hpp"
-#include "GGE/DebugInfo.hpp"
 
 #ifdef DRAW_COLLIDERS
 #include "GGE/Gobjects/View.hpp"
