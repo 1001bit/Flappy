@@ -7,7 +7,9 @@ constexpr float BACKGROUND_SPEED = 0.5;
 using gge::BackgroundManager;
 
 // Structors
-BackgroundManager::BackgroundManager(std::weak_ptr<Level> level) : levelWeak(level){}
+BackgroundManager::BackgroundManager(std::weak_ptr<Level> level) :
+levelWeak(level)
+{}
 BackgroundManager::~BackgroundManager(){}
 
 // Methods

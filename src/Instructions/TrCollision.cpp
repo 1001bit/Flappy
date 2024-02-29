@@ -3,7 +3,10 @@
 using gge::ins::TrCollision;
 
 // Structors
-TrCollision::TrCollision(){}
+TrCollision::TrCollision(std::weak_ptr<PipesManager> pipesManager, std::weak_ptr<obj::KinematicBody> body) : 
+pipesManagerWeak(pipesManager), 
+bodyWeak(body) 
+{}
 TrCollision::~TrCollision(){}
 
 // Methods

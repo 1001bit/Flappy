@@ -10,9 +10,12 @@ constexpr u_short GAP_OFFSET_RANDOM = 175;
 using gge::PipesManager;
 
 // Structors
-PipesManager::PipesManager(std::weak_ptr<Level> level) : levelWeak(level){
+PipesManager::PipesManager(std::weak_ptr<Level> level) : 
+levelWeak(level)
+{
     this->active = true;
 }
+
 PipesManager::~PipesManager(){}
 
 // Methods

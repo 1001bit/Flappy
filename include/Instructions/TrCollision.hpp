@@ -10,13 +10,12 @@ namespace gge::ins {
 class TrCollision : public Trigger
 {
 private:
-
-public:
     std::weak_ptr<PipesManager> pipesManagerWeak;
     std::weak_ptr<obj::KinematicBody> bodyWeak;
 
+public:
     // Structors
-    TrCollision();
+    TrCollision(std::weak_ptr<PipesManager> pipesManager, std::weak_ptr<obj::KinematicBody> body);
     ~TrCollision();
 
     // Methods
