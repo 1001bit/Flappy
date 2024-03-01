@@ -20,11 +20,11 @@ public:
 
     // Methods
     // Set a texture
-    void setTexture(const sf::Texture& newTexture);
+    void setTexture(const sf::Texture& texture);
     // draw self sprite
     void drawSelf(sf::RenderWindow& window);
     // set the flip of the object
-    void setFlip(bool newFlip);
+    void setFlip(bool flip);
 };
 
 }

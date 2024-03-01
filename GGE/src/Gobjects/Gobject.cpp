@@ -34,8 +34,8 @@ Gobject::~Gobject() {
 void Gobject::update(const float&){}
 
 // Set position relative to parent's position
-void Gobject::setRelativePos(const sf::Vector2f &newRelativePos) {
-    relativePos = newRelativePos;
+void Gobject::setRelativePos(const sf::Vector2f &relativePos) {
+    this->relativePos = relativePos;
     updatePos();
 }
 
@@ -63,14 +63,14 @@ void Gobject::updatePos() {
 }
 
 // Add a new child
-void Gobject::addChild(std::shared_ptr<Gobject> newChild) {
-    if (auto childOldParent = newChild->parentWeak.lock()) {
-        childOldParent->removeChild(newChild);
+void Gobject::addChild(std::shared_ptr<Gobject> child) {
+    if (auto childOldParent = child->parentWeak.lock()) {
+        childOldParent->removeChild(child);
     }
 
-    newChild->parentWeak = shared_from_this();
-    children.push_back(newChild);
-    newChild->updatePos();
+    child->parentWeak = shared_from_this();
+    children.push_back(child);
+    child->updatePos();
 }
 
 // Remove existing child
@@ -86,9 +86,9 @@ void Gobject::removeSelf() {
 }
 
 // set size of selfRect
-void Gobject::setRectSize(const sf::Vector2f &newSize) {
-    selfRect.width = newSize.x;
-    selfRect.height = newSize.y;
+void Gobject::setRectSize(const sf::Vector2f &size) {
+    selfRect.width = size.x;
+    selfRect.height = size.y;
 }
 
 // set size of selfRect in pixels
@@ -97,11 +97,11 @@ void Gobject::setRectPixelSize(float w, float h) {
 }
 
 // flip object
-void Gobject::setFlip(bool newFlip){
-    if(flipped != newFlip && doesFlipMirror){
+void Gobject::setFlip(bool flip){
+    if(flipped != flip && doesFlipMirror){
         setRelativePos({-getRelativePos().x, getRelativePos().y});
     }
-    flipped = newFlip;
+    flipped = flip;
     for(std::shared_ptr<Gobject> child : children) {
         child->setFlip(flipped);
     }

@@ -11,6 +11,6 @@ struct Animation
     bool isLooped;
     
     // Structors
-    Animation(sf::Texture& newTexture, int frameWidth, float playTime, bool isLooped);
+    Animation(sf::Texture& texture, int frameWidth, float playTime, bool isLooped);
     Animation();
 };

@@ -12,23 +12,23 @@ Sprite::~Sprite(){}
 
 // Methods
 // set a texture
-void Sprite::setTexture(const sf::Texture& newTexture){
-    sprite.setTexture(newTexture);
+void Sprite::setTexture(const sf::Texture& texture){
+    sprite.setTexture(texture);
     setRectSize(sprite.getGlobalBounds().getSize());
 }
 
 // set the flip of the object
-void Sprite::setFlip(bool newFlip){
+void Sprite::setFlip(bool flip){
     const int textureWidth = sprite.getTexture()->getSize().x;
     const int textureHeight = sprite.getTexture()->getSize().y;
 
-    if(newFlip){
+    if(flip){
         sprite.setTextureRect(sf::IntRect(textureWidth, 0, -textureWidth, textureHeight));
     } else {
         sprite.setTextureRect(sf::IntRect(0, 0, textureWidth, textureHeight));
     }
 
-    Gobject::setFlip(newFlip);
+    Gobject::setFlip(flip);
 };
 
 // Update sprite and gobject pos

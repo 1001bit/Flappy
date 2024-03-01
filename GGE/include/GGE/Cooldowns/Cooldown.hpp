@@ -1,4 +1,5 @@
 #pragma once
+
 namespace gge {
 
 class Cooldown
@@ -9,7 +10,7 @@ private:
     
 public:
     // Structors
-    Cooldown(float newStartValueMs);
+    Cooldown(float startValueMs);
     ~Cooldown();
 
     // Methods

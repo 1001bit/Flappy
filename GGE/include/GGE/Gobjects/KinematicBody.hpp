@@ -32,11 +32,11 @@ public:
     // Accelerate the body
     void accelerate(float accelX, float accelY);
     // Set the position of the current rect. If teleport, it moves everything else with currentRect
-    void setCurrentPos(const sf::Vector2f& newPosition, bool teleport = false);
+    void setCurrentPos(const sf::Vector2f& pos, bool teleport = false);
     // Move the current rect
     void moveCurrentRect(const sf::Vector2f& moveDistance);
     // set size of current rect
-    void setRectSize(const sf::Vector2f& newSize);
+    void setRectSize(const sf::Vector2f& size);
     // set previousRect = currentRect
     void updatePreviousRect();
 

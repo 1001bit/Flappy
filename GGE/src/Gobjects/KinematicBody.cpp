@@ -23,15 +23,15 @@ void KinematicBody::accelerate(float accelX, float accelY){
 }
 
 // Set current rect position
-void KinematicBody::setCurrentPos(const sf::Vector2f& newPosition, bool teleport){
-    currentRect.left = newPosition.x;
-    currentRect.top = newPosition.y;
+void KinematicBody::setCurrentPos(const sf::Vector2f& pos, bool teleport){
+    currentRect.left = pos.x;
+    currentRect.top = pos.y;
 
     // if teleport, set the same previousRect and selfRect position to prevent glitchy behaviour
     if(teleport){
-        setRelativePos(newPosition);
-        previousRect.left = newPosition.x;
-        previousRect.top = newPosition.y;
+        setRelativePos(pos);
+        previousRect.left = pos.x;
+        previousRect.top = pos.y;
     }
 }
 
@@ -41,11 +41,11 @@ void KinematicBody::moveCurrentRect(const sf::Vector2f& moveDistance){
 }
 
 // set size of current rect
-void KinematicBody::setRectSize(const sf::Vector2f& newSize){
-    currentRect.width = newSize.x;
-    currentRect.height = newSize.y;
+void KinematicBody::setRectSize(const sf::Vector2f& size){
+    currentRect.width = size.x;
+    currentRect.height = size.y;
 
-    Gobject::setRectSize(newSize);
+    Gobject::setRectSize(size);
 }
 
 // set previousRect = currentRect

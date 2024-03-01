@@ -45,24 +45,24 @@ public:
     virtual void update(const float &dTimeMs);
     
     // Set position relative to parent's position
-    void setRelativePos(const sf::Vector2f& newPos);
+    void setRelativePos(const sf::Vector2f& pos);
     // move self by some distance
     void move(const sf::Vector2f& distance);
     
     // Add a new child
-    void addChild(std::shared_ptr<Gobject> newChild);
+    void addChild(std::shared_ptr<Gobject> child);
     // Remove a child
     void removeChild(std::shared_ptr<Gobject> child);
     // Remove self
     void removeSelf();
     
     // set rect size
-    virtual void setRectSize(const sf::Vector2f& newSize);
+    virtual void setRectSize(const sf::Vector2f& size);
     // set rect pixel-scaled size
     void setRectPixelSize(float w, float h);
 
     // set the flip of the object
-    virtual void setFlip(bool newFlip);
+    virtual void setFlip(bool flip);
     // set doesFlipMirror to true
     void makeFlippable();
     

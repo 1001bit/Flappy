@@ -8,8 +8,8 @@ DrawablesManager::~DrawablesManager(){}
 
 // Methods
 // Set max layers count
-void DrawablesManager::setLayerCount(u_char newLayerCount){
-    layerCount = newLayerCount;
+void DrawablesManager::setLayerCount(u_char layerCount){
+    this->layerCount = layerCount;
 
     levelDrawableLayers.clear();
     guiDrawableLayers.clear();

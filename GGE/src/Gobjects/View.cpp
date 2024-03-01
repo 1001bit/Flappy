@@ -19,9 +19,9 @@ void View::updatePos(){
 }
 
 // set rect and view size
-void View::setRectSize(const sf::Vector2f& newSize){
-    Gobject::setRectSize(newSize);
-    view.setSize(newSize);
+void View::setRectSize(const sf::Vector2f& size){
+    Gobject::setRectSize(size);
+    view.setSize(size);
     centralize();
 }
 

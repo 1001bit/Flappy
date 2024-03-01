@@ -85,12 +85,12 @@ void PhysicsManager::applyVelocityToPos(std::shared_ptr<obj::KinematicBody> kine
 };
 
 // Add new body to the vector of solid bodies
-void PhysicsManager::addNewBody(std::shared_ptr<obj::Body> newBody){
-    solidBodiesWeakVector.push_back(newBody);
+void PhysicsManager::addNewBody(std::shared_ptr<obj::Body> body){
+    solidBodiesWeakVector.push_back(body);
 }
 
-void PhysicsManager::addNewBody(std::shared_ptr<obj::KinematicBody> newBody){
-    kinematicBodiesWeakVector.push_back(newBody);
+void PhysicsManager::addNewBody(std::shared_ptr<obj::KinematicBody> body){
+    kinematicBodiesWeakVector.push_back(body);
 }
 
 //////////////////////////////////////////////

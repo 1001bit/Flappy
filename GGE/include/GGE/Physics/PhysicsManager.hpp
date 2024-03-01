@@ -51,8 +51,8 @@ public:
     #endif
 
     // Add new body to the vector
-    void addNewBody(std::shared_ptr<obj::Body> newBody);
-    void addNewBody(std::shared_ptr<obj::KinematicBody> newBody);
+    void addNewBody(std::shared_ptr<obj::Body> body);
+    void addNewBody(std::shared_ptr<obj::KinematicBody> body);
 };
 
 }

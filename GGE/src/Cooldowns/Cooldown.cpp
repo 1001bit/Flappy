@@ -4,9 +4,9 @@
 using gge::Cooldown;
 
 // Structors
-Cooldown::Cooldown(float newStartValueMs){
+Cooldown::Cooldown(float startValueMs){
     this->currentValueMs = 0;
-    this->startValueMs = newStartValueMs;
+    this->startValueMs = startValueMs;
 }
 Cooldown::~Cooldown(){}
 
