@@ -27,11 +27,11 @@ private:
 public:
     // Methods
     // Set controls
-    void setKeyboardControlsMap(std::unordered_map<std::string, sf::Keyboard::Key> newControlsMap);
-    void setMouseControlsMap(std::unordered_map<std::string, sf::Mouse::Button> newControlsMap);
+    void setKeyboardControlsMap(std::unordered_map<std::string, sf::Keyboard::Key> controlsMap);
+    void setMouseControlsMap(std::unordered_map<std::string, sf::Mouse::Button> controlsMap);
     
     // Change control
-    void changeKeyboardControl(std::string controlId, sf::Keyboard::Key newKey);
+    void changeKeyboardControl(std::string controlId, sf::Keyboard::Key key);
 
     // Is control held now
     bool isHeld(const std::string& controlId);

@@ -23,11 +23,8 @@ int main()
     gge::Game game = gge::Game();
     initControls();
 
-    // init level funcs
-    game.levelsManager.makeLevelFunc(0, clvl::newScene);
-
     // init levels
-    game.levelsManager.makeLevelByFunc(0, 0);
+    game.levelsManager.makeLevelByFunc(0, clvl::newScene);
 
     // start level
     game.levelsManager.setCurrentLevel(0);

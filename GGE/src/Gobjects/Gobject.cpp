@@ -10,22 +10,22 @@ Gobject::Gobject() {
     this->doesFlipMirror = false;
 
     #ifdef SHOW_OBJ_COUNT
-        objCount += 1;
-        std::cout << "Gobject count: " << objCount << "\n";
+    objCount += 1;
+    std::cout << "Gobject count: " << objCount << "\n";
     #endif
 }
 
 Gobject::Gobject(const Gobject&) : enable_shared_from_this() {
     #ifdef SHOW_OBJ_COUNT
-        objCount += 1;
-        std::cout << "Gobject count: " << objCount << "\n";
+    objCount += 1;
+    std::cout << "Gobject count: " << objCount << "\n";
     #endif
 }
 
 Gobject::~Gobject() {
     #ifdef SHOW_OBJ_COUNT
-        objCount -= 1;
-        std::cout << "Gobject count: " << objCount << "\n";
+    objCount -= 1;
+    std::cout << "Gobject count: " << objCount << "\n";
     #endif
 }
 

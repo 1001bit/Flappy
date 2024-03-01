@@ -12,7 +12,7 @@ public:
     ~Action();
 
     // Do action of trigger if event has happened
-    virtual void doAction();
+    virtual void activate();
 };
 
 }

@@ -12,12 +12,12 @@ ControlsManager* ControlsManager::getInstance(){
 
 // Methods
 // Set Controls map
-void ControlsManager::setKeyboardControlsMap(std::unordered_map<std::string, sf::Keyboard::Key> newControlsMap){
-    keyboardControlsMap = newControlsMap;
+void ControlsManager::setKeyboardControlsMap(std::unordered_map<std::string, sf::Keyboard::Key> controlsMap){
+    keyboardControlsMap = controlsMap;
 }
 
-void ControlsManager::setMouseControlsMap(std::unordered_map<std::string, sf::Mouse::Button> newControlsMap){
-    mouseControlsMap = newControlsMap;
+void ControlsManager::setMouseControlsMap(std::unordered_map<std::string, sf::Mouse::Button> controlsMap){
+    mouseControlsMap = controlsMap;
 };
 
 // Check if held
@@ -71,11 +71,11 @@ bool ControlsManager::isPressed(const std::string& controlId, bool isPressedNow)
 }
 
 // Change control
-void ControlsManager::changeKeyboardControl(std::string controlId, sf::Keyboard::Key newKey){
+void ControlsManager::changeKeyboardControl(std::string controlId, sf::Keyboard::Key key){
     if(!keyboardControlsMap.count(controlId)){
         return;
     }
-    keyboardControlsMap.at(controlId) = newKey;
+    keyboardControlsMap.at(controlId) = key;
 }
 
 // On control press

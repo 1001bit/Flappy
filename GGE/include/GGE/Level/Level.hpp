@@ -10,16 +10,17 @@
 
 namespace gge {
 
+class Level;
+
+using plevelfunc = std::shared_ptr<Level>(*)();
+
 class Level : public obj::Gobject
 {
 private:
-    
+
 public:
     bool active;
-
-    // Structors
-    Level();
-    ~Level();
+    plevelfunc levelFunc;
 
     ///////////////////////////
     // Managers
@@ -39,6 +40,10 @@ public:
     // Gui view
     std::weak_ptr<obj::View> guiViewWeak;
     ///////////////////////////
+
+    // Structors
+    Level();
+    ~Level();
 
     // Methods
     // Init the level

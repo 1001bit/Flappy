@@ -30,7 +30,7 @@ void Trigger::activateActions(){
             continue;
         }
 
-        action->doAction();
+        action->activate();
 
         ++it;
     }
