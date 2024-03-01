@@ -6,6 +6,8 @@
 #include "GGE/ResourceManager/ResourceManager.hpp"
 #include "Pipes/PipesManager.hpp"
 #include "BaseHeaders/GameConstants.hpp"
+#include "Instructions/AcRestart.hpp"
+#include "Instructions/TrCollision.hpp"
 
 std::shared_ptr<gge::Level> clvl::newScene(){
     std::shared_ptr<gge::Level> level = std::make_shared<gge::Level>();
@@ -35,6 +37,15 @@ std::shared_ptr<gge::Level> clvl::newScene(){
     bird->addChild(birdSprite);
     level->drawablesManager.newDrawable(birdSprite, false, 1);
     birdSprite->setTexture(level->resourceManager.getTexture("Assets/Textures/bird.png"));
+
+    // instructions
+    // action
+    std::shared_ptr<gge::ins::AcRestart> action = std::make_shared<gge::ins::AcRestart>(pipesManager, bird, level);
+    level->instructionsManager.actionsVector.push_back(action);
+
+    std::shared_ptr<gge::ins::TrCollision> trigger = std::make_shared<gge::ins::TrCollision>(pipesManager, bird);
+    level->instructionsManager.triggersVector.push_back(trigger);
+    trigger->addAction(action);
 
     return level;
 }

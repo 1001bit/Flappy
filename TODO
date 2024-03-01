@@ -1,2 +1,3 @@
-- Game stop/start
-- Bird-pipe collision
+- Access to Level functions from triggers
+- Proper pipes stop
+- Level restart
