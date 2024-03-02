@@ -1,3 +1,4 @@
-- Access to Level functions from triggers
-- Proper pipes stop
-- Level restart
+- Adjust values
+- Make bird-window collision
+- Make game score
+- Make proper game end and restart

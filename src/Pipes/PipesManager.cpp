@@ -3,8 +3,8 @@
 
 constexpr float PIPES_SPEED = 3;
 constexpr float PIPE_SPAWN_RATE = 1500;
-constexpr u_short GAP_SIZE_MIN = 160;
-constexpr u_short GAP_SIZE_RANDOM = 50;
+constexpr u_short GAP_SIZE_MIN = 180;
+constexpr u_short GAP_SIZE_RANDOM = 60;
 constexpr u_short GAP_OFFSET_RANDOM = 175;
 
 using gge::PipesManager;

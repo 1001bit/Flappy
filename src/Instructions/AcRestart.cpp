@@ -20,4 +20,6 @@ void AcRestart::activate(){
     if(!(pipesManager && bird && level)){
         return;
     }
+
+    level->restart = true;
 }
