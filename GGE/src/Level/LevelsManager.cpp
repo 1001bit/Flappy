@@ -14,6 +14,12 @@ void LevelsManager::updateCurrentLevel(const float& dTimeMs, sf::RenderWindow& w
         return;
     }
 
+    // if level asks for reload - reload
+    if(currentLevel->restart){
+        restartCurrentLevel();
+        return;
+    }
+
     // Cooldowns
     currentLevel->cooldownsManager.updateCooldowns(dTimeMs);
 
@@ -60,7 +66,18 @@ void LevelsManager::setCurrentLevel(ushort id){
         return;
     }
 
+    currentLevelId = id;
     currentLevelWeak = levelsMap.at(id);
+}
+
+// restart current level with function or not
+void LevelsManager::restartCurrentLevel(){
+    if(levelFuncsMap.count(currentLevelId)){
+        levelsMap.at(currentLevelId) = levelFuncsMap.at(currentLevelId)();
+    } else {
+        levelsMap.at(currentLevelId) = std::make_shared<Level>();
+    }
+    setCurrentLevel(currentLevelId);
 }
 
 // Getters

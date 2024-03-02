@@ -16,7 +16,7 @@ private:
     
 public:
     bool active;
-    bool reload;
+    bool restart;
 
     ///////////////////////////
     // Managers

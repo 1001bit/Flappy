@@ -6,6 +6,7 @@ using gge::Level;
 // Structors
 Level::Level(){
     this->active = false;
+    this->restart = false;
 }
 
 Level::~Level(){}

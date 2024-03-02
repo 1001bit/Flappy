@@ -10,6 +10,8 @@ class LevelsManager
 {
 private:
     std::weak_ptr<Level> currentLevelWeak;
+    ushort currentLevelId;
+
     std::unordered_map<ushort, std::shared_ptr<Level>> levelsMap;
     std::unordered_map<ushort, plevelfunc> levelFuncsMap;
     
@@ -29,6 +31,9 @@ public:
 
     // update current level
     void updateCurrentLevel(const float& dTimeMs, sf::RenderWindow& window);
+
+    // restart current level with function or not
+    void restartCurrentLevel();
 
     // Getters
     // currentLevelWeak
