@@ -17,7 +17,8 @@ class Gobject : public std::enable_shared_from_this<Gobject>
 {
 private:
     #ifdef SHOW_OBJ_COUNT
-    inline static unsigned objCount;
+    // Change and show how many objects are there
+    void changeObjCount(short num);
     #endif
 
     sf::Vector2f relativePos;
