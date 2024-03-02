@@ -7,6 +7,8 @@ KinematicBody::KinematicBody(){
     weighs = false;
     friction = false;
     collidable = false;
+    controllable = false;
+
     collisionDir = {Direction::None, Direction::None};
 }
 KinematicBody::~KinematicBody(){}
@@ -54,13 +56,18 @@ void KinematicBody::updatePreviousRect(){
 
 // Getters
 // weighs
-const bool& KinematicBody::doesWeigh(){
+bool KinematicBody::doesWeigh(){
     return weighs;
 }
 // friction
-const bool& KinematicBody::doesFriction(){
+bool KinematicBody::doesFriction(){
     return friction;
 }
+// controllable
+bool KinematicBody::isControllable(){
+    return controllable;
+}
+
 // currentRect
 const sf::FloatRect& KinematicBody::getCurrentRect(){
     return currentRect;

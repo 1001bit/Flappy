@@ -20,6 +20,7 @@ private:
 protected:
     bool weighs;
     bool friction;
+    bool controllable;
 
 public:
     sf::Vector2f acceleration;
@@ -42,9 +43,12 @@ public:
 
     // Getters
     // weighs
-    const bool& doesWeigh();
+    bool doesWeigh();
     // friction
-    const bool& doesFriction();
+    bool doesFriction();
+    // controllable
+    bool isControllable();
+
     // currentRect
     const sf::FloatRect& getCurrentRect();
     // previousRect

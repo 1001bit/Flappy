@@ -6,8 +6,9 @@ constexpr float JUMP_FORCE = 9;
 
 // Structors
 Bird::Bird(){
-    this->weighs = true;
-    this->collidable = true;
+    weighs = true;
+    collidable = true;
+    controllable = true;
 }
 
 Bird::~Bird(){}

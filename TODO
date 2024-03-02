@@ -1,4 +1,7 @@
 - Adjust values
 - Make bird-window collision
 - Make game score
-- Make proper game end and restart
+- Make proper game end
+    - Scroll stop
+    - Bird stop control
+    - Restart after cooldown

@@ -19,17 +19,27 @@ void PhysicsManager::updatePhysics(const float& dTimeMs){
         kinematicBody->updatePreviousRect();
 
         // control body (like player, npc)
-        kinematicBody->control();
+        if(kinematicBody->isCollidable()){
+            kinematicBody->control();
+        }
 
+        // gravity
         if(kinematicBody->doesWeigh()){
             applyGravityToAccel(kinematicBody, dTimeMs);
         }
 
+        // velocity += acceleration
         applyAccelerationToVel(kinematicBody, dTimeMs);
+
+        // collide body with everything else
         if(kinematicBody->isCollidable()){
             applyCollisions(kinematicBody);
         }
+
+        // pos += velocity
         applyVelocityToPos(kinematicBody);
+        
+        // velocity *= friction
         if(kinematicBody->doesFriction()){
             applyFrictionToVel(kinematicBody);
         }
