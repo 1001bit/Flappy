@@ -3,9 +3,7 @@
 using gge::ins::AcRestart;
 
 // Structors
-AcRestart::AcRestart(std::weak_ptr<PipesManager> pipesManager, std::weak_ptr<obj::KinematicBody> body, std::weak_ptr<Level> level) :
-pipesManagerWeak(pipesManager),
-bodyWeak(body),
+AcRestart::AcRestart(std::weak_ptr<Level> level) :
 levelWeak(level)
 {}
 AcRestart::~AcRestart(){}
@@ -13,13 +11,7 @@ AcRestart::~AcRestart(){}
 // Methods
 // restart the level
 void AcRestart::activate(){
-    auto pipesManager = pipesManagerWeak.lock();
-    auto bird = bodyWeak.lock();
-    auto level = levelWeak.lock();
-
-    if(!(pipesManager && bird && level)){
-        return;
+    if(auto level = levelWeak.lock()){
+        level->restart();
     }
-
-    level->restart = true;
 }
