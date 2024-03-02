@@ -11,6 +11,8 @@ namespace gge {
 class PhysicsManager
 {
 private:
+    float accumulator;
+
     // Bodies vector
     std::vector<std::weak_ptr<obj::Body>> solidBodiesWeakVector;
     // Kinematic bodies vector
@@ -30,6 +32,9 @@ private:
 
     // Apply the velocities of the bodies
     void applyVelocityToPos(std::shared_ptr<obj::KinematicBody> kinematicBody);
+
+    // Do all the physics stuff to all the bodies
+    void updatePhysics(const float& dTimeMs);
     
 public:
     bool active;
@@ -39,8 +44,8 @@ public:
     ~PhysicsManager();
 
     // Methods
-    // Do all the physics stuff to all the bodies
-    void updatePhysics(const float& dTimeMs);
+    // Update all including physics and interpolation
+    void updateAll(const float& dTimeMs);
 
     // Interpolate all the kinematic bodies
     void interpolateKinematics(float alpha);

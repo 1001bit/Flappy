@@ -1,6 +1,6 @@
 #include "GGE/Game.hpp"
 #include "GGE/Controls/ControlsManager.hpp"
- #include "BaseHeaders/GameConstants.hpp"
+#include "BaseHeaders/GameConstants.hpp"
 
 using gge::Game;
 
@@ -16,16 +16,9 @@ void Game::loop(sf::RenderWindow& window){
 
     ControlsManager* controlsManager = ControlsManager::getInstance();
 
-    float accumulator = 0;
-
     sf::Clock clock;
     while (window.isOpen())
     {
-        auto currentLevel = levelsManager.getCurrentLevelWeak().lock();
-        if(!currentLevel){
-            continue;
-        }
-
         // Time
         sf::Time deltaTime = clock.restart();
         float dTimeMs = deltaTime.asMicroseconds()/1000.0;
@@ -53,41 +46,7 @@ void Game::loop(sf::RenderWindow& window){
             handleEvent(event);
         }
 
-        // Updates
-        // Cooldowns
-        currentLevel->cooldownsManager.updateCooldowns(dTimeMs);
-
-        // Physics
-        accumulator += dTimeMs;
-        while(accumulator >= 1000.f/UPDATE_RATE){
-            currentLevel->physicsManager.updatePhysics(1000.f/UPDATE_RATE);
-            accumulator -= 1000.f/UPDATE_RATE;
-
-            // Controls
-            controlsManager->clearPastBuffer();
-        }
-        currentLevel->physicsManager.interpolateKinematics(accumulator/(1000.f/UPDATE_RATE));
-
-        // Triggers
-        currentLevel->instructionsManager.update();
-
-        // Gobjects that are level's children
-        currentLevel->update(dTimeMs);
-
-        // Draw
-        window.clear();
-        
-        auto levelView = currentLevel->levelViewWeak.lock();
-        auto guiView = currentLevel->guiViewWeak.lock();
-        if(levelView && guiView){
-            currentLevel->drawablesManager.draw(window, levelView, guiView);
-        }
-
-        #ifdef DRAW_COLLIDERS
-        currentLevel->physicsManager.drawColliders(window, levelView);
-        #endif
-
-        window.display();
+        levelsManager.updateCurrentLevel(dTimeMs, window);
     }
 }
 

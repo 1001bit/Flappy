@@ -10,17 +10,13 @@
 
 namespace gge {
 
-class Level;
-
-using plevelfunc = std::shared_ptr<Level>(*)();
-
 class Level : public obj::Gobject
 {
 private:
-
+    
 public:
     bool active;
-    plevelfunc levelFunc;
+    bool reload;
 
     ///////////////////////////
     // Managers
