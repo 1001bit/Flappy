@@ -37,8 +37,6 @@ private:
     void updatePhysics(const float& dTimeMs);
     
 public:
-    bool active;
-
     // Structors
     PhysicsManager();
     ~PhysicsManager();

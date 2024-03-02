@@ -4,11 +4,10 @@ using gge::obj::KinematicBody;
 
 // Structors
 KinematicBody::KinematicBody(){
-    this->weighs = false;
-    this->friction = false;
-    this->collidable = false;
-
-    this->collisionDir = {Direction::None, Direction::None};
+    weighs = false;
+    friction = false;
+    collidable = false;
+    collisionDir = {Direction::None, Direction::None};
 }
 KinematicBody::~KinematicBody(){}
 

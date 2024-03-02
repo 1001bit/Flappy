@@ -4,9 +4,11 @@
 using gge::Cooldown;
 
 // Structors
-Cooldown::Cooldown(float startValueMs){
-    this->currentValueMs = 0;
-    this->startValueMs = startValueMs;
+Cooldown::Cooldown(float startValueMs) :
+startValueMs(startValueMs)
+{
+    paused = false;
+    currentValueMs = 0;
 }
 Cooldown::~Cooldown(){}
 
@@ -34,9 +36,10 @@ void Cooldown::stop(){
 
 // update cooldown value
 void Cooldown::update(const float& dTimeMs){
-    if(currentValueMs == 0){
+    if(currentValueMs == 0 || paused){
         return;
     }
+
     currentValueMs -= dTimeMs;
     if(currentValueMs < 0){
         currentValueMs = 0;

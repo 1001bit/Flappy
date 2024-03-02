@@ -4,7 +4,6 @@ using gge::obj::Drawable;
 
 // Structors
 Drawable::Drawable(){}
-
 Drawable::~Drawable(){}
 
 // Methods

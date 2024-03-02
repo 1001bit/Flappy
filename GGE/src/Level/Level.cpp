@@ -5,12 +5,13 @@ using gge::Level;
 
 // Structors
 Level::Level(){
-    this->active = false;
-    this->restart = false;
+    pause();
+    restartLevel = false;
 }
 
 Level::~Level(){}
 
+// Methods
 // Init the level
 void Level::init(){
     // init gui view
@@ -29,5 +30,31 @@ void Level::init(){
     drawablesManager.setLayerCount(10);
 
     // is active on start
+    resume();
+}
+
+// active
+void Level::resume(){
     active = true;
+    cooldownsManager.resumeCooldowns();
+}
+
+void Level::pause(){
+    active = false;
+    cooldownsManager.pauseCooldowns();
+}
+
+// restartLevel = true
+void Level::restart(){
+    restartLevel = true;
+}
+
+// Getters
+// restartLevel
+bool Level::doRestart(){
+    return restartLevel;
+}
+// active
+bool Level::isActive(){
+    return active;
 }

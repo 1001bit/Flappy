@@ -4,7 +4,6 @@ using gge::obj::Text;
 
 // Structors
 Text::Text(){}
-
 Text::~Text(){}
 
 // Methods

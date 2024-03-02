@@ -5,7 +5,7 @@ using gge::obj::Sprite;
 
 // Structors
 Sprite::Sprite(){
-    this->sprite.scale(SPRITE_SCALE, SPRITE_SCALE);
+    sprite.scale(SPRITE_SCALE, SPRITE_SCALE);
 }
 
 Sprite::~Sprite(){}

@@ -13,11 +13,10 @@ namespace gge {
 class Level : public obj::Gobject
 {
 private:
-    
-public:
+    bool restartLevel;
     bool active;
-    bool restart;
 
+public:
     ///////////////////////////
     // Managers
     InstructionsManager instructionsManager;
@@ -46,6 +45,17 @@ public:
     void init();
     // Update states of all the objects
     void update(const float& dTimeMs);
+    // restartLevel = true
+    void restart();
+    // active
+    void resume();
+    void pause();
+
+    // Getters
+    // restartLevel
+    bool doRestart();
+    // active
+    bool isActive();
 };
 
 }

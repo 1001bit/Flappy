@@ -7,7 +7,6 @@ using gge::PhysicsManager;
 
 // Structors
 PhysicsManager::PhysicsManager(){
-    active = true;
     accumulator = 0;
 }
 

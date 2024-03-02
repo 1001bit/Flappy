@@ -9,6 +9,8 @@ private:
     float startValueMs;
     
 public:
+    bool paused;
+
     // Structors
     Cooldown(float startValueMs);
     ~Cooldown();

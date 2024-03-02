@@ -15,22 +15,21 @@ void LevelsManager::updateCurrentLevel(const float& dTimeMs, sf::RenderWindow& w
     }
 
     // if level asks for reload - reload
-    if(currentLevel->restart){
+    if(currentLevel->doRestart()){
         restartCurrentLevel();
         return;
     }
 
     // Cooldowns
     currentLevel->cooldownsManager.updateCooldowns(dTimeMs);
-
-    // Physics
-    currentLevel->physicsManager.updateAll(dTimeMs);
-
-    // Triggers
+    if(currentLevel->isActive()){
+        // Physics
+        currentLevel->physicsManager.updateAll(dTimeMs);
+        // All the Gobjects
+        currentLevel->update(dTimeMs);
+    }   
+    // Instructions
     currentLevel->instructionsManager.update();
-
-    // Gobjects that are level's children
-    currentLevel->update(dTimeMs);
 
     // Draw
     window.clear();

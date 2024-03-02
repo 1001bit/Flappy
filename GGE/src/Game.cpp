@@ -6,7 +6,6 @@ using gge::Game;
 
 // Structors
 Game::Game(){}
-
 Game::~Game(){}
 
 // Methods
