@@ -23,8 +23,10 @@ public:
     void setTexture(const sf::Texture& texture);
     // draw self sprite
     void drawSelf(sf::RenderWindow& window);
-    // set the flip of the object
+    // set the flip of the object and sprite
     void setFlip(bool flip);
+    // set the origin of the sprite
+    void setOrigin(sf::Vector2f origin);
 };
 
 }

@@ -5,7 +5,6 @@ using gge::obj::AnimatedSprite;
 
 // Structors
 AnimatedSprite::AnimatedSprite() {
-    sprite.scale(SPRITE_SCALE, SPRITE_SCALE);
     elapsedTime = 0;
     currentAnimation = nullptr;
 }
@@ -20,74 +19,52 @@ void AnimatedSprite::insertAnimation(std::string name, const Animation& animatio
 
 // start animation
 void AnimatedSprite::playAnimation(std::string name){
+    // if no animation with such name
     if(!animationMap.count(name)){
         return;
     }
 
+    // if some animation is playing right now
     if(currentAnimation != nullptr){
-        // if want to play same animation - disallow
+        // can't play same animation as current
         if(currentAnimation == &animationMap.at(name)){
             return;
         }
-        // allow playing over looped animations
-        if(!currentAnimation->isLooped){
+        // if current animation is not looped - stop
+        if(!currentAnimation->looped){
             return;
         }
     }
 
+    // start new animation
     elapsedTime = 0;
-    currentAnimation = &animationMap.at(name);
-    sprite.setTexture(*(currentAnimation->texture));
-    setRectSize(sprite.getGlobalBounds().getSize());
-    
+    currentAnimation = &animationMap.at(name);    
     update(0);
+    setTexture(*(currentAnimation->texture));
 }
 
 // update frames, etc
 void AnimatedSprite::update(const float& dTimeMs){
-    // no empty animations
+    // stop if no current animation
     if(currentAnimation == nullptr){
         return;
     }
 
-    // flip
-    sf::IntRect currentFrame = getCurrentFrame();
-    if(isFlipped()){
-        currentFrame.left += currentFrame.width;
-        currentFrame.width *= -1;
-    }
-
-    // set rect
-    sprite.setTextureRect(currentFrame);
-    if(currentAnimation->playTime == 0){
-        return; 
-    }
-
-    elapsedTime += dTimeMs;
+    // set rect of current frame of current animation
+    sprite.setTextureRect(getCurrentFrame());
     
-    // restart or drop frame
+    // restart animation or stop animation if elapsedTime is more that animation time
+    elapsedTime += dTimeMs;
     if(elapsedTime >= currentAnimation->playTime){
         elapsedTime -= currentAnimation->playTime;
-        if(!currentAnimation->isLooped){
+        if(!currentAnimation->looped){
             currentAnimation = nullptr;
         }
     }
 }
 
-// draw self drawable object
-void AnimatedSprite::drawSelf(sf::RenderWindow& window){
-    window.draw(sprite);
-};
-
-// Update sprite and gobject pos
-void AnimatedSprite::updatePos(){
-    Gobject::updatePos();
-    sprite.setPosition(getRect().getPosition());
-}; 
-
 
 // Getters
-
 // returns current frame rect
 const sf::IntRect& AnimatedSprite::getCurrentFrame(){
     if(currentAnimation->playTime == 0){

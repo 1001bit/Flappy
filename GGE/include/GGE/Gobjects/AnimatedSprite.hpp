@@ -2,26 +2,20 @@
 
 #include <SFML/Graphics.hpp>
 #include "Animation.hpp"
-#include "Drawable.hpp"
+#include "Sprite.hpp"
 
 typedef std::unordered_map<std::string, Animation> anim_map;
 
 namespace gge::obj {
 
-class AnimatedSprite : public Drawable {
+class AnimatedSprite : public Sprite {
 
 private:
     anim_map animationMap;
     Animation* currentAnimation;
     float elapsedTime;
 
-    // Methods
-    // Update sprite and gobject pos
-    void updatePos(); 
-
 public:
-    sf::Sprite sprite;
-
     // Structors
     AnimatedSprite();
     ~AnimatedSprite();
@@ -31,8 +25,6 @@ public:
     void playAnimation(std::string name);
     // Update the state of current animation
     void update(const float& dTimeMs);
-    // draw self sprite
-    void drawSelf(sf::RenderWindow& window);
     // Add new animation with name
     void insertAnimation(std::string name, const Animation& animation);
 

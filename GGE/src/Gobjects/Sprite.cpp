@@ -5,7 +5,7 @@ using gge::obj::Sprite;
 
 // Structors
 Sprite::Sprite(){
-    sprite.scale(SPRITE_SCALE, SPRITE_SCALE);
+    sprite.setScale(SPRITE_SCALE, SPRITE_SCALE);
 }
 
 Sprite::~Sprite(){}
@@ -15,29 +15,34 @@ Sprite::~Sprite(){}
 void Sprite::setTexture(const sf::Texture& texture){
     sprite.setTexture(texture);
     setRectSize(sprite.getGlobalBounds().getSize());
+
+    // set origin to center
+    setOrigin(sprite.getLocalBounds().getSize() / 2.f);
 }
 
 // set the flip of the object
 void Sprite::setFlip(bool flip){
-    const int textureWidth = sprite.getTexture()->getSize().x;
-    const int textureHeight = sprite.getTexture()->getSize().y;
-
-    if(flip){
-        sprite.setTextureRect(sf::IntRect(textureWidth, 0, -textureWidth, textureHeight));
-    } else {
-        sprite.setTextureRect(sf::IntRect(0, 0, textureWidth, textureHeight));
+    if(flip != isFlipped()){
+        sprite.scale(-1, 1);
     }
 
     Gobject::setFlip(flip);
-};
+}
 
 // Update sprite and gobject pos
 void Sprite::updatePos(){
     Gobject::updatePos();
-    sprite.setPosition(getRect().getPosition());
-} 
+    // make sprite position independent from origin
+    sprite.setPosition(getRect().getPosition() + sprite.getOrigin() * SPRITE_SCALE);
+}
+
+// set the origin of the sprite
+void Sprite::setOrigin(sf::Vector2f origin){
+    sprite.setOrigin(origin);
+    updatePos();
+}
 
 // draw self drawable object
 void Sprite::drawSelf(sf::RenderWindow& window){
     window.draw(sprite);
-};
+}

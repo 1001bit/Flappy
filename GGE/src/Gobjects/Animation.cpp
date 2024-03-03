@@ -2,10 +2,10 @@
 
 // Structors
 
-Animation::Animation(sf::Texture& texture, int frameWidth, float playTime, bool isLooped) :
+Animation::Animation(sf::Texture& texture, int frameWidth, float playTime, bool looped) :
 texture(&texture),
 playTime(playTime),
-isLooped(isLooped)
+looped(looped)
 {
     // add frames to vector depending on frame width
     for(int x = 0; x < int(this->texture->getSize().x / frameWidth); ++x){

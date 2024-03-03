@@ -24,10 +24,10 @@ private:
     sf::Vector2f relativePos;
     sf::FloatRect selfRect;
     bool flipped;
+    bool rectMirrorable;
 
 protected:
     std::vector<std::shared_ptr<Gobject>> children;
-    bool doesFlipMirror;
 
     // Methods
     // update everything related to position
@@ -64,8 +64,8 @@ public:
 
     // set the flip of the object
     virtual void setFlip(bool flip);
-    // set doesFlipMirror to true
-    void makeFlippable();
+    // rectMirrorable = true
+    void makeRectMirrorable();
     
     // Getters
     // Get position relative to parent's position
@@ -73,7 +73,7 @@ public:
     // Get collider
     const sf::FloatRect& getRect();
     // get flipped
-    const bool& isFlipped();
+    bool isFlipped();
 };
 
 }

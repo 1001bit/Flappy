@@ -6,8 +6,8 @@ using gge::obj::Gobject;
 
 // Structors
 Gobject::Gobject() {
-    this->flipped = false;
-    this->doesFlipMirror = false;
+    flipped = false;
+    rectMirrorable = false;
 
     #ifdef SHOW_OBJ_COUNT
     changeObjCount(1);
@@ -104,18 +104,25 @@ void Gobject::setRectPixelSize(float w, float h) {
 
 // flip object
 void Gobject::setFlip(bool flip){
-    if(flipped != flip && doesFlipMirror){
-        setRelativePos({-getRelativePos().x, getRelativePos().y});
+    if(flip == isFlipped()){
+        return;
     }
     flipped = flip;
+
+    // flip all the children
     for(std::shared_ptr<Gobject> child : children) {
-        child->setFlip(flipped);
+        child->setFlip(!child->isFlipped());
+    }
+
+    // mirror relative position to X axis
+    if(rectMirrorable){
+        setRelativePos({-getRelativePos().x, getRelativePos().y});
     }
 }
 
-// make object be able to flip self
-void Gobject::makeFlippable() {
-    doesFlipMirror = 1;
+// make object's rect mirror relativePos.x
+void Gobject::makeRectMirrorable() {
+    rectMirrorable = true;
 }
 
 // Getters
@@ -128,6 +135,6 @@ const sf::FloatRect& Gobject::getRect(){
     return selfRect;
 }
 // flipped
-const bool& Gobject::isFlipped(){
+bool Gobject::isFlipped(){
     return flipped;
 }
