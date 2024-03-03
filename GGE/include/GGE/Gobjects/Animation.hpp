@@ -8,9 +8,9 @@ struct Animation
     std::vector<sf::IntRect> frames;
     float playTime;
     float frameTime;
-    bool isLooped;
+    bool looped;
     
     // Structors
-    Animation(sf::Texture& texture, int frameWidth, float playTime, bool isLooped);
+    Animation(sf::Texture& texture, int frameWidth, float playTime, bool looped);
     Animation();
 };
