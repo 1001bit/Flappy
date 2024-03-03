@@ -24,7 +24,7 @@ void TrCollision::checkEvent(){
 
     for (std::weak_ptr<obj::KinematicBody> pipeWeak : pipesManager->getPipes()){
         if(auto pipe = pipeWeak.lock()){
-            if(pipe->getCurrentRect().intersects(bird->getCurrentRect())){
+            if(pipe->getRect().intersects(bird->getRect())){
                 activateActions();
                 active = 0;
                 return;
