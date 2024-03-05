@@ -49,13 +49,13 @@ void PhysicsManager::updatePhysics(const float& dTimeMs){
 
 // Apply gravity on all weigh objects
 void PhysicsManager::applyGravityToAccel(std::shared_ptr<obj::KinematicBody> kinematicBody, const float& dTimeMs){
-    kinematicBody->accelerate(0, GFORCE * dTimeMs);
+    kinematicBody->addAcceleration({0, GFORCE * dTimeMs});
 }
 
 // Apply the acceleration to the velocity
 void PhysicsManager::applyAccelerationToVel(std::shared_ptr<obj::KinematicBody> kinematicBody, const float& dTimeMs){
-    kinematicBody->velocity += kinematicBody->acceleration * dTimeMs * ACCEL_COEFF;
-    kinematicBody->acceleration = sf::Vector2f();
+    kinematicBody->addVelocity(kinematicBody->getAcceleration() * dTimeMs * ACCEL_COEFF);
+    kinematicBody->setAcceleration({0,0});
 }
 
 // Apply the friction so body doesn't move for eternity
@@ -63,21 +63,21 @@ void PhysicsManager::applyFrictionToVel(std::shared_ptr<obj::KinematicBody> kine
     if(kinematicBody->doesWeigh()){
         // ground friction if platformer body is on ground
         if(kinematicBody->collisionDir.vertical == Direction::Down){
-            kinematicBody->velocity.x -= kinematicBody->velocity.x * GROUND_FRICTION;
+            kinematicBody->addVelocity({kinematicBody->getVelocity().x * -GROUND_FRICTION, 0});
         } 
         // air friction if platformer body is in air
         else {
-            kinematicBody->velocity.x -= kinematicBody->velocity.x * AIR_FRICTION;
+            kinematicBody->addVelocity({kinematicBody->getVelocity().x * -AIR_FRICTION, 0});
         }
     } 
     // ground friction if floating body is on ground
     else {
-        kinematicBody->velocity.x -= kinematicBody->velocity.x * GROUND_FRICTION;
-        kinematicBody->velocity.y -= kinematicBody->velocity.y * GROUND_FRICTION;
+        kinematicBody->addVelocity({kinematicBody->getVelocity().x * -GROUND_FRICTION, 0});
+        kinematicBody->addVelocity({0, kinematicBody->getVelocity().y * -GROUND_FRICTION});
     }
 }
 
 // Apply the velocities of the bodies
 void PhysicsManager::applyVelocityToPos(std::shared_ptr<obj::KinematicBody> kinematicBody){
-    kinematicBody->moveCurrentRect(kinematicBody->velocity);
+    kinematicBody->moveCurrentRect(kinematicBody->getVelocity());
 }

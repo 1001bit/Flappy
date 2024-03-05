@@ -39,7 +39,7 @@ void BackgroundManager::createNewBackground(){
     std::shared_ptr<obj::KinematicBody> background = std::make_shared<obj::KinematicBody>();
     addChild(background);
     level->physicsManager.addNewBody(background);
-    background->accelerate(-BACKGROUND_SPEED, 0);
+    background->addAcceleration({-BACKGROUND_SPEED, 0});
 
     // place it right after previous background
     if(backgrounds.size()){

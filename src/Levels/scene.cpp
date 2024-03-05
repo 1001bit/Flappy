@@ -28,6 +28,7 @@ std::shared_ptr<gge::Level> clvl::newScene(){
     std::shared_ptr<gge::obj::Bird> bird = std::make_shared<gge::obj::Bird>();
     level->physicsManager.addNewBody(std::static_pointer_cast<gge::obj::KinematicBody>(bird));
     level->addChild(bird);
+    level->updatableGobjects.push_back(bird);
     bird->init(level);
     bird->setCurrentPos({100, 100}, true);
 

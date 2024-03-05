@@ -10,7 +10,7 @@ namespace gge::obj {
 class Bird : public KinematicBody
 {
 private:
-    std::weak_ptr<Sprite> sprite;
+    std::weak_ptr<Sprite> spriteWeak;
 
 public:
     // Structors
@@ -22,6 +22,8 @@ public:
     void init(std::shared_ptr<Level> level);
     // Control player
     void control();
+    // rotate the sprite
+    void update(const float& dTimeMs);
 };
 
 }

@@ -52,7 +52,7 @@ void PipesManager::createNewPipePair(){
     level->physicsManager.addNewBody(pipe);
     pipes.push_back(pipe);
     pipe->setCurrentPos({levelWidth, y1}, true);
-    pipe->accelerate(-PIPES_SPEED, 0);
+    pipe->addAcceleration({-PIPES_SPEED, 0});
     // sprite
     std::shared_ptr sprite = std::make_shared<obj::Sprite>();
     pipe->addChild(sprite);
@@ -66,7 +66,7 @@ void PipesManager::createNewPipePair(){
     level->physicsManager.addNewBody(pipe);
     pipes.push_back(pipe);
     pipe->setCurrentPos({levelWidth, y2}, true);
-    pipe->accelerate(-PIPES_SPEED, 0);
+    pipe->addAcceleration({-PIPES_SPEED, 0});
     // sprite
     sprite = std::make_shared<obj::Sprite>();
     pipe->addChild(sprite);
