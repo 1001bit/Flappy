@@ -33,12 +33,13 @@ void Level::init(){
     resume();
 }
 
-// active
+// active = true
 void Level::resume(){
     active = true;
     cooldownsManager.resumeCooldowns();
 }
 
+// active = false
 void Level::pause(){
     active = false;
     cooldownsManager.pauseCooldowns();

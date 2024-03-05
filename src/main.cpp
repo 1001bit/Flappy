@@ -6,8 +6,8 @@
 void initControls(){
     gge::ControlsManager* controlsManager = gge::ControlsManager::getInstance();
     // Keyboard controls
-    controlsManager->setKeyboardControlsMap({
-        {"jump", sf::Keyboard::Space},
+    controlsManager->setControlsMap({
+        { "jump", {{sf::Keyboard::Space, sf::Keyboard::E}, {sf::Mouse::Left}} },
     });
 }
 

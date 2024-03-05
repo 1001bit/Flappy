@@ -19,7 +19,7 @@ void Bird::control(){
     gge::ControlsManager* controlsManager = gge::ControlsManager::getInstance();
 
     // jump
-    if(controlsManager->isPressed("jump", false)){
+    if(controlsManager->isPressed("jump", true)){
         velocity.y = 0;
         accelerate(0, -JUMP_FORCE);
     }

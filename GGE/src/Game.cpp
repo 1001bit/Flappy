@@ -33,10 +33,9 @@ void Game::loop(sf::RenderWindow& window){
         std::cout << "dTime (ms): " << dTimeMs << " ; \t\t" << " FPS: " << 1000/dTimeMs << "\n";
         #endif
 
-        // Controls
-        controlsManager->updateBuffer();
+        // Events and controls
+        controlsManager->update();
 
-        // Events
         sf::Event event;
         if (window.pollEvent(event))
         {

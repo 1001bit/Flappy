@@ -23,7 +23,7 @@ void PhysicsManager::updateAll(const float& dTimeMs){
         accumulator -= 1000.f/UPDATE_RATE;
 
         // Controls
-        controlsManager->clearPastBuffer();
+        controlsManager->clearStepBuffer();
     }
     interpolateKinematics(accumulator/(1000.f/UPDATE_RATE));
 }

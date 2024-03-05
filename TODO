@@ -1,4 +1,5 @@
 - Adjust values
+- Bird rotation depending on vertical vel
 - Make bird-window collision
 - Make game score
 - Make proper game end
