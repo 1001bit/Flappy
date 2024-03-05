@@ -1,4 +1,5 @@
 #include "Gobjects/Bird.hpp"
+#include "BaseHeaders/GameConstants.hpp"
 
 using gge::obj::Bird;
 
@@ -14,6 +15,21 @@ Bird::Bird(){
 Bird::~Bird(){}
 
 // Methods
+// init everything
+void Bird::init(std::shared_ptr<Level> level){
+    // rect
+    setRectPixelSize(18, 14);
+
+    // sprite
+    std::shared_ptr<Sprite> newSprite = std::make_shared<Sprite>();
+    addChild(newSprite);
+    level->drawablesManager.newDrawable(newSprite, false, 1);
+    newSprite->setTexture(level->resourceManager.getTexture("Assets/Textures/bird.png"));
+    newSprite->setRelativePos((getRect().getSize() - newSprite->getRect().getSize()) / 2.f);
+    
+    sprite = newSprite;
+}
+
 // control the player
 void Bird::control(){
     gge::ControlsManager* controlsManager = gge::ControlsManager::getInstance();
