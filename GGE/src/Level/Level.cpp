@@ -1,5 +1,4 @@
 #include "GGE/Level/Level.hpp"
-#include "BaseHeaders/GameConstants.hpp"
 
 using gge::Level;
 
@@ -13,17 +12,17 @@ Level::~Level(){}
 
 // Methods
 // Init the level
-void Level::init(){
+void Level::init(float viewW, float viewH){
     // init gui view
     std::shared_ptr<obj::View> guiView = std::make_shared<obj::View>();
     addChild(guiView);
-    guiView->setRectSize({GAME_WIDTH, GAME_HEIGHT});
+    guiView->setRectSize({viewW, viewH});
     guiViewWeak = guiView;
 
     // init level view
     std::shared_ptr<obj::View> levelView = std::make_shared<obj::View>();
     addChild(levelView);
-    levelView->setRectSize({GAME_WIDTH, GAME_HEIGHT});
+    levelView->setRectSize({viewW, viewH});
     levelViewWeak = levelView;
 
     // drawables manager
@@ -58,4 +57,11 @@ bool Level::doRestart(){
 // active
 bool Level::isActive(){
     return active;
+}
+// levelView.getSize()
+sf::Vector2f Level::getViewSize(){
+    if(auto levelView = levelViewWeak.lock()){
+        return levelView->getRect().getSize();
+    }
+    return {0, 0};
 }

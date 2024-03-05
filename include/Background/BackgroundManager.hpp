@@ -10,7 +10,6 @@ namespace gge{
 class BackgroundManager : public obj::Gobject
 {
 private:
-    obj::Sprite backgroundSpriteBase;
     std::vector<std::weak_ptr<obj::KinematicBody>> backgrounds;
     std::weak_ptr<Level> levelWeak;
     
@@ -22,8 +21,8 @@ public:
     // Methods
     // Update
     void update(const float& dTimeMs);
-    // make baseBackgroundSprite
-    void initBackgroundSprite();
+    // make start bacgrounds
+    void init();
     // make new background
     void createNewBackground();
 };

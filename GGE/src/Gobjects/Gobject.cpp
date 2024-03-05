@@ -1,5 +1,4 @@
 #include "GGE/Gobjects/Gobject.hpp"
-#include "BaseHeaders/GameConstants.hpp"
 #include <cmath>
 
 using gge::obj::Gobject;
@@ -95,11 +94,6 @@ void Gobject::removeSelf() {
 void Gobject::setRectSize(const sf::Vector2f &size) {
     selfRect.width = size.x;
     selfRect.height = size.y;
-}
-
-// set size of selfRect in pixels
-void Gobject::setRectPixelSize(float w, float h) {
-    setRectSize(sf::Vector2f(w, h) * (float)SPRITE_SCALE);
 }
 
 // flip object

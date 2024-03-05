@@ -42,7 +42,7 @@ public:
 
     // Methods
     // Init the level
-    void init();
+    void init(float viewW, float viewH);
     // Update states of all the objects
     void update(const float& dTimeMs);
     // restartLevel = true
@@ -56,6 +56,8 @@ public:
     bool doRestart();
     // active
     bool isActive();
+    // levelView.getSize()
+    sf::Vector2f getViewSize();
 };
 
 }

@@ -12,6 +12,7 @@ private:
     void updatePos(); 
 
 public:
+    static const float SPRITE_SCALE;
     sf::Sprite sprite;
 
     // Structors

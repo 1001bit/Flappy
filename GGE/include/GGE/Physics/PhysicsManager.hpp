@@ -11,6 +11,12 @@ namespace gge {
 class PhysicsManager
 {
 private:
+    static const ushort UPDATE_RATE;
+    static const float GFORCE;
+    static const float AIR_FRICTION;
+    static const float GROUND_FRICTION;
+    static const float ACCEL_COEFF;
+
     float accumulator;
 
     // Bodies vector

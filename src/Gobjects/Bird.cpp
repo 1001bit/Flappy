@@ -1,5 +1,4 @@
 #include "Gobjects/Bird.hpp"
-#include "BaseHeaders/GameConstants.hpp"
 
 using gge::obj::Bird;
 
@@ -18,7 +17,7 @@ Bird::~Bird(){}
 // init everything
 void Bird::init(std::shared_ptr<Level> level){
     // rect
-    setRectPixelSize(18, 14);
+    setRectSize(sf::Vector2f(18, 14) * Sprite::SPRITE_SCALE);
 
     // sprite
     std::shared_ptr<Sprite> newSprite = std::make_shared<Sprite>();

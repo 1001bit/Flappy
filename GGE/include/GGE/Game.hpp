@@ -20,7 +20,7 @@ public:
 
     // Methods
     // Main game loop
-    void loop(sf::RenderWindow& window);
+    void loop(const uint winW, const uint winH, const uint maxFps, const uint minFps, const std::string& title);
 };
 
 }

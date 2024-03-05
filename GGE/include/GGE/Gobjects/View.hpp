@@ -9,10 +9,6 @@ class View : public Gobject
 private:
     sf::View view;
 
-    // Methods
-    // set view center to rect center
-    void centralize();
-
 public:
     // Structors
     View();

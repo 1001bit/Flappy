@@ -1,5 +1,4 @@
 #include "GGE/Physics/PhysicsManager.hpp"
-#include "BaseHeaders/GameConstants.hpp"
 #include "GGE/Controls/ControlsManager.hpp"
 #include "GGE/MathHelper.hpp"
 

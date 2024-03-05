@@ -59,8 +59,6 @@ public:
     
     // set rect size
     virtual void setRectSize(const sf::Vector2f& size);
-    // set rect pixel-scaled size
-    void setRectPixelSize(float w, float h);
 
     // set the flip of the object
     virtual void setFlip(bool flip);

@@ -46,9 +46,9 @@ void DrawablesManager::draw(sf::RenderWindow& window, std::shared_ptr<gge::obj::
             }
 
             // draw object is view intersects it
-            // if(levelView->getRect().intersects(drawable->getRect())){
+            if(levelView->getRect().intersects(drawable->getRect())){
                 drawable->drawSelf(window);
-            // }
+            }
 
             ++it;
         }

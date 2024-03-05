@@ -1,6 +1,5 @@
 #include "GGE/Game.hpp"
 #include "GGE/Controls/ControlsManager.hpp"
-#include "BaseHeaders/GameConstants.hpp"
 
 using gge::Game;
 
@@ -10,7 +9,9 @@ Game::~Game(){}
 
 // Methods
 // Main loop
-void Game::loop(sf::RenderWindow& window){
+void Game::loop(const uint winW, const uint winH, const uint maxFps, const uint minFps, const std::string& title){
+    sf::RenderWindow window(sf::VideoMode(winW, winH), title, sf::Style::Close);
+    window.setFramerateLimit(maxFps);
     window.setKeyRepeatEnabled(false);
 
     ControlsManager* controlsManager = ControlsManager::getInstance();
@@ -22,12 +23,12 @@ void Game::loop(sf::RenderWindow& window){
         sf::Time deltaTime = clock.restart();
         float dTimeMs = deltaTime.asMicroseconds()/1000.0;
         // Limit max dt
-        if(dTimeMs > 1000.f/MIN_FPS){
+        if(dTimeMs > 1000.f/minFps){
             #ifdef SHOW_FPS_SPIKES
             std::cout << "dTimeMs spike: " << dTimeMs << "\n";
             #endif
 
-            dTimeMs = 1000.f/MIN_FPS;
+            dTimeMs = 1000.f/minFps;
         }
         #ifdef SHOW_FPS
         std::cout << "dTime (ms): " << dTimeMs << " ; \t\t" << " FPS: " << 1000/dTimeMs << "\n";

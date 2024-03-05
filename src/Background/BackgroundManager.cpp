@@ -1,5 +1,4 @@
 #include "Background/BackgroundManager.hpp"
-#include "BaseHeaders/GameConstants.hpp"
 #include <cmath>
 
 constexpr float BACKGROUND_SPEED = 0.5;
@@ -13,18 +12,18 @@ levelWeak(level)
 BackgroundManager::~BackgroundManager(){}
 
 // Methods
-// make baseBackgroundSprite
-void BackgroundManager::initBackgroundSprite(){
+// make start bacgrounds
+void BackgroundManager::init(){
     auto level = levelWeak.lock();
     if(!level){
         return;
     }
 
-    backgroundSpriteBase.setTexture(level->resourceManager.getTexture("Assets/Textures/background.png"));
+    float backgroundWidth = level->resourceManager.getTexture("Assets/Textures/background.png").getSize().x * obj::Sprite::SPRITE_SCALE;
 
     // make as many backgrounds as needed depending on game size / background size ratio
     backgrounds.clear();
-    for(ushort i = 0; i < ceil(GAME_WIDTH / backgroundSpriteBase.getRect().width) + 1; ++i){ // add extra one for stability
+    for(ushort i = 0; i < ceil(level->getViewSize().x / backgroundWidth) + 1; ++i){ // add extra one for stability
         createNewBackground();
     }
 }
@@ -40,7 +39,6 @@ void BackgroundManager::createNewBackground(){
     std::shared_ptr<obj::KinematicBody> background = std::make_shared<obj::KinematicBody>();
     addChild(background);
     level->physicsManager.addNewBody(background);
-    background->setRectSize(backgroundSpriteBase.getRect().getSize());
     background->accelerate(-BACKGROUND_SPEED, 0);
 
     // place it right after previous background
@@ -52,8 +50,10 @@ void BackgroundManager::createNewBackground(){
     backgrounds.push_back(background);
 
     // sprite
-    std::shared_ptr sprite = std::make_shared<obj::Sprite>(backgroundSpriteBase);
+    std::shared_ptr<obj::Sprite> sprite = std::make_shared<obj::Sprite>();
+    sprite->setTexture(level->resourceManager.getTexture("Assets/Textures/background.png"));
     background->addChild(sprite);
+    background->setRectSize(sprite->getRect().getSize());
     level->drawablesManager.newDrawable(sprite, false, 0);
 }
 

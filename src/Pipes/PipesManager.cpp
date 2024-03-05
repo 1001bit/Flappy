@@ -1,5 +1,4 @@
 #include "Pipes/PipesManager.hpp"
-#include "BaseHeaders/GameConstants.hpp"
 
 constexpr float PIPES_SPEED = 3;
 constexpr float PIPE_SPAWN_RATE = 1500;
@@ -19,16 +18,6 @@ levelWeak(level)
 PipesManager::~PipesManager(){}
 
 // Methods
-// make basePipeSprite
-void PipesManager::initPipeSprite(){
-    auto level = levelWeak.lock();
-    if(!level){
-        return;
-    }
-
-    pipeSpriteBase.setTexture(level->resourceManager.getTexture("Assets/Textures/pipe.png"));
-}
-
 // init cooldowns
 void PipesManager::initCooldowns(CooldownsManager& cooldownsManager){
     pipeSpawnCooldown = cooldownsManager.newCooldown(Cooldown(PIPE_SPAWN_RATE));
@@ -41,42 +30,49 @@ void PipesManager::createNewPipePair(){
         return;
     }
 
+    const sf::Texture& pipeTexture = level->resourceManager.getTexture("Assets/Textures/pipe.png");
+
+    float levelWidth = 0;
+    float levelHeight = 0;
+    if(auto levelView = level->levelViewWeak.lock()){
+        levelWidth = levelView->getRect().width;
+        levelHeight = levelView->getRect().height;
+    }
+
     // pipes positioning calculation
     float gap = GAP_SIZE_MIN + rand() % GAP_SIZE_RANDOM; // minGapSize TO minGapSize + random
     float yOffset = -GAP_OFFSET_RANDOM + rand() % GAP_OFFSET_RANDOM*2; // -gapOffset TO gapOffset
-    float pipesCenter = GAME_HEIGHT/2.f + yOffset;
-    float y1 = pipesCenter - gap/2.f - pipeSpriteBase.getRect().height; 
+    float pipesCenter = levelHeight/2.f + yOffset;
+    float y1 = pipesCenter - gap/2.f - pipeTexture.getSize().y * obj::Sprite::SPRITE_SCALE; 
     float y2 = pipesCenter + gap/2.f;
 
-    // pipe1
-    std::shared_ptr<obj::KinematicBody> pipe1 = std::make_shared<obj::KinematicBody>();
-    addChild(pipe1);
-    level->physicsManager.addNewBody(pipe1);
-    pipe1->setRectSize(pipeSpriteBase.getRect().getSize());
-    pipe1->setCurrentPos({GAME_WIDTH, y1}, true);
+    // pipe
+    std::shared_ptr<obj::KinematicBody> pipe = std::make_shared<obj::KinematicBody>();
+    addChild(pipe);
+    level->physicsManager.addNewBody(pipe);
+    pipes.push_back(pipe);
+    pipe->setCurrentPos({levelWidth, y1}, true);
+    pipe->accelerate(-PIPES_SPEED, 0);
     // sprite
-    std::shared_ptr sprite1 = std::make_shared<obj::Sprite>(pipeSpriteBase);
-    pipe1->addChild(sprite1);
-    level->drawablesManager.newDrawable(sprite1, false, 1);
+    std::shared_ptr sprite = std::make_shared<obj::Sprite>();
+    pipe->addChild(sprite);
+    level->drawablesManager.newDrawable(sprite, false, 1);
+    sprite->setTexture(pipeTexture);
+    pipe->setRectSize(sprite->getRect().getSize());
 
-    // pipe2
-    std::shared_ptr<obj::KinematicBody> pipe2 = std::make_shared<obj::KinematicBody>();
-    addChild(pipe2);
-    level->physicsManager.addNewBody(pipe2);
-    pipe2->setRectSize(pipeSpriteBase.getRect().getSize());
-    pipe2->setCurrentPos({GAME_WIDTH, y2}, true);
+    // pipe
+    pipe = std::make_shared<obj::KinematicBody>();
+    addChild(pipe);
+    level->physicsManager.addNewBody(pipe);
+    pipes.push_back(pipe);
+    pipe->setCurrentPos({levelWidth, y2}, true);
+    pipe->accelerate(-PIPES_SPEED, 0);
     // sprite
-    std::shared_ptr sprite2 = std::make_shared<obj::Sprite>(pipeSpriteBase);
-    pipe2->addChild(sprite2);
-    level->drawablesManager.newDrawable(sprite2, false, 1);
-
-    // acceleration
-    pipe1->accelerate(-PIPES_SPEED, 0);
-    pipe2->accelerate(-PIPES_SPEED, 0);
-
-    // add pipes to pipes vector
-    pipes.push_back(pipe1);
-    pipes.push_back(pipe2);
+    sprite = std::make_shared<obj::Sprite>();
+    pipe->addChild(sprite);
+    level->drawablesManager.newDrawable(sprite, false, 1);
+    sprite->setTexture(pipeTexture);
+    pipe->setRectSize(sprite->getRect().getSize());
 }
 
 // Update
