@@ -1,4 +1,5 @@
 #include "GGE/Gobjects/KinematicBody.hpp"
+#include "GGE/MathHelper.hpp"
 
 using gge::obj::KinematicBody;
 
@@ -20,23 +21,8 @@ void KinematicBody::control(){}
 
 // set velocity
 void KinematicBody::setVelocity(const sf::Vector2f& velocity){
-    this->velocity = velocity;
-
-    if(maxVelocity < 0){
-        return;
-    }
-
-    // limit max velocity
-    if(this->velocity.x > maxVelocity){
-        this->velocity.x = maxVelocity;
-    } else if (this->velocity.x < -maxVelocity){
-        this->velocity.x = -maxVelocity;
-    }
-    if(this->velocity.y > maxVelocity){
-        this->velocity.y = maxVelocity;
-    } else if (this->velocity.y < -maxVelocity){
-        this->velocity.y = -maxVelocity;
-    }
+    // Limit velocity if maxVelocity > 0
+    this->velocity = maxVelocity < 0 ? velocity : clamp(velocity, -maxVelocity, maxVelocity);
 }
 // add velocity
 void KinematicBody::addVelocity(const sf::Vector2f& velocity){
