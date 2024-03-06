@@ -46,7 +46,7 @@ void PipesManager::createNewPipePair(){
     float y1 = pipesCenter - gap/2.f - pipeTexture.getSize().y * obj::Sprite::SPRITE_SCALE; 
     float y2 = pipesCenter + gap/2.f;
 
-    // pipe
+    // top pipe
     std::shared_ptr<obj::KinematicBody> pipe = std::make_shared<obj::KinematicBody>();
     addChild(pipe);
     level->physicsManager.addNewBody(pipe);
@@ -60,7 +60,7 @@ void PipesManager::createNewPipePair(){
     sprite->setTexture(pipeTexture);
     pipe->setRectSize(sprite->getRect().getSize());
 
-    // pipe
+    // bottom pipe
     pipe = std::make_shared<obj::KinematicBody>();
     addChild(pipe);
     level->physicsManager.addNewBody(pipe);
@@ -73,6 +73,15 @@ void PipesManager::createNewPipePair(){
     level->drawablesManager.newDrawable(sprite, false, 1);
     sprite->setTexture(pipeTexture);
     pipe->setRectSize(sprite->getRect().getSize());
+
+    // point collider
+    std::shared_ptr<obj::KinematicBody> pointCollider = std::make_shared<obj::KinematicBody>();
+    addChild(pointCollider);
+    level->physicsManager.addNewBody(pointCollider);
+    pointColliders.push_back(pointCollider);
+    pointCollider->setRectSize({10, levelHeight});
+    pointCollider->setCurrentPos({pipe->getCurrentRect().left + pipe->getCurrentRect().width, 0});
+    pointCollider->addAcceleration({-PIPES_SPEED, 0});
 }
 
 // Update
@@ -104,6 +113,34 @@ void PipesManager::update(const float&){
         createNewPipePair();
         pipeSpawnCooldown->start();
     }
+}
+
+// collide with pointColliders and delete on collision
+bool PipesManager::checkPointCollision(std::shared_ptr<obj::KinematicBody> body){
+    for(auto it = pointColliders.begin(); it != pointColliders.end();){
+        auto pointCollider = it->lock();
+        if(!pointCollider){
+            it = pointColliders.erase(it);
+            continue;
+        }
+
+        // check collision
+        if(pointCollider->getCurrentRect().intersects(body->getCurrentRect())){
+            pointCollider->removeSelf();
+            return true;
+        }
+
+        // if out of screen somehow
+        if(pointCollider->getCurrentRect().left < 0){
+            it = pointColliders.erase(it);
+            pointCollider->removeSelf();
+            continue;
+        }
+
+        ++it;
+    }
+
+    return false;
 }
 
 // Getters

@@ -1,12 +1,11 @@
 #include "inits.hpp"
 
 #include "Gobjects/Bird.hpp"
-#include "GGE/Gobjects/Sprite.hpp"
 #include "Background/BackgroundManager.hpp"
-#include "GGE/ResourceManager/ResourceManager.hpp"
 #include "Pipes/PipesManager.hpp"
 #include "Instructions/AcRestart.hpp"
 #include "Instructions/TrCollision.hpp"
+#include "Score/Score.hpp"
 
 std::shared_ptr<gge::Level> clvl::newScene(){
     std::shared_ptr<gge::Level> level = std::make_shared<gge::Level>();
@@ -31,6 +30,12 @@ std::shared_ptr<gge::Level> clvl::newScene(){
     level->updatableGobjects.push_back(bird);
     bird->init(level);
     bird->setCurrentPos({100, 100}, true);
+
+    // Score
+    std::shared_ptr<gge::Score> score = std::make_shared<gge::Score>(pipesManager, bird);
+    level->addChild(score);
+    score->init(level);
+    level->updatableGobjects.push_back(score);
 
     // instructions
     // action

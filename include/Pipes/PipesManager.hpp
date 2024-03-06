@@ -16,7 +16,9 @@ private:
     static const u_short GAP_OFFSET_RANDOM;
 
     std::vector<std::weak_ptr<obj::KinematicBody>> pipes;
+    std::vector<std::weak_ptr<obj::KinematicBody>> pointColliders;
     std::shared_ptr<Cooldown> pipeSpawnCooldown;
+
     std::weak_ptr<Level> levelWeak;
     
 public:
@@ -33,6 +35,8 @@ public:
     void update(const float& dTimeMs);
     // init cooldowns
     void initCooldowns(CooldownsManager& cooldownsManager);
+    // check collision body-pointColliders
+    bool checkPointCollision(std::shared_ptr<obj::KinematicBody> body);
 
     // Getters
     // pipes
