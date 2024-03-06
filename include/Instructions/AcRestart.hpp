@@ -14,7 +14,7 @@ std::weak_ptr<Level> levelWeak;
 
 public:
     // Structors
-    AcRestart(std::weak_ptr<Level> level);
+    AcRestart(std::shared_ptr<Level> level);
     ~AcRestart();
 
     // Methods

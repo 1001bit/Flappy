@@ -12,10 +12,11 @@ class TrCollision : public Trigger
 private:
     std::weak_ptr<PipesManager> pipesManagerWeak;
     std::weak_ptr<obj::KinematicBody> bodyWeak;
+    std::weak_ptr<Level> levelWeak;
 
 public:
     // Structors
-    TrCollision(std::weak_ptr<PipesManager> pipesManager, std::weak_ptr<obj::KinematicBody> body);
+    TrCollision(std::shared_ptr<PipesManager> pipesManager, std::shared_ptr<obj::KinematicBody> body, std::shared_ptr<Level> level);
     ~TrCollision();
 
     // Methods

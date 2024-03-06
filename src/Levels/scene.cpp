@@ -37,7 +37,7 @@ std::shared_ptr<gge::Level> clvl::newScene(){
     std::shared_ptr<gge::ins::AcRestart> action = std::make_shared<gge::ins::AcRestart>(level);
     level->instructionsManager.actionsVector.push_back(action);
 
-    std::shared_ptr<gge::ins::TrCollision> trigger = std::make_shared<gge::ins::TrCollision>(pipesManager, bird);
+    std::shared_ptr<gge::ins::TrCollision> trigger = std::make_shared<gge::ins::TrCollision>(pipesManager, bird, level);
     level->instructionsManager.triggersVector.push_back(trigger);
     trigger->addAction(action);
 

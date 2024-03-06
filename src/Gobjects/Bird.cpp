@@ -1,15 +1,15 @@
 #include "Gobjects/Bird.hpp"
-#include <cmath>
 
 using gge::obj::Bird;
 
-constexpr float JUMP_FORCE = 9;
+const float Bird::JUMP_FORCE = 9;
 
 // Structors
 Bird::Bird(){
     weighs = true;
     collidable = true;
     controllable = true;
+    maxVelocity = 50;
 }
 
 Bird::~Bird(){}
@@ -42,12 +42,16 @@ void Bird::control(){
 }
 
 // rotate the sprite and limit velocity
-void Bird::update(const float& dTimeMs){
+void Bird::update(const float&){
     auto sprite = spriteWeak.lock();
     if(!sprite){
         return;
     }
 
     // Rotation
-    sprite->sprite.setRotation(0);
+    float rotRange = 120;
+    float normalizedVelY = (getVelocity().y + maxVelocity) / (2 * maxVelocity);
+    float targetRot = (rotRange / -2) + normalizedVelY * rotRange;
+
+    sprite->sprite.setRotation(targetRot);
 }

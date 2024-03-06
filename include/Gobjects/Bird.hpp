@@ -10,6 +10,8 @@ namespace gge::obj {
 class Bird : public KinematicBody
 {
 private:
+    static const float JUMP_FORCE;
+
     std::weak_ptr<Sprite> spriteWeak;
 
 public:

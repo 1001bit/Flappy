@@ -3,7 +3,7 @@
 using gge::ins::AcRestart;
 
 // Structors
-AcRestart::AcRestart(std::weak_ptr<Level> level) :
+AcRestart::AcRestart(std::shared_ptr<Level> level) :
 levelWeak(level)
 {}
 AcRestart::~AcRestart(){}

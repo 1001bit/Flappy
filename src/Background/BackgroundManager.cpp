@@ -1,12 +1,12 @@
 #include "Background/BackgroundManager.hpp"
 #include <cmath>
 
-constexpr float BACKGROUND_SPEED = 0.5;
-
 using gge::BackgroundManager;
 
+const float BackgroundManager::BACKGROUND_SPEED = 0.5;
+
 // Structors
-BackgroundManager::BackgroundManager(std::weak_ptr<Level> level) :
+BackgroundManager::BackgroundManager(std::shared_ptr<Level> level) :
 levelWeak(level)
 {}
 BackgroundManager::~BackgroundManager(){}

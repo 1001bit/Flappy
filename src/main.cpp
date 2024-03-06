@@ -1,9 +1,6 @@
 #include "GGE/Game.hpp"
 #include "GGE/Controls/ControlsManager.hpp"
-#include "GGE/Gobjects/Sprite.hpp"
 #include "Levels/inits.hpp"
-
-const float gge::obj::Sprite::SPRITE_SCALE = 4;
 
 void initControls(){
     gge::ControlsManager* controlsManager = gge::ControlsManager::getInstance();

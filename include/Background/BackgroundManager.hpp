@@ -10,12 +10,14 @@ namespace gge{
 class BackgroundManager : public obj::Gobject
 {
 private:
+    static const float BACKGROUND_SPEED;
+
     std::vector<std::weak_ptr<obj::KinematicBody>> backgrounds;
     std::weak_ptr<Level> levelWeak;
     
 public:
     // Structors
-    BackgroundManager(std::weak_ptr<Level> level);
+    BackgroundManager(std::shared_ptr<Level> level);
     ~BackgroundManager();
 
     // Methods
