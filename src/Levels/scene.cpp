@@ -39,12 +39,18 @@ std::shared_ptr<gge::Level> clvl::newScene(){
     level->updatableGobjects.push_back(score);
 
     // instructions
-    // stop action
-    std::shared_ptr<gge::ins::AcStop> stopAction = std::make_shared<gge::ins::AcStop>(bird, pipesManager, backgroundManager);
-    level->instructionsManager.actionsVector.push_back(stopAction);
     // restart action
     std::shared_ptr<gge::ins::AcRestart> restartAction = std::make_shared<gge::ins::AcRestart>(level);
     level->instructionsManager.actionsVector.push_back(restartAction);
+    // restart trigger
+    std::shared_ptr<gge::ins::TrRestart> restartTrigger = std::make_shared<gge::ins::TrRestart>(bird);
+    level->instructionsManager.triggersVector.push_back(restartTrigger);
+    restartTrigger->setActive(false);
+    restartTrigger->addAction(restartAction);
+
+    // stop action
+    std::shared_ptr<gge::ins::AcStop> stopAction = std::make_shared<gge::ins::AcStop>(bird, pipesManager, backgroundManager, restartTrigger);
+    level->instructionsManager.actionsVector.push_back(stopAction);
     // collision trigger
     std::shared_ptr<gge::ins::TrCollision> collisionTrigger = std::make_shared<gge::ins::TrCollision>(pipesManager, bird, level);
     level->instructionsManager.triggersVector.push_back(collisionTrigger);

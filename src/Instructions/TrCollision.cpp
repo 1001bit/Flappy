@@ -40,7 +40,7 @@ void TrCollision::checkEvent(){
 
             if(pipeRect.intersects(birdRect)){
                 activateActions();
-                active = 0;
+                active = false;
                 return;
             }
         }

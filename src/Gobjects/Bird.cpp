@@ -58,5 +58,7 @@ void Bird::update(const float&){
 
 // make bird fall
 void Bird::kill(){
+    setVelocity({getVelocity().x, 0});
+    addAcceleration({0, -JUMP_FORCE});
     applyControl = false;
 }

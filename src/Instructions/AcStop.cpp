@@ -3,10 +3,12 @@
 using gge::ins::AcStop;
 
 // Structors
-AcStop::AcStop(std::shared_ptr<obj::Bird> bird, std::shared_ptr<PipesManager> pipesManager, std::shared_ptr<BackgroundManager> backgroundManager) :
+AcStop::AcStop(std::shared_ptr<obj::Bird> bird, std::shared_ptr<PipesManager> pipesManager,
+std::shared_ptr<BackgroundManager> backgroundManager, std::shared_ptr<TrRestart> restartTrigger) :
 birdWeak(bird),
 pipesManagerWeak(pipesManager),
-backgroundManagerWeak(backgroundManager)
+backgroundManagerWeak(backgroundManager),
+restartTriggerWeak(restartTrigger)
 {}
 AcStop::~AcStop(){}
 
@@ -16,11 +18,13 @@ void AcStop::activate(){
     auto backgroundManager = backgroundManagerWeak.lock();
     auto bird = birdWeak.lock();
     auto pipesManager = pipesManagerWeak.lock();
-    if(!backgroundManager || !bird || !pipesManager){
+    auto restartTrigger = restartTriggerWeak.lock();
+    if(!backgroundManager || !bird || !pipesManager || !restartTrigger){
         return;
     }
 
     backgroundManager->stop();
     pipesManager->stop();
     bird->kill();
+    restartTrigger->setActive(true);
 }

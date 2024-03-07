@@ -107,6 +107,7 @@ void BackgroundManager::stop(){
         }
 
         background->setVelocity({0, 0});
+        background->setAcceleration({0, 0});
 
         ++it;
     }

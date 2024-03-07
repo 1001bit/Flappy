@@ -154,6 +154,7 @@ void PipesManager::stop(){
         }
 
         pipe->setVelocity({0, 0});
+        pipe->setAcceleration({0, 0});
 
         ++it;
     }
@@ -167,6 +168,7 @@ void PipesManager::stop(){
         }
 
         pointCollider->setVelocity({0, 0});
+        pointCollider->setAcceleration({0, 0});
 
         ++it;
     }
