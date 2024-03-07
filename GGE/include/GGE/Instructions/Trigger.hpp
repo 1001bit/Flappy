@@ -28,6 +28,8 @@ public:
     virtual void checkEvent();
     // add an action to vector
     void addAction(std::shared_ptr<Action> action);
+    // acitve
+    void setActive(bool active);
 };
 
 }

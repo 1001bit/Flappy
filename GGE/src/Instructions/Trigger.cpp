@@ -4,7 +4,7 @@ using gge::ins::Trigger;
 
 // Structors
 Trigger::Trigger(){
-    active = 1;
+    active = true;
 }
 Trigger::~Trigger(){}
 
@@ -34,4 +34,9 @@ void Trigger::activateActions(){
 
         ++it;
     }
+}
+
+// acitve
+void Trigger::setActive(bool active){
+    this->active = active;
 }
