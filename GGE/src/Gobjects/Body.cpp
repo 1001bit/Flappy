@@ -4,13 +4,13 @@ using gge::obj::Body;
 
 // Structors
 Body::Body(){
-    collidable = 1;
+    applyCollisions = 1;
 }
 
 Body::~Body(){}
 
 // Getters
 // collidable
-const bool& Body::isCollidable(){
-    return collidable;
+const bool& Body::doApplyCollisions(){
+    return applyCollisions;
 }

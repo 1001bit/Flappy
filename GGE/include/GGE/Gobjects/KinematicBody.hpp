@@ -21,13 +21,13 @@ private:
     sf::Vector2f acceleration;
 
 protected:
-    bool weighs;
-    bool friction;
-    bool controllable;
+    bool applyGravity;
+    bool applyFriction;
+    bool applyControl;
     float maxVelocity;
 
 public:
-    CollisionDirection collisionDir;  
+    CollisionDirection collisionDir;
 
     // Methods
     // Control the body
@@ -52,12 +52,12 @@ public:
     void updatePreviousRect();
 
     // Getters
-    // weighs
-    bool doesWeigh();
-    // friction
-    bool doesFriction();
-    // controllable
-    bool isControllable();
+    // applyGravity
+    bool doApplyGravity();
+    // applyFriction
+    bool doApplyFriction();
+    // applyControl
+    bool doApplyControl();
 
     // velocity
     const sf::Vector2f& getVelocity();

@@ -7,7 +7,7 @@ namespace gge::obj {
 class Body : public Gobject
 {
 protected:
-    bool collidable;
+    bool applyCollisions;
 
 public:
     // Structors
@@ -16,7 +16,7 @@ public:
 
     // Getters
     // collidable
-    const bool& isCollidable();
+    const bool& doApplyCollisions();
 };
 
 }

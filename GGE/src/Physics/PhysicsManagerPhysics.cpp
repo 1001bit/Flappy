@@ -18,12 +18,12 @@ void PhysicsManager::updatePhysics(const float& dTimeMs){
         kinematicBody->updatePreviousRect();
 
         // control body (like player, npc)
-        if(kinematicBody->isCollidable()){
+        if(kinematicBody->doApplyControl()){
             kinematicBody->control();
         }
 
         // gravity
-        if(kinematicBody->doesWeigh()){
+        if(kinematicBody->doApplyGravity()){
             applyGravityToAccel(kinematicBody, dTimeMs);
         }
 
@@ -31,7 +31,7 @@ void PhysicsManager::updatePhysics(const float& dTimeMs){
         applyAccelerationToVel(kinematicBody, dTimeMs);
 
         // collide body with everything else
-        if(kinematicBody->isCollidable()){
+        if(kinematicBody->doApplyCollisions()){
             applyCollisions(kinematicBody);
         }
 
@@ -39,7 +39,7 @@ void PhysicsManager::updatePhysics(const float& dTimeMs){
         applyVelocityToPos(kinematicBody);
         
         // velocity *= friction
-        if(kinematicBody->doesFriction()){
+        if(kinematicBody->doApplyFriction()){
             applyFrictionToVel(kinematicBody);
         }
 
@@ -60,7 +60,7 @@ void PhysicsManager::applyAccelerationToVel(std::shared_ptr<obj::KinematicBody> 
 
 // Apply the friction so body doesn't move for eternity
 void PhysicsManager::applyFrictionToVel(std::shared_ptr<obj::KinematicBody> kinematicBody){
-    if(kinematicBody->doesWeigh()){
+    if(kinematicBody->doApplyGravity()){
         // ground friction if platformer body is on ground
         if(kinematicBody->collisionDir.vertical == Direction::Down){
             kinematicBody->addVelocity({kinematicBody->getVelocity().x * -GROUND_FRICTION, 0});

@@ -70,7 +70,7 @@ void PhysicsManager::applyCollisions(std::shared_ptr<obj::KinematicBody> kinemat
         }
 
         // collide current body with non-kinematic collidable body
-        if(solidBody->isCollidable()){
+        if(solidBody->doApplyCollisions()){
             collideKinematicAndSolid(kinematicBody, solidBody);
         }
 

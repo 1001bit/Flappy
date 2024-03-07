@@ -5,10 +5,10 @@ using gge::obj::KinematicBody;
 
 // Structors
 KinematicBody::KinematicBody(){
-    weighs = false;
-    friction = false;
-    collidable = false;
-    controllable = false;
+    applyGravity = false;
+    applyFriction = false;
+    applyCollisions = false;
+    applyControl = false;
     maxVelocity = -1;
 
     collisionDir = {Direction::None, Direction::None};
@@ -70,17 +70,17 @@ void KinematicBody::updatePreviousRect(){
 }
 
 // Getters
-// weighs
-bool KinematicBody::doesWeigh(){
-    return weighs;
+// applyGravity
+bool KinematicBody::doApplyGravity(){
+    return applyGravity;
 }
-// friction
-bool KinematicBody::doesFriction(){
-    return friction;
+// applyFriction
+bool KinematicBody::doApplyFriction(){
+    return applyFriction;
 }
-// controllable
-bool KinematicBody::isControllable(){
-    return controllable;
+// applyControl
+bool KinematicBody::doApplyControl(){
+    return applyControl;
 }
 
 // velocity
