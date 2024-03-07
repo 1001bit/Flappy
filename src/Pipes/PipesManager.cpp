@@ -12,7 +12,7 @@ const u_short PipesManager::GAP_OFFSET_RANDOM = 175;
 PipesManager::PipesManager(std::shared_ptr<Level> level) : 
 levelWeak(level)
 {
-    this->active = true;
+    active = true;
 }
 
 PipesManager::~PipesManager(){}
@@ -80,7 +80,7 @@ void PipesManager::createNewPipePair(){
     level->physicsManager.addNewBody(pointCollider);
     pointColliders.push_back(pointCollider);
     pointCollider->setRectSize({10, levelHeight});
-    pointCollider->setCurrentPos({pipe->getCurrentRect().left + pipe->getCurrentRect().width, 0});
+    pointCollider->setCurrentPos({pipe->getCurrentRect().left + pipe->getCurrentRect().width, 0}, true);
     pointCollider->addAcceleration({-PIPES_SPEED, 0});
 }
 
@@ -115,7 +115,7 @@ void PipesManager::update(const float&){
     }
 }
 
-// collide with pointColliders and delete on collision
+// collide some body with pointColliders and delete on collision and return true
 bool PipesManager::checkPointCollision(std::shared_ptr<obj::KinematicBody> body){
     for(auto it = pointColliders.begin(); it != pointColliders.end();){
         auto pointCollider = it->lock();
@@ -141,6 +141,37 @@ bool PipesManager::checkPointCollision(std::shared_ptr<obj::KinematicBody> body)
     }
 
     return false;
+}
+
+// stop pipes movement
+void PipesManager::stop(){
+    // pipes
+    for(auto it = pipes.begin(); it != pipes.end();){
+        auto pipe = it->lock();
+        if(!pipe){
+            it = pipes.erase(it);
+            continue;
+        }
+
+        pipe->setVelocity({0, 0});
+
+        ++it;
+    }
+
+    // point colliders
+    for(auto it = pointColliders.begin(); it != pointColliders.end();){
+        auto pointCollider = it->lock();
+        if(!pointCollider){
+            it = pointColliders.erase(it);
+            continue;
+        }
+
+        pointCollider->setVelocity({0, 0});
+
+        ++it;
+    }
+
+    active = false;
 }
 
 // Getters

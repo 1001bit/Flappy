@@ -20,10 +20,10 @@ private:
     std::shared_ptr<Cooldown> pipeSpawnCooldown;
 
     std::weak_ptr<Level> levelWeak;
+
+    bool active;
     
 public:
-    bool active;
-
     // Structors
     PipesManager(std::shared_ptr<Level> level);
     ~PipesManager();
@@ -37,6 +37,8 @@ public:
     void initCooldowns(CooldownsManager& cooldownsManager);
     // check collision body-pointColliders
     bool checkPointCollision(std::shared_ptr<obj::KinematicBody> body);
+    // stop pipes movement
+    void stop();
 
     // Getters
     // pipes

@@ -18,7 +18,7 @@ public:
     ~AcRestart();
 
     // Methods
-    // wait 3 seconds and restart the level
+    // restart the level
     void activate();
 };
 

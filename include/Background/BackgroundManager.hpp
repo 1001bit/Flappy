@@ -14,6 +14,8 @@ private:
 
     std::vector<std::weak_ptr<obj::KinematicBody>> backgrounds;
     std::weak_ptr<Level> levelWeak;
+
+    bool active;
     
 public:
     // Structors
@@ -27,6 +29,8 @@ public:
     void init();
     // make new background
     void createNewBackground();
+    // stop all background movement
+    void stop();
 };
 
 }

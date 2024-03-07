@@ -8,7 +8,9 @@ const float BackgroundManager::BACKGROUND_SPEED = 0.5;
 // Structors
 BackgroundManager::BackgroundManager(std::shared_ptr<Level> level) :
 levelWeak(level)
-{}
+{
+    active = true;
+}
 BackgroundManager::~BackgroundManager(){}
 
 // Methods
@@ -59,6 +61,10 @@ void BackgroundManager::createNewBackground(){
 
 // Update
 void BackgroundManager::update(const float&){
+    if(!active){
+        return;
+    }
+
     auto level = levelWeak.lock();
     if(!level){
         return;
@@ -89,4 +95,20 @@ void BackgroundManager::update(const float&){
     if(createNew){
         createNewBackground();
     }
+}
+
+// stop all background movement
+void BackgroundManager::stop(){
+    for(auto it = backgrounds.begin(); it != backgrounds.end();){
+        auto background = it->lock();
+        if(!background){
+            it = backgrounds.erase(it);
+            continue;
+        }
+
+        background->setVelocity({0, 0});
+
+        ++it;
+    }
+    active = false;
 }

@@ -26,6 +26,8 @@ public:
     void control();
     // rotate the sprite
     void update(const float& dTimeMs);
+    // make bird fall
+    void kill();
 };
 
 }

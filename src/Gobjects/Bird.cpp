@@ -6,9 +6,9 @@ const float Bird::JUMP_FORCE = 9;
 
 // Structors
 Bird::Bird(){
-    weighs = true;
-    collidable = true;
-    controllable = true;
+    applyGravity = true;
+    applyCollisions = true;
+    applyControl = true;
     maxVelocity = 50;
 }
 
@@ -23,7 +23,7 @@ void Bird::init(std::shared_ptr<Level> level){
     // sprite
     std::shared_ptr<Sprite> newSprite = std::make_shared<Sprite>();
     addChild(newSprite);
-    level->drawablesManager.newDrawable(newSprite, false, 1);
+    level->drawablesManager.newDrawable(newSprite, false, 2);
     newSprite->setTexture(level->resourceManager.getTexture("Assets/Textures/bird.png"));
     newSprite->setRelativePos((getRect().getSize() - newSprite->getRect().getSize()) / 2.f);
     
@@ -54,4 +54,9 @@ void Bird::update(const float&){
     float targetRot = (rotRange / -2) + normalizedVelY * rotRange;
 
     sprite->sprite.setRotation(targetRot);
+}
+
+// make bird fall
+void Bird::kill(){
+    applyControl = false;
 }
